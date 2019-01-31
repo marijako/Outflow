@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <dimen name="home_activity_items">16sp</dimen>
+    <dimen name="activity_text_name">20sp</dimen>
+    <dimen name="activity_settings_items">15sp</dimen>
+
+
+</resources>

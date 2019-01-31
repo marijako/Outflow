@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.activities_single_mode.SettingsActivity">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/blue_dark_color">
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelineHeaderTop"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.1" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelineHeaderBottom"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.11" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:src="@drawable/header"
+            app:layout_constraintBottom_toBottomOf="@id/guidelineHeaderBottom"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/guidelineHeaderTop" />
+
+
+        <me.grantland.widget.AutofitTextView
+            android:id="@+id/txtViewName"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text="@string/settings"
+            android:gravity="center"
+            android:textSize="@dimen/activity_text_name"
+            android:textColor="@color/white_color"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/guidelineHeaderTop"
+            />
+
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelineNotificationsBottom"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.2" />
+
+
+        <me.grantland.widget.AutofitTextView
+            android:id="@+id/txtViewReceiveDailyNotifications"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toTopOf="@+id/guidelineHeaderBottom"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/guidelineNotificationsBottom"
+            android:text="Receive Daily Notifications"
+            android:gravity="center_vertical"
+            android:paddingLeft="15dp"
+            android:textColor="@color/white_color"
+            android:textSize="@dimen/activity_settings_items"
+            />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelineSwitchLeft"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.78" />
+
+
+        <ImageView
+            android:id="@+id/imgViewReceiveNotificationsSwitch"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:src="@drawable/switch_on"
+            android:padding="5dp"
+            app:layout_constraintTop_toTopOf="@id/guidelineHeaderBottom"
+            app:layout_constraintBottom_toBottomOf="@id/guidelineNotificationsBottom"
+            app:layout_constraintLeft_toLeftOf="@+id/guidelineSwitchLeft"
+            app:layout_constraintRight_toRightOf="parent"
+            />
+
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelinePasswordBottom"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.29" />
+
+
+        <me.grantland.widget.AutofitTextView
+            android:id="@+id/txtViewPassword"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toTopOf="@+id/guidelineNotificationsBottom"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="@id/guidelineSwitchLeft"
+            app:layout_constraintBottom_toBottomOf="@+id/guidelinePasswordBottom"
+            android:text="Password"
+            android:gravity="center_vertical"
+            android:paddingLeft="15dp"
+            android:textColor="@color/white_color"
+            android:textSize="@dimen/activity_settings_items"
+            />
+
+
+
+        <ImageView
+            android:id="@+id/imgViewPasswordSwitch"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:src="@drawable/switch_on"
+            android:padding="5dp"
+            app:layout_constraintTop_toTopOf="@id/guidelineNotificationsBottom"
+            app:layout_constraintBottom_toBottomOf="@id/guidelinePasswordBottom"
+            app:layout_constraintLeft_toLeftOf="@+id/guidelineSwitchLeft"
+            app:layout_constraintRight_toRightOf="parent"
+            />
+
+
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelineSignOutBottom"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.38" />
+
+
+        <me.grantland.widget.AutofitTextView
+            android:id="@+id/txtViewSignOut"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toTopOf="@+id/guidelinePasswordBottom"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="@id/guidelineSwitchLeft"
+            app:layout_constraintBottom_toBottomOf="@+id/guidelineSignOutBottom"
+            android:text="Sign Out"
+            android:gravity="center_vertical"
+            android:paddingLeft="15dp"
+            android:textColor="@color/yellow_color"
+            android:textSize="@dimen/activity_settings_items"
+            />
+
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelineChangeModeBottom"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.47" />
+
+
+        <me.grantland.widget.AutofitTextView
+            android:id="@+id/txtViewChangeMode"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toTopOf="@+id/guidelineSignOutBottom"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="@id/guidelineSwitchLeft"
+            app:layout_constraintBottom_toBottomOf="@+id/guidelineChangeModeBottom"
+            android:text="Change Mode"
+            android:gravity="center_vertical"
+            android:paddingLeft="15dp"
+            android:textColor="@color/blue_light_color"
+            android:textSize="@dimen/activity_settings_items"
+            />
+
+
+    </android.support.constraint.ConstraintLayout>
+
+
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.activities_single_mode.LoginSingleActivity">
+
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/blue_dark_color">
+
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelineTextTop"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.3"/>
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelineTextBottom"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.4"/>
+
+
+        <me.grantland.widget.AutofitTextView
+            android:id="@+id/txtViewEnterYourPassword"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:textSize="@dimen/activity_text_name"
+            android:textColor="@color/white_color"
+            android:text="@string/login_single"
+            app:layout_constraintTop_toTopOf="@+id/guidelineTextTop"
+            app:layout_constraintBottom_toBottomOf="@id/guidelineTextBottom"
+            />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelinePasswordBottom"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.5"/>
+
+
+        <ImageView
+            android:id="@+id/imgViewPasswordHolder"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toTopOf="@+id/guidelineTextBottom"
+            app:layout_constraintBottom_toBottomOf="@+id/guidelinePasswordBottom"
+            android:src="@drawable/blue_button"
+            />
+
+        <EditText
+            android:id="@+id/editTextPassword"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:textColor="@color/white_color"
+            android:background="@null"
+            android:cursorVisible="true"
+            android:textCursorDrawable="@drawable/cursor"
+            android:inputType="textPassword"
+            android:gravity="center"
+            app:layout_constraintTop_toTopOf="@+id/guidelineTextBottom"
+            app:layout_constraintBottom_toBottomOf="@+id/guidelinePasswordBottom"
+            android:src="@drawable/blue_button" />
+
+
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.constraint.ConstraintLayout>

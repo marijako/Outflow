@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.HomeActivity">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/home_bg">
+
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelineButtonsTop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.55" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelineButtonsLeft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.15" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelineButtonsRight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.85" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelineTrackYourExpensesBottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.65" />
+
+        <ImageView
+            android:id="@+id/imgViewTrackYourExpensesButton"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:src="@drawable/yellow_button"
+            app:layout_constraintBottom_toBottomOf="@+id/guidelineTrackYourExpensesBottom"
+            app:layout_constraintLeft_toLeftOf="@id/guidelineButtonsLeft"
+            app:layout_constraintRight_toRightOf="@+id/guidelineButtonsRight"
+            app:layout_constraintTop_toTopOf="@id/guidelineButtonsTop" />
+
+        <me.grantland.widget.AutofitTextView
+            android:id="@+id/txtViewTrackYourExpensesButton"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:text="@string/track_your_expenses"
+            android:textColor="@color/white_color"
+            android:textSize="@dimen/home_activity_items"
+            app:layout_constraintBottom_toBottomOf="@+id/guidelineTrackYourExpensesBottom"
+            app:layout_constraintLeft_toLeftOf="@id/guidelineButtonsLeft"
+            app:layout_constraintRight_toRightOf="@+id/guidelineButtonsRight"
+            app:layout_constraintTop_toTopOf="@id/guidelineButtonsTop" />
+
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelineTrackGroupExpensesTop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.66" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelineTrackGroupExpensesBottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.76" />
+
+        <ImageView
+            android:id="@+id/imgViewTrackGroupExpensesButton"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:src="@drawable/blue_button"
+            app:layout_constraintBottom_toBottomOf="@+id/guidelineTrackGroupExpensesBottom"
+            app:layout_constraintLeft_toLeftOf="@id/guidelineButtonsLeft"
+            app:layout_constraintRight_toRightOf="@+id/guidelineButtonsRight"
+            app:layout_constraintTop_toTopOf="@id/guidelineTrackGroupExpensesTop" />
+
+
+        <me.grantland.widget.AutofitTextView
+            android:id="@+id/txtViewTrackGroupExpensesButton"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:text="@string/track_group_expenses"
+            android:textColor="@color/white_color"
+            android:textSize="@dimen/home_activity_items"
+            app:layout_constraintBottom_toBottomOf="@+id/guidelineTrackGroupExpensesBottom"
+            app:layout_constraintLeft_toLeftOf="@id/guidelineButtonsLeft"
+            app:layout_constraintRight_toRightOf="@+id/guidelineButtonsRight"
+            app:layout_constraintTop_toTopOf="@id/guidelineTrackGroupExpensesTop" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelineInvitedTop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.77" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelineInvitedBottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.86" />
+
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelineButtonsInvitedLeft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.23" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelineButtonsInvitedRight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.77" />
+
+
+        <ImageView
+            android:id="@+id/imgViewInvitedButton"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:src="@drawable/gray_button"
+            app:layout_constraintBottom_toBottomOf="@+id/guidelineInvitedBottom"
+            app:layout_constraintLeft_toLeftOf="@id/guidelineButtonsInvitedLeft"
+            app:layout_constraintRight_toRightOf="@+id/guidelineButtonsInvitedRight"
+            app:layout_constraintTop_toTopOf="@id/guidelineInvitedTop" />
+
+        <me.grantland.widget.AutofitTextView
+            android:id="@+id/txtViewInvitedButton"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:text="@string/invited"
+            android:textSize="@dimen/home_activity_items"
+            android:textColor="@color/white_color"
+            app:layout_constraintBottom_toBottomOf="@+id/guidelineInvitedBottom"
+            app:layout_constraintLeft_toLeftOf="@id/guidelineButtonsInvitedLeft"
+            app:layout_constraintRight_toRightOf="@+id/guidelineButtonsInvitedRight"
+            app:layout_constraintTop_toTopOf="@id/guidelineInvitedTop" />
+
+
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.constraint.ConstraintLayout>

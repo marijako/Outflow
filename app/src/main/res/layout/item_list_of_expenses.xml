@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+   >
+
+
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="h, 650:160"
+         >
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelineCostTextTop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.13"
+            />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelineCostTextBottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.6"
+            />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelineCostTextRight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.3"
+            />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelineCostTextLeft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.05"
+            />
+
+
+        <me.grantland.widget.AutofitTextView
+            android:id="@+id/txtViewCostList"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toTopOf="@+id/guidelineCostTextTop"
+            app:layout_constraintBottom_toBottomOf="@+id/guidelineCostTextBottom"
+            app:layout_constraintLeft_toLeftOf="@+id/guidelineCostTextLeft"
+            app:layout_constraintRight_toRightOf="@id/guidelineCostTextRight"
+            android:textColor="@color/blue_light_color"
+            android:text="256"
+            android:gravity="center_vertical"
+            android:textSize="28dp"
+            />
+
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelineCategoryTextRight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.88"
+            />
+
+
+
+        <me.grantland.widget.AutofitTextView
+            android:id="@+id/txtViewCategoryList"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text="Food And Drinks"
+            android:textColor="@color/yellow_color"
+            android:gravity="center_vertical"
+            android:paddingLeft="5dp"
+            android:textSize="@dimen/activity_settings_items"
+            app:layout_constraintLeft_toLeftOf="@id/guidelineCostTextRight"
+            app:layout_constraintTop_toTopOf="@+id/guidelineCostTextTop"
+            app:layout_constraintBottom_toBottomOf="@+id/guidelineCostTextBottom"
+            app:layout_constraintRight_toRightOf="@id/guidelineCategoryTextRight"
+
+            />
+
+
+        <ImageView
+            android:id="@+id/imgViewDeleteItem"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:src="@drawable/delete"
+            android:padding="7dp"
+            app:layout_constraintTop_toTopOf="@+id/guidelineCostTextTop"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/guidelineCostTextBottom"
+            app:layout_constraintLeft_toLeftOf="@+id/guidelineCategoryTextRight"
+            />
+
+
+        <me.grantland.widget.AutofitTextView
+            android:id="@+id/txtViewCommentList"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text="Spent monie for dinner with friends"
+            android:textColor="@color/white_color"
+            android:gravity="center_vertical"
+            android:paddingLeft="5dp"
+            android:textSize="@dimen/activity_settings_items"
+            app:layout_constraintLeft_toLeftOf="@id/guidelineCostTextLeft"
+            app:layout_constraintTop_toTopOf="@+id/guidelineCostTextBottom"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+
+            />
+
+
+
+    </android.support.constraint.ConstraintLayout>
+
+
+
+
+
+</android.support.constraint.ConstraintLayout>
