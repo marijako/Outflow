@@ -102,8 +102,8 @@ public class ListOfExpensesOpenHelper extends SQLiteOpenHelper {
             }
             cursor = mReadableDB.rawQuery(query, null);
             cursor.moveToFirst();
-            entry.setmId(cursor.getInt(cursor.getColumnIndex(KEY_ID)));
-            entry.setmCost(cursor.getString(cursor.getColumnIndex(COST_COLUMN)));
+            entry.setMId(cursor.getInt(cursor.getColumnIndex(KEY_ID)));
+            entry.setMCost(cursor.getString(cursor.getColumnIndex(COST_COLUMN)));
         } catch (Exception e) {
             Log.d(TAG, "QUERY EXCEPTION! " + e.getMessage());
         } finally {
