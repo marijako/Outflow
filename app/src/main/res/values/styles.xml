@@ -5,4 +5,17 @@
         <!-- Customize your theme here. -->
     </style>
 
+
+    <style name="FirebaseAuthTheme" parent="FirebaseUI">
+        <!-- Required for sign-in flow styling -->
+        <item name="colorPrimary">@color/blue_dark_color</item>
+        <item name="colorPrimaryDark">@color/blue_light_color</item>
+        <item name="colorAccent">@color/yellow_color</item>
+
+        <item name="colorControlNormal">@color/blue_dark_color</item>
+        <item name="colorControlActivated">@color/blue_light_color</item>
+        <item name="colorControlHighlight">@color/yellow_color</item>
+        <item name="android:windowBackground">@color/blue_dark_color</item>
+    </style>
+
 </resources>

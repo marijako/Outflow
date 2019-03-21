@@ -1,45 +1,36 @@
 package com.example.marijah.outflow.adapters
 
 import android.content.Context
-import android.graphics.Color
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
-
 import com.example.marijah.outflow.R
 import com.example.marijah.outflow.helpers.HelperManager
-import com.example.marijah.outflow.helpers.ListOfExpensesOpenHelper
-import com.example.marijah.outflow.models.Category
-import com.example.marijah.outflow.models.ListOfExpensesItem
-
-import java.util.ArrayList
+import com.example.marijah.outflow.helpers.showToast
+import com.example.marijah.outflow.models.ExpenseItem
+import java.util.*
 
 class ListOfExpensesAdapter// Pass in the contact array into the constructor
+
 (// Easy access to the context object in the recyclerview
-        private val context: Context, internal var mDB: ListOfExpensesOpenHelper) : RecyclerView.Adapter<ListOfExpensesAdapter.ViewHolder>() {
+        private val context: Context, private val arrayListOfExpenses: ArrayList<ExpenseItem>) : RecyclerView.Adapter<ListOfExpensesAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        var txtViewCostList: TextView
-        var txtViewCategoryList: TextView
-        var txtViewCommentList: TextView
-        var imgViewDeleteItem: ImageView
+        var txtViewCostList: TextView = itemView.findViewById(R.id.txtViewCostList)
+        var txtViewCategoryList: TextView = itemView.findViewById(R.id.txtViewCategoryList)
+        var txtViewCommentList: TextView = itemView.findViewById(R.id.txtViewCommentList)
+        var txtViewDateList : TextView = itemView.findViewById(R.id.txtViewDateList)
+        var imgViewDeleteItem: ImageView = itemView.findViewById(R.id.imgViewDeleteItem)
 
         init {
-            txtViewCostList = itemView.findViewById(R.id.txtViewCostList)
             HelperManager.setTypefaceLight(context.assets, txtViewCostList)
-
-            txtViewCategoryList = itemView.findViewById(R.id.txtViewCategoryList)
             HelperManager.setTypefaceLight(context.assets, txtViewCategoryList)
-
-            txtViewCommentList = itemView.findViewById(R.id.txtViewCommentList)
             HelperManager.setTypefaceLight(context.assets, txtViewCommentList)
-
-            imgViewDeleteItem = itemView.findViewById(R.id.imgViewDeleteItem)
+            HelperManager.setTypefaceLight(context.assets, txtViewDateList)
         }
     }
 
@@ -57,22 +48,22 @@ class ListOfExpensesAdapter// Pass in the contact array into the constructor
 
     override fun onBindViewHolder(holder: ListOfExpensesAdapter.ViewHolder, position: Int) {
 
-        val current = mDB.query(position)
-        holder.txtViewCostList.text = current.mCost
+        val expenseItem = arrayListOfExpenses[position]
+        holder.txtViewCostList.text = expenseItem.price.toString()
+        holder.txtViewCategoryList.text = expenseItem.category
+        holder.txtViewCommentList.text = expenseItem.comment
+        holder.txtViewDateList.text = expenseItem.date
 
+        holder.imgViewDeleteItem.setOnClickListener {
 
-        val imgViewDeleteItemTemp = holder.imgViewDeleteItem
-
-
-        imgViewDeleteItemTemp.setOnClickListener {
-            // String choosenCategory = categoryElement.getCategoryName();
-            Toast.makeText(context, "You have picked " + current.mCost, Toast.LENGTH_SHORT).show()
+            showToast(context, "Brisanjac")
         }
 
     }
 
+
     override fun getItemCount(): Int {
-        return 10
+        return arrayListOfExpenses.size
     }
 
 }

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.activities_single_mode.LoginSingleActivity">
+
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/blue_dark_color">
+
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelineTextTop"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.15"/>
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelineTextBottom"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.35"/>
+
+
+        <me.grantland.widget.AutofitTextView
+            android:id="@+id/txtViewLogin"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:textSize="40sp"
+            android:textColor="@color/white_color"
+            android:text="Sign In"
+            app:layout_constraintTop_toTopOf="@+id/guidelineTextTop"
+            app:layout_constraintBottom_toBottomOf="@id/guidelineTextBottom"
+            />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelinePasswordBottom"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.5"/>
+
+
+       <android.support.constraint.Guideline
+           android:id="@+id/guidelineGmailLeft"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:orientation="vertical"
+           app:layout_constraintGuide_percent="0.2"
+           />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelineGmailRight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.8"
+            />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelineGmailTop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.4"
+            />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelineGmailBottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.6"
+            />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelineEmailTop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.65"
+            />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelineEmailBottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.85"
+            />
+
+        <ImageView
+            android:id="@+id/imgViewGmailSignIn"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:src="@drawable/gmail_color"
+            app:layout_constraintTop_toTopOf="@id/guidelineGmailTop"
+            app:layout_constraintBottom_toBottomOf="@id/guidelineGmailBottom"
+            app:layout_constraintLeft_toLeftOf="@+id/guidelineGmailLeft"
+            app:layout_constraintRight_toRightOf="@+id/guidelineGmailRight"
+            />
+
+        <ImageView
+            android:id="@+id/imgViewEmailSignIn"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:src="@drawable/email"
+            app:layout_constraintTop_toTopOf="@id/guidelineEmailTop"
+            app:layout_constraintBottom_toBottomOf="@id/guidelineEmailBottom"
+            app:layout_constraintLeft_toLeftOf="@+id/guidelineGmailLeft"
+            app:layout_constraintRight_toRightOf="@+id/guidelineGmailRight"
+            />
+
+
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.constraint.ConstraintLayout>

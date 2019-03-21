@@ -234,7 +234,7 @@
             android:maxLines="1"
             android:paddingLeft="15dp"
             android:inputType="textNoSuggestions"
-            android:textColor="@color/grey_color"
+            android:textColor="@color/yellow_color"
             android:textColorHint="#898906"
             android:textCursorDrawable="@drawable/cursor"
             android:textSize="@dimen/activity_settings_items"
@@ -272,6 +272,34 @@
             app:layout_constraintTop_toTopOf="@+id/guidelineWhatStoreBottom" />
 
 
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelineCommentBottom"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.76" />
+
+
+        <EditText
+            android:id="@+id/editTextComment"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@null"
+            android:gravity="center_vertical"
+            android:hint="Comment*"
+            android:maxLines="1"
+            android:paddingLeft="15dp"
+            android:inputType="textNoSuggestions"
+            android:textColor="@color/grey_color"
+            android:textColorHint="#898906"
+            android:textCursorDrawable="@drawable/cursor"
+            android:textSize="@dimen/activity_settings_items"
+            app:layout_constraintBottom_toBottomOf="@+id/guidelineCommentBottom"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="@id/guidelineSwitchLeft"
+            app:layout_constraintTop_toTopOf="@+id/guidelineDateBottom" />
+
+
 
 
         <android.support.constraint.Guideline
@@ -279,7 +307,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.75" />
+            app:layout_constraintGuide_percent="0.88" />
 
         <android.support.constraint.Guideline
             android:id="@+id/guidelineConfirmButtonLeft"
@@ -303,7 +331,7 @@
             android:src="@drawable/blue_button"
             app:layout_constraintLeft_toLeftOf="@+id/guidelineConfirmButtonLeft"
             app:layout_constraintRight_toRightOf="@+id/guidelineConfirmButtonRight"
-            app:layout_constraintTop_toTopOf="@+id/guidelineDateBottom"
+            app:layout_constraintTop_toTopOf="@+id/guidelineCommentBottom"
             app:layout_constraintBottom_toBottomOf="@+id/guidelineConfirmButtonBottom"/>
 
 
@@ -311,13 +339,13 @@
             android:id="@+id/txtViewAddBillButton"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:text="ADD BILL"
+            android:text="@string/add_bill"
             android:gravity="center"
             android:textSize="14sp"
             android:textColor="@color/white_color"
             app:layout_constraintLeft_toLeftOf="@+id/guidelineConfirmButtonLeft"
             app:layout_constraintRight_toRightOf="@+id/guidelineConfirmButtonRight"
-            app:layout_constraintTop_toTopOf="@+id/guidelineDateBottom"
+            app:layout_constraintTop_toTopOf="@+id/guidelineCommentBottom"
             app:layout_constraintBottom_toBottomOf="@+id/guidelineConfirmButtonBottom"/>
 
 

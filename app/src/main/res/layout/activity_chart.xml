@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.activities_single_mode.StatsActivity">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/blue_dark_color">
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelineHeaderTop"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.1" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelineHeaderBottom"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.11" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:src="@drawable/header"
+            app:layout_constraintBottom_toBottomOf="@id/guidelineHeaderBottom"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/guidelineHeaderTop" />
+
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelineSettingLeft"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.8" />
+
+
+        <!-- <ImageView
+             android:id="@+id/imgViewSettings"
+             android:layout_width="0dp"
+             android:layout_height="0dp"
+             android:padding="17dp"
+             android:src="@drawable/settings"
+             app:layout_constraintBottom_toBottomOf="@+id/guidelineHeaderBottom"
+             app:layout_constraintLeft_toLeftOf="@+id/guidelineSettingLeft"
+             app:layout_constraintRight_toRightOf="parent"
+             app:layout_constraintTop_toTopOf="parent" />-->
+
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelinePieRight"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.2" />
+
+
+        <ImageView
+            android:id="@+id/imgViewList"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:padding="20dp"
+            android:src="@drawable/list"
+            app:layout_constraintBottom_toBottomOf="@+id/guidelineHeaderBottom"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="@+id/guidelinePieRight"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <me.grantland.widget.AutofitTextView
+            android:id="@+id/txtViewName"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:text="Stats"
+            android:textColor="@color/white_color"
+            android:textSize="@dimen/activity_text_name"
+            app:layout_constraintBottom_toBottomOf="@+id/guidelineHeaderTop"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelineLineChartTop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.3" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelineLineChartBottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.8" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelineLineChartLeft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.05" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelineLineChartRight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.95" />
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/lineChart"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@+id/guidelineLineChartBottom"
+            app:layout_constraintLeft_toLeftOf="@+id/guidelineLineChartLeft"
+            app:layout_constraintRight_toRightOf="@+id/guidelineLineChartRight"
+            app:layout_constraintTop_toTopOf="@+id/guidelineLineChartTop" />
+
+
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/pieChart"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@+id/guidelineLineChartBottom"
+            app:layout_constraintLeft_toLeftOf="@+id/guidelineLineChartLeft"
+            app:layout_constraintRight_toRightOf="@+id/guidelineLineChartRight"
+            app:layout_constraintTop_toTopOf="@+id/guidelineLineChartTop" />
+
+
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/barChart"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@+id/guidelineLineChartBottom"
+            app:layout_constraintLeft_toLeftOf="@+id/guidelineLineChartLeft"
+            app:layout_constraintRight_toRightOf="@+id/guidelineLineChartRight"
+            app:layout_constraintTop_toTopOf="@+id/guidelineLineChartTop" />
+
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelineFooterTop"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.88" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelineFooterBottom"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.89" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:src="@drawable/header"
+            app:layout_constraintBottom_toBottomOf="@id/guidelineFooterBottom"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/guidelineFooterTop" />
+
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelineFirstThirdVertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.325" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelineFirstThirdVertical2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.335" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="#00ffff"
+            android:rotation="180"
+            android:scaleType="fitXY"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="@+id/guidelineFirstThirdVertical"
+            app:layout_constraintRight_toRightOf="@id/guidelineFirstThirdVertical2"
+            app:layout_constraintTop_toTopOf="@id/guidelineFooterBottom" />
+
+
+        <ImageView
+            android:id="@+id/imgViewLineChart"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:padding="5dp"
+            android:src="@drawable/line_graph_icon"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="@id/guidelineFirstThirdVertical"
+            app:layout_constraintTop_toTopOf="@id/guidelineFooterBottom" />
+
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelineSecondThirdVertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.655" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelineSecondThirdVertical2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.665" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="#00ffff"
+            android:rotation="180"
+            android:scaleType="fitXY"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="@+id/guidelineSecondThirdVertical"
+            app:layout_constraintRight_toRightOf="@id/guidelineSecondThirdVertical2"
+            app:layout_constraintTop_toTopOf="@id/guidelineFooterBottom" />
+
+        <ImageView
+            android:id="@+id/imgViewPieChart"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:padding="10dp"
+            android:src="@drawable/pie_stats_icon"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="@id/guidelineFirstThirdVertical"
+            app:layout_constraintRight_toRightOf="@id/guidelineSecondThirdVertical"
+            app:layout_constraintTop_toTopOf="@id/guidelineFooterBottom" />
+
+        <ImageView
+            android:id="@+id/imgViewBarChart"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:padding="10dp"
+            android:src="@drawable/bar_stats_icon"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="@id/guidelineSecondThirdVertical"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/guidelineFooterBottom" />
+
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.constraint.ConstraintLayout>

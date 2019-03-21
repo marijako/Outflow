@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+
    >
 
 
@@ -10,7 +11,7 @@
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintDimensionRatio="h, 650:160"
+        app:layout_constraintDimensionRatio="h, 650:150"
          >
 
         <android.support.constraint.Guideline
@@ -18,7 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.13"
+            app:layout_constraintGuide_percent="0.00"
             />
 
         <android.support.constraint.Guideline
@@ -26,7 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.6"
+            app:layout_constraintGuide_percent="0.5"
             />
 
         <android.support.constraint.Guideline
@@ -66,7 +67,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.88"
+            app:layout_constraintGuide_percent="0.65"
             />
 
 
@@ -79,11 +80,41 @@
             android:textColor="@color/yellow_color"
             android:gravity="center_vertical"
             android:paddingLeft="5dp"
-            android:textSize="@dimen/activity_settings_items"
+            android:textSize="16sp"
             app:layout_constraintLeft_toLeftOf="@id/guidelineCostTextRight"
             app:layout_constraintTop_toTopOf="@+id/guidelineCostTextTop"
             app:layout_constraintBottom_toBottomOf="@+id/guidelineCostTextBottom"
             app:layout_constraintRight_toRightOf="@id/guidelineCategoryTextRight"
+
+            />
+
+
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelineDateTextRight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.8"
+            />
+
+
+
+        <me.grantland.widget.AutofitTextView
+            android:id="@+id/txtViewDateList"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text="25.05.2014."
+            android:paddingTop="3dp"
+            android:textColor="#cecbcb"
+            android:gravity="right"
+            android:paddingLeft="5dp"
+            android:maxLines="1"
+            android:textSize="12sp"
+            app:layout_constraintLeft_toLeftOf="@id/guidelineCategoryTextRight"
+            app:layout_constraintTop_toTopOf="@+id/guidelineCostTextTop"
+            app:layout_constraintBottom_toBottomOf="@+id/guidelineCostTextBottom"
+            app:layout_constraintRight_toRightOf="@id/guidelineDateTextRight"
 
             />
 
@@ -97,9 +128,17 @@
             app:layout_constraintTop_toTopOf="@+id/guidelineCostTextTop"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintBottom_toBottomOf="@+id/guidelineCostTextBottom"
-            app:layout_constraintLeft_toLeftOf="@+id/guidelineCategoryTextRight"
+            app:layout_constraintLeft_toLeftOf="@+id/guidelineDateTextRight"
             />
 
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelineCommentBottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.95"
+            />
 
         <me.grantland.widget.AutofitTextView
             android:id="@+id/txtViewCommentList"
@@ -108,11 +147,12 @@
             android:text="Spent monie for dinner with friends"
             android:textColor="@color/white_color"
             android:gravity="center_vertical"
-            android:paddingLeft="5dp"
-            android:textSize="@dimen/activity_settings_items"
+            android:paddingLeft="3dp"
+            android:maxLines="2"
+            android:textSize="12sp"
             app:layout_constraintLeft_toLeftOf="@id/guidelineCostTextLeft"
             app:layout_constraintTop_toTopOf="@+id/guidelineCostTextBottom"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/guidelineCommentBottom"
             app:layout_constraintRight_toRightOf="parent"
 
             />
@@ -122,7 +162,24 @@
     </android.support.constraint.ConstraintLayout>
 
 
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineBottomDividerTop"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintGuide_percent="0.995"
+        android:orientation="horizontal"
+        />
 
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/header"
+        android:scaleType="fitXY"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guidelineBottomDividerTop"
+        />
 
 
 </android.support.constraint.ConstraintLayout>

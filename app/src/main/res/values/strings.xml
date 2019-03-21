@@ -9,6 +9,7 @@
     <string name="track_your_expenses">TRACK YOUR EXPENSES</string>
     <string name="track_group_expenses">TRACK GROUP EXPENSES 2+</string>
     <string name="invited">INVITED? SIGN IN</string>
+    <string name="add_bill">ADD BILL</string>
 
 
 </resources>

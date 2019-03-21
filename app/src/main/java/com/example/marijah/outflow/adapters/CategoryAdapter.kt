@@ -13,6 +13,7 @@ import android.widget.Toast
 
 import com.example.marijah.outflow.R
 import com.example.marijah.outflow.helpers.HelperManager
+import com.example.marijah.outflow.helpers.categoryPickedObject
 import com.example.marijah.outflow.models.Category
 
 import java.util.ArrayList
@@ -96,6 +97,7 @@ class CategoryAdapter// Pass in the contact array into the constructor
             }
 
             val choosenCategory = categoryElement.categoryName
+            categoryPickedObject.categoryPicked = choosenCategory
             Toast.makeText(context, "You have picked $choosenCategory", Toast.LENGTH_SHORT).show()
         }
 
