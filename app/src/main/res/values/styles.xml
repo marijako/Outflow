@@ -2,20 +2,38 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="android:Theme.Holo.Light.NoActionBar.Fullscreen">
+        <item name="android:fontFamily">@font/oswald_light</item>
         <!-- Customize your theme here. -->
     </style>
 
 
-    <style name="FirebaseAuthTheme" parent="FirebaseUI">
+    <style name="FirebaseAuthTheme" parent="android:Theme.Holo.Light.NoActionBar.Fullscreen">
         <!-- Required for sign-in flow styling -->
         <item name="colorPrimary">@color/blue_dark_color</item>
-        <item name="colorPrimaryDark">@color/blue_light_color</item>
+        <item name="colorPrimaryDark">@color/blue_dark_color</item>
         <item name="colorAccent">@color/yellow_color</item>
-
+        <item name="android:textColor">@color/white_color</item>
+        <item name="android:colorActivatedHighlight">@color/white_color</item>
         <item name="colorControlNormal">@color/blue_dark_color</item>
         <item name="colorControlActivated">@color/blue_light_color</item>
         <item name="colorControlHighlight">@color/yellow_color</item>
         <item name="android:windowBackground">@color/blue_dark_color</item>
     </style>
+
+
+    <!--custom dialog theme-->
+    <style name="full_screen_dialog" parent="android:Theme.Translucent.NoTitleBar.Fullscreen">
+        <!--  <item name="windowNoTitle">true</item>
+          <item name="windowActionBar">false</item>-->
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowAnimationStyle">@style/customDialogAnimation</item>
+    </style>
+
+    <style name="customDialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/zoom_in</item>
+        <item name="android:windowExitAnimation">@anim/zoom_out</item>
+    </style>
+
 
 </resources>

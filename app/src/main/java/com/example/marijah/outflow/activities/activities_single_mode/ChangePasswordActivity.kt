@@ -49,7 +49,6 @@ class ChangePasswordActivity : Activity(), View.OnClickListener {
         imgViewNewPasswordCheck2 = findViewById(R.id.imgViewNewPasswordCheck2)
 
         editTextOldPassword = findViewById(R.id.editTextOldPassword)
-        HelperManager.setTypefaceRegular(assets, editTextOldPassword!!)
 
         editTextOldPassword!!.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {
@@ -76,7 +75,6 @@ class ChangePasswordActivity : Activity(), View.OnClickListener {
 
         editTextNewPassword1 = findViewById(R.id.editTextNewPassword1)
         editTextNewPassword1!!.isFocusable = false
-        HelperManager.setTypefaceRegular(assets, editTextNewPassword1!!)
 
         editTextNewPassword1!!.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {
@@ -107,7 +105,6 @@ class ChangePasswordActivity : Activity(), View.OnClickListener {
 
         editTextNewPassword2 = findViewById(R.id.editTextNewPassword2)
         editTextNewPassword2!!.isFocusable = false
-        HelperManager.setTypefaceRegular(assets, editTextNewPassword2!!)
 
         editTextNewPassword2!!.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {

@@ -4,6 +4,7 @@ import android.app.Activity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.View
 import android.widget.Adapter
 
@@ -46,24 +47,44 @@ class ListOfExpensesActivity : Activity() {
         childEventListenerForExpenses = object : ChildEventListener {
             override fun onChildAdded(dataSnapshot: DataSnapshot, s: String?) {
 
+
                 val expenseItem = dataSnapshot.getValue(ExpenseItem::class.java)
+
+                // dodajemo u listu troskova
                 arrayOfExpenses.add(expenseItem!!)
-
                 mAdapter.notifyDataSetChanged()
-
                 rvListOfExpenses.scrollToPosition(arrayOfExpenses.size-1)
             }
 
             override fun onChildChanged(dataSnapshot: DataSnapshot, s: String?) {
-                //arrayOfExpenses.set(dataSnapshot.getValue(ExpenseItem::class.java)!!)
+
+                Log.i("Marija", "On Child Changed")
+                arrayOfExpenses.clear()
+                val expenseItem = dataSnapshot.getValue(ExpenseItem::class.java)
+
+                arrayOfExpenses.add(expenseItem!!)
+                mAdapter.notifyDataSetChanged()
+               // arrayOfExpenses.set(dataSnapshot.getValue(ExpenseItem::class.java)!!)
             }
 
             override fun onChildRemoved(dataSnapshot: DataSnapshot) {
+                Log.i("Marija", "On Child Removed")
+
+
+                for(expense in arrayOfExpenses)
+                {
+                    if(expense.key == dataSnapshot.key)
+                    {
+                        arrayOfExpenses.remove(expense)
+                        mAdapter.notifyDataSetChanged()
+                        return
+                    }
+                }
+
 
             }
 
             override fun onChildMoved(dataSnapshot: DataSnapshot, s: String?) {
-
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
@@ -73,9 +94,18 @@ class ListOfExpensesActivity : Activity() {
 
         myReferenceToExpenses.addChildEventListener(childEventListenerForExpenses)
 
-        //mDB = ListOfExpensesOpenHelper(this)
 
-        mAdapter = ListOfExpensesAdapter(this, arrayOfExpenses)
+
+        mAdapter = ListOfExpensesAdapter(this, arrayOfExpenses, object : ListOfExpensesAdapter.ListOfExpensesInterface{
+            override fun onUserClickedDeleteItem(expenseItem: ExpenseItem) {
+                //sta radimo ako je korisnik kliknuo brisanjac
+                showToast(applicationContext, "on Brisanjac clicked")
+
+                myReferenceToExpenses.child(expenseItem.key).removeValue()
+                mAdapter.notifyDataSetChanged()
+
+            }
+        })
         // Connect the mAdapter with the recycler view.
         rvListOfExpenses.adapter = mAdapter
         val layoutManager = LinearLayoutManager(this)

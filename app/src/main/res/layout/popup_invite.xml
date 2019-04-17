@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".popups.InvitePopup">
+
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelinePopupTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.2" />
+
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelinePopupBottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.65" />
+
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelinePopupLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.1" />
+
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelinePopupRight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.9" />
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/imgViewPopupBackground"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/blue_dark_color"
+        app:layout_constraintBottom_toBottomOf="@id/guidelinePopupBottom"
+        app:layout_constraintLeft_toLeftOf="@+id/guidelinePopupLeft"
+        app:layout_constraintRight_toRightOf="@+id/guidelinePopupRight"
+        app:layout_constraintTop_toTopOf="@+id/guidelinePopupTop">
+
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelinePopupHeaderTop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.195" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelinePopupHeaderBottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.205" />
+
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/blue_light_color"
+            app:layout_constraintBottom_toBottomOf="@+id/guidelinePopupHeaderBottom"
+            app:layout_constraintTop_toTopOf="@+id/guidelinePopupHeaderTop" />
+
+        <me.grantland.widget.AutofitTextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:text="@string/merge_your_finances"
+            android:textColor="@color/blue_light_color"
+            android:textSize="17sp"
+            app:layout_constraintBottom_toBottomOf="@id/guidelinePopupHeaderTop"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelineButtonsTop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.65" />
+
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelineUserNameTop"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.5" />
+
+
+        <EditText
+            android:id="@+id/editTextEmail"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@null"
+            android:gravity="center"
+            android:hint="@string/enter_email_address"
+            android:inputType="textEmailAddress"
+            android:maxLines="1"
+            android:textColor="#ffff00"
+            android:textColorHint="#898906"
+            android:textCursorDrawable="@drawable/cursor"
+            android:textSize="17sp"
+            app:layout_constraintBottom_toBottomOf="@+id/guidelineButtonsTop"
+            app:layout_constraintTop_toTopOf="@+id/guidelineUserNameTop" />
+
+
+        <me.grantland.widget.AutofitTextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:text="@string/merge_fincances_text"
+            android:textColor="@color/white_color"
+            app:layout_constraintBottom_toTopOf="@+id/editTextEmail"
+            app:layout_constraintTop_toTopOf="@+id/guidelinePopupHeaderBottom" />
+
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelineButtonLeft"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.225" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelineButtonRight"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.775" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:src="@drawable/blue_button"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="@+id/guidelineButtonLeft"
+            app:layout_constraintRight_toRightOf="@+id/guidelineButtonRight"
+            app:layout_constraintTop_toTopOf="@id/guidelineButtonsTop" />
+
+
+        <me.grantland.widget.AutofitTextView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:text="@string/send_request"
+            android:textColor="@color/white_color"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="@+id/guidelineButtonLeft"
+            app:layout_constraintRight_toRightOf="@+id/guidelineButtonRight"
+            app:layout_constraintTop_toTopOf="@id/guidelineButtonsTop" />
+
+
+    </android.support.constraint.ConstraintLayout>
+
+
+</android.support.constraint.ConstraintLayout>

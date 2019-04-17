@@ -1,7 +1,6 @@
 package com.example.marijah.outflow.adapters
 
 import android.content.Context
-import android.content.Intent
 import android.graphics.Color
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -10,33 +9,24 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-
 import com.example.marijah.outflow.R
-import com.example.marijah.outflow.helpers.HelperManager
 import com.example.marijah.outflow.helpers.categoryPickedObject
 import com.example.marijah.outflow.models.Category
-
-import java.util.ArrayList
+import java.util.*
 
 class CategoryAdapter// Pass in the contact array into the constructor
 (// Easy access to the context object in the recyclerview
-        private val context: Context, internal var categoriesArray: ArrayList<Category>) : RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
+        private val context: Context, private var categoriesArray: ArrayList<Category>) : RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
     private var imgViewPreviouslyClicked: ImageView? = null
     private var txtViewPreviouslyClicked: TextView? = null
     private var positionOfPreviouslyClicked = -1
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        var txtViewCategory: TextView
-        var imgViewCategory: ImageView
+        var txtViewCategory: TextView = itemView.findViewById<View>(R.id.txtViewCategory) as TextView
+        var imgViewCategory: ImageView = itemView.findViewById(R.id.imgViewCategory)
 
 
-        init {
-            txtViewCategory = itemView.findViewById<View>(R.id.txtViewCategory) as TextView
-            HelperManager.setTypefaceLight(context.assets, txtViewCategory)
-            imgViewCategory = itemView.findViewById(R.id.imgViewCategory)
-
-        }
     }
 
 

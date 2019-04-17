@@ -5,11 +5,13 @@ import android.content.Intent
 import android.os.Bundle
 import com.example.marijah.outflow.R
 import com.example.marijah.outflow.activities.activities_single_mode.ChangePasswordActivity
+import com.example.marijah.outflow.activities.activities_single_mode.MasterActivity
 import com.example.marijah.outflow.activities.activities_single_mode.NewEntryActivity
 import com.example.marijah.outflow.helpers.HelperManager
+import com.example.marijah.outflow.popups.InvitationPopup
 import kotlinx.android.synthetic.main.activity_home.*
 
-class HomeActivity : Activity() {
+class HomeActivity : MasterActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +33,9 @@ class HomeActivity : Activity() {
 
 
         imgViewTrackGroupExpensesButton.setOnClickListener {
+
+            val invitationPopup = InvitationPopup(this, R.layout.popup_invitation)
+            invitationPopup.show()
 
         }
 

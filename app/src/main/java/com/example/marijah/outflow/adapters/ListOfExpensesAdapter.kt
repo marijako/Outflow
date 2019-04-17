@@ -8,29 +8,27 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.example.marijah.outflow.R
-import com.example.marijah.outflow.helpers.HelperManager
-import com.example.marijah.outflow.helpers.showToast
 import com.example.marijah.outflow.models.ExpenseItem
 import java.util.*
 
-class ListOfExpensesAdapter// Pass in the contact array into the constructor
+class ListOfExpensesAdapter(private val context: Context, private val arrayListOfExpenses: ArrayList<ExpenseItem>, private val listener: ListOfExpensesInterface) : RecyclerView.Adapter<ListOfExpensesAdapter.ViewHolder>() {
 
-(// Easy access to the context object in the recyclerview
-        private val context: Context, private val arrayListOfExpenses: ArrayList<ExpenseItem>) : RecyclerView.Adapter<ListOfExpensesAdapter.ViewHolder>() {
+
+    interface ListOfExpensesInterface {
+        fun onUserClickedDeleteItem(expenseItem: ExpenseItem)
+    }
+
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         var txtViewCostList: TextView = itemView.findViewById(R.id.txtViewCostList)
         var txtViewCategoryList: TextView = itemView.findViewById(R.id.txtViewCategoryList)
         var txtViewCommentList: TextView = itemView.findViewById(R.id.txtViewCommentList)
-        var txtViewDateList : TextView = itemView.findViewById(R.id.txtViewDateList)
+        var txtViewDateList: TextView = itemView.findViewById(R.id.txtViewDateList)
         var imgViewDeleteItem: ImageView = itemView.findViewById(R.id.imgViewDeleteItem)
 
         init {
-            HelperManager.setTypefaceLight(context.assets, txtViewCostList)
-            HelperManager.setTypefaceLight(context.assets, txtViewCategoryList)
-            HelperManager.setTypefaceLight(context.assets, txtViewCommentList)
-            HelperManager.setTypefaceLight(context.assets, txtViewDateList)
+
         }
     }
 
@@ -54,9 +52,9 @@ class ListOfExpensesAdapter// Pass in the contact array into the constructor
         holder.txtViewCommentList.text = expenseItem.comment
         holder.txtViewDateList.text = expenseItem.date
 
-        holder.imgViewDeleteItem.setOnClickListener {
 
-            showToast(context, "Brisanjac")
+        holder.imgViewDeleteItem.setOnClickListener {
+            listener.onUserClickedDeleteItem(expenseItem)
         }
 
     }

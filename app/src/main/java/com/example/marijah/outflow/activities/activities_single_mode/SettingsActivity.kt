@@ -8,6 +8,7 @@ import android.support.v4.content.ContextCompat
 import com.example.marijah.outflow.R
 import com.example.marijah.outflow.activities.HomeActivity
 import com.example.marijah.outflow.helpers.HelperManager
+import com.example.marijah.outflow.popups.InvitePopup
 import com.firebase.ui.auth.AuthUI
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineDataSet
@@ -53,13 +54,27 @@ class SettingsActivity : Activity() {
                 imgViewPasswordSwitch.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.switch_off))
         }
 
+
+
+        txtViewInvitePeople.setOnClickListener{
+
+            val invitePopup = InvitePopup(this, R.layout.popup_invite)
+            invitePopup.show()
+
+        }
+
         txtViewSignOut.setOnClickListener {
 
             AuthUI.getInstance().signOut(this)
 
            /* intent = Intent(this, LoginSingleActivity::class.java)
             startActivity(intent)*/
+
             finish()
+
+            intent = Intent(this, HomeActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
         }
 
         txtViewChangeMode.setOnClickListener {
@@ -68,34 +83,10 @@ class SettingsActivity : Activity() {
         }
 
         HelperManager.setTypefaceRegular(assets, txtViewName)
-        HelperManager.setTypefaceLight(assets, txtViewReceiveDailyNotifications)
-        HelperManager.setTypefaceLight(assets, txtViewPassword)
         HelperManager.setTypefaceRegular(assets, txtViewSignOut)
         HelperManager.setTypefaceRegular(assets, txtViewChangeMode)
 
-        val entries = ArrayList<Entry>()
 
-       // for (data in dataObjects) {
-
-            // turn your data into Entry objects
-        entries.add(Entry(200f, 150f))
-        entries.add(Entry(220f, 120f))
-        entries.add(Entry(230f, 160f))
-
-        val dataSet = LineDataSet(entries, "Label") // add entries to data set
-        dataSet.color = Color.RED
-        dataSet.setDrawFilled(true)
-        dataSet.mode = LineDataSet.Mode.CUBIC_BEZIER
-        dataSet.fillColor = Color.CYAN
-        dataSet.color = Color.CYAN
-        dataSet.fillAlpha = 255
-        dataSet.setDrawCircles(false)
-
-        dataSet.valueTextColor = Color.YELLOW
-
-        val lineData = LineData(dataSet)
-        chart.data = lineData
-        chart.invalidate()
     }
 
     

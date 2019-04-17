@@ -10,6 +10,17 @@
     <string name="track_group_expenses">TRACK GROUP EXPENSES 2+</string>
     <string name="invited">INVITED? SIGN IN</string>
     <string name="add_bill">ADD BILL</string>
+    <string name="deny">Deny</string>
+    <string name="confirm">Confirm</string>
+    <string name="wants_to_be_friends">wants to be friends with you. \nThis means that all your finances will be  \nmerged together into one.</string>
+    <string name="invitation">Invitation to merge your finances</string>
+    <string name="sign_in_with_gmail">SIGN IN WITH GMAIL</string>
+    <string name="sign_in_with_email">SIGN IN WITH EMAIL</string>
+    <string name="send_request">Send request</string>
+    <string name="merge_your_finances">Merge your finances</string>
+    <string name="enter_email_address">Enter email address</string>
+    <string name="merge_fincances_text">Here you can enter the email address \nof a person that you want to connect with.</string>
+    <string name="invite_people">Invite People</string>
 
 
 </resources>

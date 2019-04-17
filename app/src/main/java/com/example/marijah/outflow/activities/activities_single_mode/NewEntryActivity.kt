@@ -1,5 +1,6 @@
 package com.example.marijah.outflow.activities.activities_single_mode
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
@@ -14,20 +15,20 @@ import com.example.marijah.outflow.helpers.categoryPickedObject
 import com.example.marijah.outflow.helpers.showToast
 import com.example.marijah.outflow.models.Category
 import com.example.marijah.outflow.models.ExpenseItem
+import com.firebase.ui.auth.AuthMethodPickerLayout
 import com.firebase.ui.auth.AuthUI
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_new_entry.*
+import java.text.SimpleDateFormat
 import java.util.*
-import com.firebase.ui.auth.AuthMethodPickerLayout
-
-
 
 
 class NewEntryActivity : Activity() {
-    private val RC_SIGN_IN = 123
 
-    private var mUsername : String = ""
+    private val RC_SIGN_IN = 123
+    private var mUsername: String = ""
+
     private lateinit var myReferenceToExpenses: DatabaseReference
     private var categoryList: ArrayList<Category>? = null
 
@@ -56,7 +57,7 @@ class NewEntryActivity : Activity() {
         val database = FirebaseDatabase.getInstance()
         mFirebaseAuth = FirebaseAuth.getInstance()
 
-
+        // kreiramo tabelu ekspenses
         myReferenceToExpenses = database.reference.child("expenses")
         //  myRef.setValue("Unos broj $i")
 
@@ -87,13 +88,12 @@ class NewEntryActivity : Activity() {
 
 
                 val customLayout = AuthMethodPickerLayout.Builder(R.layout.activity_firebase_sign_in)
-                        .setGoogleButtonId(R.id.imgViewGmailSignIn)
-                        .setEmailButtonId(R.id.imgViewEmailSignIn)
+                        .setGoogleButtonId(R.id.txtViewGmailSignIn)
+                        .setEmailButtonId(R.id.txtViewEmailSignIn)
                         .build()
 
 
                 startActivityForResult(
-
 
                         AuthUI.getInstance()
                                 .createSignInIntentBuilder()
@@ -112,45 +112,6 @@ class NewEntryActivity : Activity() {
 
     }
 
-    private fun onSignedInInitialize(displayName: String) {
-        mUsername = displayName
-    }
-
-    private fun onSignedOutCleanUp() {
-
-        mUsername = ""
-    }
-
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if(requestCode == RC_SIGN_IN)
-        {
-            if(requestCode == RESULT_OK)
-            {
-                showToast(this, "You are now signed in. Welcome to Outflow!")
-            }
-            else if(requestCode == RESULT_CANCELED)
-            {
-                showToast(this, "Sign In Cancelled!")
-                finish()
-            }
-
-        }
-    }
-
-
-    override fun onResume() {
-        super.onResume()
-        mFirebaseAuth.addAuthStateListener(mAuthStateListener)
-    }
-
-    override fun onPause() {
-        super.onPause()
-        mFirebaseAuth.removeAuthStateListener(mAuthStateListener)
-    }
-
     private fun setLayoutAndListeners() {
 
         imgViewSettings.setOnClickListener {
@@ -165,21 +126,25 @@ class NewEntryActivity : Activity() {
 
 
         /** Ako je korisnik kliknuo da doda novi racun*/
-        txtViewAddBillButton.setOnClickListener {
+        txtViewAddNewExpenseButton.setOnClickListener {
 
+            // trazimo od njega da popuni sva polja
             if (editTextAmount.text.toString().isEmpty() || categoryPickedObject.categoryPicked.isEmpty()) {
                 Toast.makeText(this, "Please fill in all the required fields", Toast.LENGTH_SHORT).show()
             } else {
-                val expense = ExpenseItem(Integer.parseInt(editTextAmount.text.toString()),
+                // uzimamo jedinstveni kljuc
+                val expenseItemID: String = myReferenceToExpenses.push().key ?: " "
+
+                // pravimo objekat sa svim potrebnim informacijama
+                val expense = ExpenseItem(expenseItemID, Integer.parseInt(editTextAmount.text.toString()),
                         categoryPickedObject.categoryPicked,
                         editTextStore.text.toString(),
-                        editTextDate.text.toString(),
+                        txtViewDate.text.toString(),
                         editTextComment.text.toString())
 
-                myReferenceToExpenses.push().setValue(expense)
-
+                // dodajemo taj objekat u bazu
+                myReferenceToExpenses.child(expenseItemID).setValue(expense)
                 showToast(this, "Item successfully added.")
-
                 cleanTheFields()
             }
 
@@ -191,23 +156,68 @@ class NewEntryActivity : Activity() {
             startActivity(intent)
         }
 
-
-        HelperManager.setTypefaceRegular(assets, editTextAmount)
-        HelperManager.setTypefaceRegular(assets, editTextCategory)
-        HelperManager.setTypefaceRegular(assets, editTextStore)
-        HelperManager.setTypefaceRegular(assets, editTextDate)
         HelperManager.setTypefaceRegular(assets, txtViewName)
-        HelperManager.setTypefaceRegular(assets, txtViewAddBillButton!!)
-        HelperManager.setTypefaceRegular(assets, editTextComment)
+
+
+        txtViewDate.text = getTodaysDate()
+        txtViewDate.setOnClickListener {
+
+            showToast(this, "Hello!!")
+        }
+
+    }
+
+
+    @SuppressLint("SimpleDateFormat")
+    private fun getTodaysDate(): String {
+
+        val c = Calendar.getInstance().time
+        val df = SimpleDateFormat("dd.MM.yyyy.")
+        return df.format(c)
+    }
+
+
+    private fun onSignedInInitialize(displayName: String) {
+        mUsername = displayName
+    }
+
+
+    private fun onSignedOutCleanUp() {
+
+        mUsername = ""
+    }
+
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == RC_SIGN_IN) {
+            if (resultCode == RESULT_OK) {
+                showToast(this, "You are now signed in. Welcome to Outflow!")
+            } else if (resultCode == RESULT_CANCELED) {
+                finish()
+                showToast(this, "Sign In Cancelled!")
+            }
+
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        mFirebaseAuth.addAuthStateListener(mAuthStateListener)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        mFirebaseAuth.removeAuthStateListener(mAuthStateListener)
     }
 
 
     private fun cleanTheFields() {
         editTextAmount.text.clear()
         editTextStore.text.clear()
-        editTextDate.text.clear()
+        txtViewDate.text = getTodaysDate()
         editTextComment.text.clear()
-
     }
 
     /**

@@ -116,6 +116,14 @@
             android:focusableInTouchMode="true" />
 
 
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelineDateLeft"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.75" />
+
+
         <EditText
             android:id="@+id/editTextAmount"
             android:layout_width="0dp"
@@ -133,8 +141,27 @@
             android:textSize="@dimen/activity_settings_items"
             app:layout_constraintBottom_toBottomOf="@+id/guidelineNotificationsBottom"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="@+id/guidelineSwitchLeft"
+            app:layout_constraintRight_toRightOf="@+id/guidelineDateLeft"
             app:layout_constraintTop_toTopOf="@+id/guidelineHeaderBottom" />
+
+
+
+         <TextView
+           android:id="@+id/txtViewDate"
+           android:layout_width="0dp"
+           android:layout_height="0dp"
+           android:background="@null"
+           android:gravity="top|end"
+           android:maxLines="1"
+           android:paddingEnd="5dp"
+           android:textColor="@color/yellow_color"
+           android:textColorHint="#898906"
+           android:textSize="@dimen/activity_settings_items"
+           app:layout_constraintBottom_toBottomOf="@+id/guidelineNotificationsBottom"
+           app:layout_constraintLeft_toLeftOf="@+id/guidelineDateLeft"
+           app:layout_constraintRight_toRightOf="parent"
+           app:layout_constraintTop_toTopOf="@+id/guidelineHeaderBottom"
+             tools:ignore="RtlSymmetry" />
 
 
 
@@ -245,31 +272,12 @@
 
 
         <android.support.constraint.Guideline
-            android:id="@+id/guidelineDateBottom"
+            android:id="@+id/guidelineCommentTop"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.66" />
+            app:layout_constraintGuide_percent="0.56" />
 
-
-        <EditText
-            android:id="@+id/editTextDate"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:background="@null"
-            android:gravity="center_vertical"
-            android:hint="What date?*"
-            android:maxLines="1"
-            android:paddingLeft="15dp"
-            android:inputType="date"
-            android:textColor="@color/grey_color"
-            android:textColorHint="#898906"
-            android:textCursorDrawable="@drawable/cursor"
-            android:textSize="@dimen/activity_settings_items"
-            app:layout_constraintBottom_toBottomOf="@+id/guidelineDateBottom"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="@id/guidelineSwitchLeft"
-            app:layout_constraintTop_toTopOf="@+id/guidelineWhatStoreBottom" />
 
 
         <android.support.constraint.Guideline
@@ -277,7 +285,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.76" />
+            app:layout_constraintGuide_percent="0.66" />
 
 
         <EditText
@@ -297,7 +305,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/guidelineCommentBottom"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="@id/guidelineSwitchLeft"
-            app:layout_constraintTop_toTopOf="@+id/guidelineDateBottom" />
+            app:layout_constraintTop_toTopOf="@+id/guidelineCommentTop" />
 
 
 
@@ -307,7 +315,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.88" />
+            app:layout_constraintGuide_percent="0.78" />
 
         <android.support.constraint.Guideline
             android:id="@+id/guidelineConfirmButtonLeft"
@@ -336,7 +344,7 @@
 
 
         <me.grantland.widget.AutofitTextView
-            android:id="@+id/txtViewAddBillButton"
+            android:id="@+id/txtViewAddNewExpenseButton"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:text="@string/add_bill"
