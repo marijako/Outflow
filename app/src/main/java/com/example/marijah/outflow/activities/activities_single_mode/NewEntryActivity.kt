@@ -2,10 +2,13 @@ package com.example.marijah.outflow.activities.activities_single_mode
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.app.AlertDialog
+import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
+import android.widget.DatePicker
 import android.widget.Toast
 import com.example.marijah.outflow.R
 import com.example.marijah.outflow.adapters.CategoryAdapter
@@ -24,7 +27,11 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
-class NewEntryActivity : Activity() {
+class NewEntryActivity : Activity(), DatePickerDialog.OnDateSetListener {
+
+    override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
+        showToast(this, "Marija")
+    }
 
     private val RC_SIGN_IN = 123
     private var mUsername: String = ""
@@ -36,6 +43,8 @@ class NewEntryActivity : Activity() {
     private lateinit var mFirebaseAuth: FirebaseAuth
     private lateinit var mAuthStateListener: FirebaseAuth.AuthStateListener
 
+
+    private val datePicker: DatePicker? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -162,7 +171,30 @@ class NewEntryActivity : Activity() {
         txtViewDate.text = getTodaysDate()
         txtViewDate.setOnClickListener {
 
-            showToast(this, "Hello!!")
+            val newDate = Calendar.getInstance()
+
+            val dpd = DatePickerDialog(this,
+                    AlertDialog.THEME_HOLO_LIGHT, DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
+                run {
+
+
+                    val date: String = if (dayOfMonth < 10) {
+                        "0$dayOfMonth"
+                    } else {
+                        dayOfMonth.toString()
+                    }
+                    val monthOfTheYear: String = if (month < 10) {
+                        "0${month+1}"
+                    } else {
+                        {month+1}.toString()
+                    }
+                    val newDate = "$date.$monthOfTheYear.$year."
+                    txtViewDate.text = newDate
+                }
+            }, newDate.get(Calendar.YEAR), newDate.get(Calendar.MONTH), newDate.get(Calendar.DAY_OF_MONTH))
+
+
+            dpd.show()
         }
 
     }

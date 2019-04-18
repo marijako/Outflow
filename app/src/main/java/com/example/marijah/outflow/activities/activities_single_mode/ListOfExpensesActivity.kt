@@ -15,6 +15,8 @@ import com.example.marijah.outflow.helpers.HelperManager
 import com.example.marijah.outflow.helpers.ListOfExpensesOpenHelper
 import com.example.marijah.outflow.helpers.showToast
 import com.example.marijah.outflow.models.ExpenseItem
+import com.example.marijah.outflow.popups.DeletePopup
+import com.example.marijah.outflow.popups.InvitePopup
 import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -99,10 +101,21 @@ class ListOfExpensesActivity : Activity() {
         mAdapter = ListOfExpensesAdapter(this, arrayOfExpenses, object : ListOfExpensesAdapter.ListOfExpensesInterface{
             override fun onUserClickedDeleteItem(expenseItem: ExpenseItem) {
                 //sta radimo ako je korisnik kliknuo brisanjac
-                showToast(applicationContext, "on Brisanjac clicked")
 
-                myReferenceToExpenses.child(expenseItem.key).removeValue()
-                mAdapter.notifyDataSetChanged()
+                val deletePopup = DeletePopup(this@ListOfExpensesActivity, R.layout.popup_delete)
+                deletePopup.show()
+
+                deletePopup.setOnDismissListener {
+                    // ako je korisnik stisnuo brisanjac
+                    if(deletePopup.hasUserClickedDelete)
+                    {
+                        myReferenceToExpenses.child(expenseItem.key).removeValue()
+                        mAdapter.notifyDataSetChanged()
+                    }
+
+                }
+
+
 
             }
         })

@@ -3,6 +3,7 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="android:Theme.Holo.Light.NoActionBar.Fullscreen">
         <item name="android:fontFamily">@font/oswald_light</item>
+        <item name="android:datePickerStyle">@style/MyDatePickerSpinnerStyle</item>
         <!-- Customize your theme here. -->
     </style>
 
@@ -23,8 +24,6 @@
 
     <!--custom dialog theme-->
     <style name="full_screen_dialog" parent="android:Theme.Translucent.NoTitleBar.Fullscreen">
-        <!--  <item name="windowNoTitle">true</item>
-          <item name="windowActionBar">false</item>-->
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowAnimationStyle">@style/customDialogAnimation</item>
@@ -35,5 +34,11 @@
         <item name="android:windowExitAnimation">@anim/zoom_out</item>
     </style>
 
+
+
+    <style name="MyDatePickerSpinnerStyle" parent="@android:style/Widget.DatePicker">
+        <item name="android:calendarViewShown">false</item>
+        <item name="colorControlNormal">#d50000</item>
+    </style>
 
 </resources>

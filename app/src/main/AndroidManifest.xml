@@ -39,6 +39,7 @@
             android:screenOrientation="portrait" />
         <activity android:name=".activities.activities_single_mode.ListOfExpensesActivity" />
         <activity android:name=".activities.activities_single_mode.StatsActivity" />
+
     </application>
 
 </manifest>

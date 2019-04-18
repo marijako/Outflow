@@ -129,14 +129,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.225" />
+            app:layout_constraintGuide_percent="0.2" />
 
         <android.support.constraint.Guideline
             android:id="@+id/guidelineButtonRight"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.775" />
+            app:layout_constraintGuide_percent="0.8" />
 
         <ImageView
             android:layout_width="0dp"

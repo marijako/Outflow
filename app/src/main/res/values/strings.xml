@@ -21,6 +21,10 @@
     <string name="enter_email_address">Enter email address</string>
     <string name="merge_fincances_text">Here you can enter the email address \nof a person that you want to connect with.</string>
     <string name="invite_people">Invite People</string>
+    <string name="set_date">Set date</string>
+    <string name="delete_this_record">Delete this record</string>
+    <string name="are_you_sure_that">Are you sure that you \nwant to delete this record?</string>
+    <string name="cancel">Cancel</string>
 
 
 </resources>

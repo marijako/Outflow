@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".popups.DatePickerPopup">
+
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineDatePickerPopupTop"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.2" />
+
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineDatePickerPopupBottom"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.65" />
+
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineDatePickerPopupLeft"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.15" />
+
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineDatePickerPopupRight"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.85" />
+
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/blue_dark_color"
+        app:layout_constraintBottom_toBottomOf="@id/guidelineDatePickerPopupBottom"
+        app:layout_constraintLeft_toLeftOf="@id/guidelineDatePickerPopupLeft"
+        app:layout_constraintRight_toRightOf="@+id/guidelineDatePickerPopupRight"
+        app:layout_constraintTop_toTopOf="@+id/guidelineDatePickerPopupTop">
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelineDatePickerBottom"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.7" />
+
+       <!-- <DatePicker
+            android:id="@+id/datePicker"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/blue_dark_color"
+            android:calendarTextColor="@color/white_color"
+            android:calendarViewShown="false"
+
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/guidelineDatePickerBottom"
+            app:layout_constraintTop_toTopOf="parent"
+
+            />-->
+
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelineButtonTop"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.7" />
+
+
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelineButtonLeft"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.15" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelineButtonRight"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.85" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:src="@drawable/blue_button"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="@+id/guidelineButtonLeft"
+            app:layout_constraintRight_toRightOf="@+id/guidelineButtonRight"
+            app:layout_constraintTop_toTopOf="@id/guidelineButtonTop" />
+
+
+        <me.grantland.widget.AutofitTextView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:text="@string/set_date"
+            android:textColor="@color/white_color"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="@+id/guidelineButtonLeft"
+            app:layout_constraintRight_toRightOf="@+id/guidelineButtonRight"
+            app:layout_constraintTop_toTopOf="@id/guidelineButtonTop" />
+
+
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.constraint.ConstraintLayout>
