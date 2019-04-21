@@ -3,6 +3,7 @@ package com.example.marijah.outflow.activities
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import com.example.marijah.outflow.R
 import com.example.marijah.outflow.activities.activities_single_mode.ChangePasswordActivity
 import com.example.marijah.outflow.activities.activities_single_mode.MasterActivity
@@ -15,6 +16,9 @@ class HomeActivity : MasterActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        Log.i("Marija", "OnCreate() HomeActivity!")
+
         setContentView(R.layout.activity_home)
 
         setLayoutAndListeners()
@@ -34,7 +38,7 @@ class HomeActivity : MasterActivity() {
 
         imgViewTrackGroupExpensesButton.setOnClickListener {
 
-            val invitationPopup = InvitationPopup(this, R.layout.popup_invitation)
+            val invitationPopup = InvitationPopup(this, "ZEZANCIJA", "zez")
             invitationPopup.show()
 
         }

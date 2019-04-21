@@ -145,6 +145,7 @@
 
 
         <me.grantland.widget.AutofitTextView
+            android:id="@+id/txtViewConfirm"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="20dp"
@@ -171,6 +172,7 @@
 
 
         <me.grantland.widget.AutofitTextView
+            android:id="@+id/txtViewDeny"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="5dp"

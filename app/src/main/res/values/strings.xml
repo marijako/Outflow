@@ -25,6 +25,10 @@
     <string name="delete_this_record">Delete this record</string>
     <string name="are_you_sure_that">Are you sure that you \nwant to delete this record?</string>
     <string name="cancel">Cancel</string>
+    <string name="check_your_merge_requests">Check your merge requests</string>
+    <string name="real_email">Please enter the real email address.</string>
+    <string name="your_invitation_has_been_sent">Your invitation has been sent.</string>
+    <string name="no_new_requests">You have no new requests.</string>
 
 
 </resources>

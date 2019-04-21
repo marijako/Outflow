@@ -1,7 +1,6 @@
 package com.example.marijah.outflow.activities.activities_single_mode
 
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.content.Intent
@@ -11,23 +10,25 @@ import android.util.Log
 import android.widget.DatePicker
 import android.widget.Toast
 import com.example.marijah.outflow.R
+import com.example.marijah.outflow.activities.services.InvitationListenerService
 import com.example.marijah.outflow.adapters.CategoryAdapter
 import com.example.marijah.outflow.helpers.HelperManager
-import com.example.marijah.outflow.helpers.TAG
 import com.example.marijah.outflow.helpers.categoryPickedObject
 import com.example.marijah.outflow.helpers.showToast
+import com.example.marijah.outflow.models.AppManager
 import com.example.marijah.outflow.models.Category
 import com.example.marijah.outflow.models.ExpenseItem
 import com.firebase.ui.auth.AuthMethodPickerLayout
 import com.firebase.ui.auth.AuthUI
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.*
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_new_entry.*
 import java.text.SimpleDateFormat
 import java.util.*
 
 
-class NewEntryActivity : Activity(), DatePickerDialog.OnDateSetListener {
+class NewEntryActivity : MasterActivity(), DatePickerDialog.OnDateSetListener {
 
     override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
         showToast(this, "Marija")
@@ -36,6 +37,7 @@ class NewEntryActivity : Activity(), DatePickerDialog.OnDateSetListener {
     private val RC_SIGN_IN = 123
     private var mUsername: String = ""
 
+    private lateinit var database: FirebaseDatabase
     private lateinit var myReferenceToExpenses: DatabaseReference
     private var categoryList: ArrayList<Category>? = null
 
@@ -48,48 +50,19 @@ class NewEntryActivity : Activity(), DatePickerDialog.OnDateSetListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        Log.i("Marija", "OnCreate() NewEntryActivity!")
+
+
         setContentView(R.layout.activity_new_entry)
 
-        setLayoutAndListeners()
-
-        /**Inicijalizujemo listu kategorija */
-        initTheCategoryList()
-        /**Kreiramo adapter prosledjujuci niz elemenata */
-        val adapter = CategoryAdapter(this, categoryList!!)
-        /**Povezujemo adapter sa RecyclerViewom */
-        rlListCategory.adapter = adapter
-        /**Postavljamo layout manager za nas RecyclerView */
-        val layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        rlListCategory.layoutManager = layoutManager
-
-        // uspostavljanje veze sa fajrbejs bazom
-        val database = FirebaseDatabase.getInstance()
-        mFirebaseAuth = FirebaseAuth.getInstance()
-
-        // kreiramo tabelu ekspenses
-        myReferenceToExpenses = database.reference.child("expenses")
-        //  myRef.setValue("Unos broj $i")
-
-        myReferenceToExpenses.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                //    val value = dataSnapshot.getValue(String::class.java)
-                //   Log.d(TAG, "Value is: $value")
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                // Failed to read value
-                Log.w(TAG, "Failed to read value.", error.toException())
-            }
-        })
 
         mAuthStateListener = FirebaseAuth.AuthStateListener {
 
             val user = it.currentUser
             if (user != null) {
                 // korisnik je prijavljen
-                onSignedInInitialize(user.displayName!!)
+                onSignedInInitialize(user.displayName!!, user.email!!)
             } else {
                 // korisnik je odjavljen
 
@@ -117,6 +90,42 @@ class NewEntryActivity : Activity(), DatePickerDialog.OnDateSetListener {
 
             }
         }
+
+
+
+        setLayoutAndListeners()
+
+        /**Inicijalizujemo listu kategorija */
+        initTheCategoryList()
+        /**Kreiramo adapter prosledjujuci niz elemenata */
+        val adapter = CategoryAdapter(this, categoryList!!)
+        /**Povezujemo adapter sa RecyclerViewom */
+        rlListCategory.adapter = adapter
+        /**Postavljamo layout manager za nas RecyclerView */
+        val layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        rlListCategory.layoutManager = layoutManager
+
+        // uspostavljanje veze sa fajrbejs bazom
+        database = FirebaseDatabase.getInstance()
+        mFirebaseAuth = FirebaseAuth.getInstance()
+
+        /* // kreiramo tabelu ekspenses
+         myReferenceToExpenses = database.reference.child("expenses_$mUsername")*/
+        //  myRef.setValue("Unos broj $i")
+
+        /*  myReferenceToExpenses.addValueEventListener(object : ValueEventListener {
+              override fun onDataChange(dataSnapshot: DataSnapshot) {
+                  // This method is called once with the initial value and again
+                  // whenever data at this location is updated.
+                  //    val value = dataSnapshot.getValue(String::class.java)
+                  //   Log.d(TAG, "Value is: $value")
+              }
+
+              override fun onCancelled(error: DatabaseError) {
+                  // Failed to read value
+                  Log.w(TAG, "Failed to read value.", error.toException())
+              }
+          })*/
 
 
     }
@@ -184,9 +193,9 @@ class NewEntryActivity : Activity(), DatePickerDialog.OnDateSetListener {
                         dayOfMonth.toString()
                     }
                     val monthOfTheYear: String = if (month < 10) {
-                        "0${month+1}"
+                        "0${month + 1}"
                     } else {
-                        {month+1}.toString()
+                        { month + 1 }.toString()
                     }
                     val newDate = "$date.$monthOfTheYear.$year."
                     txtViewDate.text = newDate
@@ -209,8 +218,35 @@ class NewEntryActivity : Activity(), DatePickerDialog.OnDateSetListener {
     }
 
 
-    private fun onSignedInInitialize(displayName: String) {
+    private fun onSignedInInitialize(displayName: String, email: String) {
         mUsername = displayName
+
+        //firebase database pathsne sme da sadrzi '.', '#', '$', '[', or ']'
+        val editedEmail = email.replace('.', '@')
+
+        // kreiramo tabelu ekspenses
+        myReferenceToExpenses = database.reference.child("expenses_$editedEmail")
+
+        // postavljamo ime trenutno osluskivane tabele
+        AppManager.getInstance(this).currentlyLookedTableName = "expenses_$editedEmail"
+        AppManager.getInstance(this).currentlyLoggedInUserEmail = editedEmail
+
+        listenToTheInvitations()
+        //startService()
+
+    }
+
+
+    /**
+     * Funkcija za pokretanje servisa
+     */
+    private fun startService() = startService(Intent(baseContext, InvitationListenerService::class.java))
+
+    /**
+     * Funkcija za zaustavljanje servisa
+     */
+    fun stopService() {
+        stopService(Intent(baseContext, InvitationListenerService::class.java))
     }
 
 

@@ -4,16 +4,24 @@ import android.app.Activity
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.os.Handler
 import android.support.v4.content.ContextCompat
 import com.example.marijah.outflow.R
 import com.example.marijah.outflow.activities.HomeActivity
 import com.example.marijah.outflow.helpers.HelperManager
+import com.example.marijah.outflow.helpers.showToast
+import com.example.marijah.outflow.models.AppManager
+import com.example.marijah.outflow.models.Invitation
+import com.example.marijah.outflow.popups.InvitationPopup
 import com.example.marijah.outflow.popups.InvitePopup
 import com.firebase.ui.auth.AuthUI
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineDataSet
 import kotlinx.android.synthetic.main.activity_settings.*
 import com.github.mikephil.charting.data.LineData
+import com.google.firebase.database.*
+import android.support.v4.os.HandlerCompat.postDelayed
+
 
 
 
@@ -86,6 +94,66 @@ class SettingsActivity : Activity() {
         HelperManager.setTypefaceRegular(assets, txtViewSignOut)
         HelperManager.setTypefaceRegular(assets, txtViewChangeMode)
 
+
+        txtViewCheckYourInvites.setOnClickListener {
+            // proveravamo da li su pristigli novi zahtevi za mrdzovanje
+
+            var doUserHaveAnyNewInvites = false
+
+                val database: FirebaseDatabase = FirebaseDatabase.getInstance()
+                val myReferenceToInvitations: DatabaseReference = database.reference.child("invitations_for_${AppManager.getInstance(this).currentlyLoggedInUserEmail}")
+
+                val childEventListenerForExpenses = object : ChildEventListener {
+                    override fun onChildAdded(dataSnapshot: DataSnapshot, s: String?) {
+
+                        doUserHaveAnyNewInvites = true
+
+                        val invitationItem = dataSnapshot.getValue(Invitation::class.java)
+
+                        if (invitationItem != null)
+                            callTheInvitationPopup(invitationItem.email, invitationItem.key)
+
+
+                    }
+
+                override fun onChildChanged(dataSnapshot: DataSnapshot, s: String?) {
+                }
+
+                override fun onChildRemoved(dataSnapshot: DataSnapshot) {
+                }
+
+                override fun onChildMoved(dataSnapshot: DataSnapshot, s: String?) {
+                }
+
+                override fun onCancelled(databaseError: DatabaseError) {
+
+                }
+            }
+
+            myReferenceToInvitations.addChildEventListener(childEventListenerForExpenses)
+
+
+            val handler = Handler()
+            handler.postDelayed(Runnable {
+                if(!doUserHaveAnyNewInvites)
+                {
+                    showToast(this, getString(R.string.no_new_requests))
+                    myReferenceToInvitations.removeEventListener(childEventListenerForExpenses)
+
+                }
+            }, 1500)   //5 seconds
+
+
+        }
+
+
+    }
+
+
+
+    private fun callTheInvitationPopup(email: String, key: String) {
+        val invitationPopup = InvitationPopup(this, email, key)
+        invitationPopup.show()
 
     }
 
