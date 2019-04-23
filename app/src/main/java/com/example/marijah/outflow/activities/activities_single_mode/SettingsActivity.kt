@@ -2,7 +2,6 @@ package com.example.marijah.outflow.activities.activities_single_mode
 
 import android.app.Activity
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.support.v4.content.ContextCompat
@@ -15,14 +14,8 @@ import com.example.marijah.outflow.models.Invitation
 import com.example.marijah.outflow.popups.InvitationPopup
 import com.example.marijah.outflow.popups.InvitePopup
 import com.firebase.ui.auth.AuthUI
-import com.github.mikephil.charting.data.Entry
-import com.github.mikephil.charting.data.LineDataSet
-import kotlinx.android.synthetic.main.activity_settings.*
-import com.github.mikephil.charting.data.LineData
 import com.google.firebase.database.*
-import android.support.v4.os.HandlerCompat.postDelayed
-
-
+import kotlinx.android.synthetic.main.activity_settings.*
 
 
 class SettingsActivity : Activity() {
@@ -48,9 +41,16 @@ class SettingsActivity : Activity() {
                 imgViewReceiveNotificationsSwitch.setImageDrawable(ContextCompat.getDrawable(applicationContext, R.drawable.switch_off))
         }
 
-        txtViewPassword.setOnClickListener {
-            val intent = Intent(this, ChangePasswordActivity::class.java)
+        /*  txtViewPassword.setOnClickListener {
+              val intent = Intent(this, ChangePasswordActivity::class.java)
+              startActivity(intent)
+          }*/
+
+        txtViewCheckYourConnections.setOnClickListener {
+            val intent = Intent(this, ConnectionsActivity::class.java)
             startActivity(intent)
+
+
         }
 
         imgViewPasswordSwitch.setOnClickListener {
@@ -64,7 +64,7 @@ class SettingsActivity : Activity() {
 
 
 
-        txtViewInvitePeople.setOnClickListener{
+        txtViewInvitePeople.setOnClickListener {
 
             val invitePopup = InvitePopup(this, R.layout.popup_invite)
             invitePopup.show()
@@ -75,8 +75,8 @@ class SettingsActivity : Activity() {
 
             AuthUI.getInstance().signOut(this)
 
-           /* intent = Intent(this, LoginSingleActivity::class.java)
-            startActivity(intent)*/
+            /* intent = Intent(this, LoginSingleActivity::class.java)
+             startActivity(intent)*/
 
             finish()
 
@@ -100,21 +100,21 @@ class SettingsActivity : Activity() {
 
             var doUserHaveAnyNewInvites = false
 
-                val database: FirebaseDatabase = FirebaseDatabase.getInstance()
-                val myReferenceToInvitations: DatabaseReference = database.reference.child("invitations_for_${AppManager.getInstance(this).currentlyLoggedInUserEmail}")
+            val database: FirebaseDatabase = FirebaseDatabase.getInstance()
+            val myReferenceToInvitations: DatabaseReference = database.reference.child("invitations_for_${AppManager.getInstance(this).currentlyLoggedInUserEmail}")
 
-                val childEventListenerForExpenses = object : ChildEventListener {
-                    override fun onChildAdded(dataSnapshot: DataSnapshot, s: String?) {
+            val childEventListenerForExpenses = object : ChildEventListener {
+                override fun onChildAdded(dataSnapshot: DataSnapshot, s: String?) {
 
-                        doUserHaveAnyNewInvites = true
+                    doUserHaveAnyNewInvites = true
 
-                        val invitationItem = dataSnapshot.getValue(Invitation::class.java)
+                    val invitationItem = dataSnapshot.getValue(Invitation::class.java)
 
-                        if (invitationItem != null)
-                            callTheInvitationPopup(invitationItem.email, invitationItem.key)
+                    if (invitationItem != null)
+                        callTheInvitationPopup(invitationItem.email, invitationItem.key)
 
 
-                    }
+                }
 
                 override fun onChildChanged(dataSnapshot: DataSnapshot, s: String?) {
                 }
@@ -135,8 +135,7 @@ class SettingsActivity : Activity() {
 
             val handler = Handler()
             handler.postDelayed(Runnable {
-                if(!doUserHaveAnyNewInvites)
-                {
+                if (!doUserHaveAnyNewInvites) {
                     showToast(this, getString(R.string.no_new_requests))
                     myReferenceToInvitations.removeEventListener(childEventListenerForExpenses)
 
@@ -150,12 +149,11 @@ class SettingsActivity : Activity() {
     }
 
 
-
     private fun callTheInvitationPopup(email: String, key: String) {
         val invitationPopup = InvitationPopup(this, email, key)
         invitationPopup.show()
 
     }
 
-    
+
 }

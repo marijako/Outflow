@@ -40,9 +40,9 @@
         <activity android:name=".activities.activities_single_mode.ListOfExpensesActivity" />
         <activity android:name=".activities.activities_single_mode.StatsActivity" />
 
-
         <service android:name=".activities.services.InvitationListenerService" />
 
+        <activity android:name=".activities.activities_single_mode.ConnectionsActivity"></activity>
     </application>
 
 </manifest>

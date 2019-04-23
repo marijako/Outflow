@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/blue_dark_color">
+
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="h, 650:100">
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelineNumberTop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.00" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelineNumberBottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.9" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelineNumberRight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.15" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelineNumberLeft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.05" />
+
+
+        <me.grantland.widget.AutofitTextView
+            android:id="@+id/txtViewNumber"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center_vertical"
+            android:text="1"
+            android:textColor="@color/blue_light_color"
+            android:textSize="28dp"
+            app:layout_constraintBottom_toBottomOf="@+id/guidelineNumberBottom"
+            app:layout_constraintLeft_toLeftOf="@+id/guidelineNumberLeft"
+            app:layout_constraintRight_toRightOf="@id/guidelineNumberRight"
+            app:layout_constraintTop_toTopOf="@+id/guidelineNumberTop" />
+
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelineEmailRight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.8" />
+
+
+        <me.grantland.widget.AutofitTextView
+            android:id="@+id/txtViewConnectedEmail"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="5dp"
+            android:text="marijakostic55@gmail.com"
+            android:textColor="@color/yellow_color"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/guidelineNumberBottom"
+            app:layout_constraintLeft_toLeftOf="@id/guidelineNumberRight"
+            app:layout_constraintRight_toRightOf="@id/guidelineEmailRight"
+            app:layout_constraintTop_toTopOf="@+id/guidelineNumberTop"
+
+            />
+
+
+    </android.support.constraint.ConstraintLayout>
+
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineBottomDividerTop"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.95" />
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/header"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guidelineBottomDividerTop" />
+
+
+</android.support.constraint.ConstraintLayout>

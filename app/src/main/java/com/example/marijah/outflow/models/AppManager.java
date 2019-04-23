@@ -63,21 +63,24 @@ public class AppManager {
     }
 
     /**
-     * Funkcija za postavljanje imena trenutno osluskivane tabele
-     * @param userEmail ime tabele
+     * Funkcija za pamcenje trenutno logovanog korisnika
+     * @param userEmail korisnikov imejl
      */
     public void setCurrentlyLoggedInUserEmail(String userEmail) {
         PreferencesManager.getInstance(mContext).setStringValue("CURRENTLY_LOGGED_IN_EMAIL", userEmail);
     }
 
     /**
-     * Funkcija za postavljanje imena trenutno osluskivane tabele
+     * Funkcija za dobijanje trenutno logovanog korisnika
      */
     public String getCurrentlyLoggedInUserEmail() {
         return PreferencesManager.getInstance(mContext).getStringValue("CURRENTLY_LOGGED_IN_EMAIL", "");
     }
 
+
     // S H A R E D   P R E F E R E N C E S   E N D
+
+
 
 
 
@@ -102,6 +105,10 @@ public class AppManager {
         editor.putString(key, json);
         editor.apply();
     }
+
+
+
+
 
 
 }

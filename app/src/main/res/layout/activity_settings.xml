@@ -103,14 +103,14 @@
 
 
         <me.grantland.widget.AutofitTextView
-            android:id="@+id/txtViewPassword"
+            android:id="@+id/txtViewCheckYourConnections"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintTop_toTopOf="@+id/guidelineNotificationsBottom"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="@id/guidelineSwitchLeft"
             app:layout_constraintBottom_toBottomOf="@+id/guidelinePasswordBottom"
-            android:text="Password"
+            android:text="Check your connections"
             android:gravity="center_vertical"
             android:paddingLeft="15dp"
             android:textColor="@color/white_color"
@@ -124,6 +124,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:src="@drawable/switch_on"
+            android:visibility="invisible"
             android:padding="5dp"
             app:layout_constraintTop_toTopOf="@id/guidelineNotificationsBottom"
             app:layout_constraintBottom_toBottomOf="@id/guidelinePasswordBottom"

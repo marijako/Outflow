@@ -26,5 +26,39 @@ object HelperManager {
         textView.typeface = typeface
     }
 
+    /**
+     * Funkcija koja generise novo ime tabele koju korisnik osluskuje
+     */
+    fun setUpNewTableName(email1: String, email2: String): String {
+        // upredjujemo ova dva stringa
+        val compare = email1.compareTo(email2)
+
+        if (compare < 0) {
+            return "expenses_${email2}_$email1"
+        } else if (compare > 0) {
+            return "expenses_${email1}_$email2"
+        } else {
+            // ne mogu nikad biti isti
+            return "expenses_${email1}_$email2"
+        }
+
+    }
+
+
+    fun replaceTheLastOccurenceOfTheSubstringInAString(toReplace: String, replaceWith: String, editedString: String): String {
+
+        val originalString = editedString
+        val substring = toReplace
+        val replacement = replaceWith
+        val positionOfTheSubstring = editedString.lastIndexOf(substring)
+
+        val builder = StringBuilder()
+        builder.append(originalString.substring(0, positionOfTheSubstring))
+        builder.append(replacement)
+        builder.append(originalString.substring(positionOfTheSubstring + substring.length))
+
+        return builder.toString()
+
+    }
 
 }
