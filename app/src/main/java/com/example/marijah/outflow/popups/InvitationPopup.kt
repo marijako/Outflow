@@ -2,16 +2,14 @@ package com.example.marijah.outflow.popups
 
 import android.app.Activity
 import android.os.Bundle
-import android.util.Log
 import com.example.marijah.outflow.R
+import com.example.marijah.outflow.helpers.HelperManager.replaceTheLastOccurrenceOfTheSubstringInAString
 import com.example.marijah.outflow.helpers.HelperManager.setUpNewTableName
-import com.example.marijah.outflow.helpers.categoryPickedObject
 import com.example.marijah.outflow.helpers.showToast
 import com.example.marijah.outflow.models.AppManager
 import com.example.marijah.outflow.models.ExpenseItem
 import com.example.marijah.outflow.models.Invitation
 import com.google.firebase.database.*
-import kotlinx.android.synthetic.main.activity_new_entry.*
 import kotlinx.android.synthetic.main.popup_invitation.*
 
 class InvitationPopup(activity: Activity, private val emailThatsInvining: String, private val key: String) : DimmedPopupDialog(activity, R.layout.popup_invitation) {
@@ -19,64 +17,28 @@ class InvitationPopup(activity: Activity, private val emailThatsInvining: String
     private lateinit var database: FirebaseDatabase
     private lateinit var myReferenceToInvitations: DatabaseReference
 
+    private var arrayListOfConnectionEmails: ArrayList<String> = ArrayList()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // dodajemo i samog korisnika
+        arrayListOfConnectionEmails.add(AppManager.getInstance(context).currentlyLoggedInUserEmail)
 
         database = FirebaseDatabase.getInstance()
         myReferenceToInvitations = database.reference.child("invitations_for_${AppManager.getInstance(context).currentlyLoggedInUserEmail}")
 
-        txtViewUsername.text = emailThatsInvining
+        txtViewUsername.text = replaceTheLastOccurrenceOfTheSubstringInAString("@", ".", emailThatsInvining)
 
         txtViewConfirm.setOnClickListener {
-            // ako je korisnik pristao, spajamo tabele i brisemo korisnika
+            // ako je korisnik pristao, spajamo tabele i brisemo korisnika iz liste invajtova
             showToast(context, "Request accepted")
 
-            // TODO - SPAJANJE TABELE I UBACIVANJE U LISTU KONEKCIJA
 
-            // dodavanje u listu konekcija
-            val myReferenceToConnections = database.reference.child("connections_for_${AppManager.getInstance(context).currentlyLoggedInUserEmail}")
-
-            val invitationItemKey: String = myReferenceToConnections.push().key ?: " "
-            val invitationForm = Invitation(invitationItemKey, emailThatsInvining)
-            myReferenceToConnections.child(invitationItemKey).setValue(invitationForm)
-
-            val arrayListOfConnections: ArrayList<Invitation> = ArrayList()
-
-            val childEventListenerForConnections = object : ChildEventListener {
-                override fun onChildAdded(dataSnapshot: DataSnapshot, s: String?) {
-
-                    val invitationItem = dataSnapshot.getValue(Invitation::class.java)
-
-                    //val invitingEmail = dataSnapshot.getValue(String::class.java)
-
-                    if (invitationItem != null) {
-                        arrayListOfConnections.add(invitationItem)
-                        Log.i("Marija", invitationItem.email)
-                    }
-                }
-
-                override fun onChildChanged(dataSnapshot: DataSnapshot, s: String?) {
-                }
-
-                override fun onChildRemoved(dataSnapshot: DataSnapshot) {
-                }
-
-                override fun onChildMoved(dataSnapshot: DataSnapshot, s: String?) {
-                }
-
-                override fun onCancelled(databaseError: DatabaseError) {
-
-                }
-            }
-
-            myReferenceToInvitations.addChildEventListener(childEventListenerForConnections)
-
+            // dodajemo korisnika u nasu listu konekcija
+            addToMyConnections()
             // takodje dodajemo i u listu konekcija korisnika koji je poslao zahtev
-            val friendsReferenceToConnections = database.reference.child("connections_for_${emailThatsInvining}")
-            val friendsInvitationItemKey: String = friendsReferenceToConnections.push().key ?: " "
-            val friendsInvitationForm = Invitation(friendsInvitationItemKey, AppManager.getInstance(context).currentlyLoggedInUserEmail)
-            friendsReferenceToConnections.child(invitationItemKey).setValue(friendsInvitationForm)
-
+            addToMeToMyFriendsConnections()
 
             // spajanje tabela
             // naziv za spajanje tabela je sledeci expenses_ +sve adrese poredjane po abecednom redu
@@ -97,7 +59,13 @@ class InvitationPopup(activity: Activity, private val emailThatsInvining: String
             newReferenceToMergedDatabase.child(expenseItemID).setValue(expense)
 
 
+            // sve moje konekcije moram da upisem kod mog prijatelja
+            // kod svih mojih prijatelja moram da upisem novu konekciju
+            // kod svih mojih prijatelja moram da updejtujem ime tabele
 
+
+            // i mejl koji me je pozvao bi morao da meni da sve svoje kontakte
+            // da njima svima updejtuje tabele
 
             removeValue()
             dismiss()
@@ -112,6 +80,50 @@ class InvitationPopup(activity: Activity, private val emailThatsInvining: String
         }
     }
 
+    /**
+     * Funkcija za dodavanje novog kontakta u moju listu konekcija
+     */
+    private fun addToMyConnections() {
+        // dodavanje u listu mojih konekcija
+        val myReferenceToConnections = database.reference.child("connections_for_${AppManager.getInstance(context).currentlyLoggedInUserEmail}")
+
+        val invitationItemKey: String = myReferenceToConnections.push().key ?: " "
+        val invitationForm = Invitation(invitationItemKey, emailThatsInvining)
+        myReferenceToConnections.child(invitationItemKey).setValue(invitationForm)
+
+
+        val childEventListenerForConnections = object : ChildEventListener {
+            override fun onChildAdded(dataSnapshot: DataSnapshot, s: String?) {
+
+                val invitationItem = dataSnapshot.getValue(Invitation::class.java)
+                if (invitationItem != null) {
+                    arrayListOfConnectionEmails.add(invitationItem.email)
+                }
+            }
+
+            override fun onChildChanged(dataSnapshot: DataSnapshot, s: String?) {}
+            override fun onChildRemoved(dataSnapshot: DataSnapshot) {}
+            override fun onChildMoved(dataSnapshot: DataSnapshot, s: String?) {}
+            override fun onCancelled(databaseError: DatabaseError) {}
+        }
+        myReferenceToInvitations.addChildEventListener(childEventListenerForConnections)
+    }
+
+
+    /**
+     * Funkcija za dodavanje mog mejla u listu prijateljskih konekcija
+     */
+    private fun addToMeToMyFriendsConnections() {
+
+        val friendsReferenceToConnections = database.reference.child("connections_for_$emailThatsInvining")
+        val friendsInvitationItemKey: String = friendsReferenceToConnections.push().key ?: " "
+        val friendsInvitationForm = Invitation(friendsInvitationItemKey, AppManager.getInstance(context).currentlyLoggedInUserEmail)
+        friendsReferenceToConnections.child(friendsInvitationItemKey).setValue(friendsInvitationForm)
+
+
+    }
+
+
     private fun removeValue() {
         myReferenceToInvitations.child(key).removeValue()
     }
@@ -120,17 +132,5 @@ class InvitationPopup(activity: Activity, private val emailThatsInvining: String
     override fun onBackPressed() {
 
     }
-
-
-
-    /*fun setUpNewTableName(vararg emails: String): String
-    {
-
-        for (i in 0 to emails.size)
-        {
-
-        }
-
-    }*/
 
 }

@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.example.marijah.outflow.R
-import com.example.marijah.outflow.helpers.HelperManager.replaceTheLastOccurenceOfTheSubstringInAString
+import com.example.marijah.outflow.helpers.HelperManager.replaceTheLastOccurrenceOfTheSubstringInAString
 import com.example.marijah.outflow.models.Invitation
 import java.util.*
 
@@ -40,7 +40,7 @@ class ConnectionsAdapter(private val context: Context, private val arrayListOfCo
 
         val itemConnection = arrayListOfConnections[position]
         holder.txtViewNumber.text = (position + 1).toString()
-        holder.txtViewConnectedEmail.text = replaceTheLastOccurenceOfTheSubstringInAString("@",".",itemConnection.email.toString() )
+        holder.txtViewConnectedEmail.text = replaceTheLastOccurrenceOfTheSubstringInAString("@",".",itemConnection.email.toString() )
 
 
     }

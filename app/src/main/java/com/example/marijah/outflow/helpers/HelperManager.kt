@@ -45,7 +45,7 @@ object HelperManager {
     }
 
 
-    fun replaceTheLastOccurenceOfTheSubstringInAString(toReplace: String, replaceWith: String, editedString: String): String {
+    fun replaceTheLastOccurrenceOfTheSubstringInAString(toReplace: String, replaceWith: String, editedString: String): String {
 
         val originalString = editedString
         val substring = toReplace
@@ -61,4 +61,19 @@ object HelperManager {
 
     }
 
+    /**
+     * Funkcija za sortiranje arrayListe stringova
+     * Sluzi nam za dobijanje novog naziva tabele.
+     */
+    fun sortArrayListOfStringsAndReturnThatString(arrayListToBeSorted: ArrayList<String>): String {
+
+        var sortedStrings = ""
+        arrayListToBeSorted.sort()
+
+        for (word in arrayListToBeSorted) {
+            sortedStrings += "_$word"
+        }
+
+        return sortedStrings
+    }
 }
