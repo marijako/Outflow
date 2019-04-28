@@ -42,7 +42,8 @@
 
         <service android:name=".activities.services.InvitationListenerService" />
 
-        <activity android:name=".activities.activities_single_mode.ConnectionsActivity"></activity>
+        <activity android:name=".activities.activities_single_mode.ListOfGroupsActivity" />
+
     </application>
 
 </manifest>

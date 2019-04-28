@@ -13,17 +13,16 @@ import com.example.marijah.outflow.R
 import com.example.marijah.outflow.activities.services.InvitationListenerService
 import com.example.marijah.outflow.adapters.CategoryAdapter
 import com.example.marijah.outflow.helpers.HelperManager
-import com.example.marijah.outflow.helpers.HelperManager.setUpNewTableName
 import com.example.marijah.outflow.helpers.categoryPickedObject
 import com.example.marijah.outflow.helpers.showToast
 import com.example.marijah.outflow.models.AppManager
 import com.example.marijah.outflow.models.Category
 import com.example.marijah.outflow.models.ExpenseItem
-import com.example.marijah.outflow.models.Invitation
 import com.firebase.ui.auth.AuthMethodPickerLayout
 import com.firebase.ui.auth.AuthUI
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.*
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_new_entry.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -152,34 +151,7 @@ class NewEntryActivity : MasterActivity(), DatePickerDialog.OnDateSetListener {
                 Toast.makeText(this, "Please fill in all the required fields", Toast.LENGTH_SHORT).show()
             } else {
 
-                // proveravamo korisnikove konekcije
-                val myReferenceToConnections = database.reference.child("connections_for_${AppManager.getInstance(this).currentlyLoggedInUserEmail}")
-                val childEventListenerForConnections = object : ChildEventListener {
-                    override fun onChildAdded(dataSnapshot: DataSnapshot, s: String?) {
-
-                        val invitationItem = dataSnapshot.getValue(Invitation::class.java)
-
-                        AppManager.getInstance(this@NewEntryActivity).currentlyLookedTableName = setUpNewTableName(AppManager.getInstance(this@NewEntryActivity).currentlyLoggedInUserEmail, invitationItem!!.email)
-                        myReferenceToExpenses = database.reference.child(AppManager.getInstance(this@NewEntryActivity).currentlyLookedTableName)
-
-                        showToast(this@NewEntryActivity, "Novi db name: ${AppManager.getInstance(this@NewEntryActivity).currentlyLookedTableName}")
-                    }
-
-                    override fun onChildChanged(dataSnapshot: DataSnapshot, s: String?) {
-                    }
-
-                    override fun onChildRemoved(dataSnapshot: DataSnapshot) {
-                    }
-
-                    override fun onChildMoved(dataSnapshot: DataSnapshot, s: String?) {
-                    }
-
-                    override fun onCancelled(databaseError: DatabaseError) {
-
-                    }
-                }
-
-                myReferenceToConnections.addChildEventListener(childEventListenerForConnections)
+                myReferenceToExpenses = database.reference.child(AppManager.getInstance(this).currentlyLookedTableName)
 
                 // uzimamo jedinstveni kljuc
                 val expenseItemID: String = myReferenceToExpenses.push().key ?: " "
@@ -259,7 +231,6 @@ class NewEntryActivity : MasterActivity(), DatePickerDialog.OnDateSetListener {
         myReferenceToExpenses = database.reference.child("expenses_$editedEmail")
 
         // postavljamo ime trenutno osluskivane tabele
-        AppManager.getInstance(this).currentlyLookedTableName = "expenses_$editedEmail"
         AppManager.getInstance(this).currentlyLoggedInUserEmail = editedEmail
 
         listenToTheInvitations()

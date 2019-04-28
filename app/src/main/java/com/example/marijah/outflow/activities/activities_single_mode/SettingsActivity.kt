@@ -12,7 +12,7 @@ import com.example.marijah.outflow.helpers.showToast
 import com.example.marijah.outflow.models.AppManager
 import com.example.marijah.outflow.models.Invitation
 import com.example.marijah.outflow.popups.InvitationPopup
-import com.example.marijah.outflow.popups.InvitePopup
+import com.example.marijah.outflow.popups.CreateAGroupPopup
 import com.firebase.ui.auth.AuthUI
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_settings.*
@@ -46,11 +46,9 @@ class SettingsActivity : Activity() {
               startActivity(intent)
           }*/
 
-        txtViewCheckYourConnections.setOnClickListener {
-            val intent = Intent(this, ConnectionsActivity::class.java)
+        txtViewCheckYourGroups.setOnClickListener {
+            val intent = Intent(this, ListOfGroupsActivity::class.java)
             startActivity(intent)
-
-
         }
 
         imgViewPasswordSwitch.setOnClickListener {
@@ -64,10 +62,10 @@ class SettingsActivity : Activity() {
 
 
 
-        txtViewInvitePeople.setOnClickListener {
+        txtViewCreateAGroup.setOnClickListener {
 
-            val invitePopup = InvitePopup(this, R.layout.popup_invite)
-            invitePopup.show()
+            val createAGroupPopup = CreateAGroupPopup(this, R.layout.popup_create_a_group)
+            createAGroupPopup.show()
 
         }
 
@@ -110,8 +108,8 @@ class SettingsActivity : Activity() {
 
                     val invitationItem = dataSnapshot.getValue(Invitation::class.java)
 
-                    if (invitationItem != null)
-                        callTheInvitationPopup(invitationItem.email, invitationItem.key)
+                    //if (invitationItem != null)
+                      //  callTheInvitationPopup(invitationItem.email, invitationItem.key)
 
 
                 }

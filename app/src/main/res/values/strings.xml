@@ -29,6 +29,16 @@
     <string name="real_email">Please enter the real email address.</string>
     <string name="your_invitation_has_been_sent">Your invitation has been sent.</string>
     <string name="no_new_requests">You have no new requests.</string>
+    <string name="your_groups">Your Groups</string>
+    <string name="create_a_group">Create a group</string>
+    <string name="create">Create</string>
+    <string name="group_name">Group name</string>
+    <string name="group_successfully_created">Group successfully created.</string>
+    <string name="empty_field">This field can\'t be empty!</string>
+    <string name="invitation_to_join">Invitation to join</string>
+    <string name="invite">Invite</string>
+    <string name="email_error">Please enter real email address.</string>
+    <string name="leave_the_group">Leave the group</string>
 
 
 </resources>

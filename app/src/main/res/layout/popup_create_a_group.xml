@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".popups.InvitationPopup">
+    tools:context=".popups.CreateAGroupPopup">
 
 
     <android.support.constraint.Guideline
@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.25" />
+        app:layout_constraintGuide_percent="0.2" />
 
 
     <android.support.constraint.Guideline
@@ -20,7 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.55" />
+        app:layout_constraintGuide_percent="0.65" />
 
 
     <android.support.constraint.Guideline
@@ -54,14 +54,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.305" />
+            app:layout_constraintGuide_percent="0.195" />
 
         <android.support.constraint.Guideline
             android:id="@+id/guidelinePopupHeaderBottom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.325" />
+            app:layout_constraintGuide_percent="0.205" />
 
 
         <ImageView
@@ -72,11 +72,10 @@
             app:layout_constraintTop_toTopOf="@+id/guidelinePopupHeaderTop" />
 
         <me.grantland.widget.AutofitTextView
-            android:id="@+id/txtViewHeaderName"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:gravity="center"
-            android:text="@string/invitation_to_join"
+            android:text="@string/create_a_group"
             android:textColor="@color/blue_light_color"
             android:textSize="17sp"
             app:layout_constraintBottom_toBottomOf="@id/guidelinePopupHeaderTop"
@@ -87,95 +86,96 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.68" />
-
-        <android.support.constraint.Guideline
-            android:id="@+id/guidelineButtonsBottom"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.9" />
+            app:layout_constraintGuide_percent="0.7" />
 
 
         <android.support.constraint.Guideline
-            android:id="@+id/guidelineUserNameBottom"
+            android:id="@+id/guidelineUserNameTop"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.6" />
+            app:layout_constraintGuide_percent="0.36" />
+
 
         <EditText
-            android:id="@+id/editTextInvitingEmail"
+            android:id="@+id/editTextGroupName"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:gravity="center|bottom"
-            android:hint="Email address of a new member"
-            android:textColorHint="#a3a312"
             android:background="@null"
-            android:textColor="@color/yellow_color"
+            android:gravity="center"
+            android:hint="@string/group_name"
+            android:inputType="textEmailAddress"
+            android:maxLines="1"
+            android:textColor="#ffff00"
+            android:textColorHint="#898906"
+            android:textCursorDrawable="@drawable/cursor"
             android:textSize="17sp"
-            app:layout_constraintBottom_toBottomOf="@+id/guidelineUserNameBottom"
+            app:layout_constraintBottom_toTopOf="@+id/guidelineUserNameTop"
             app:layout_constraintTop_toTopOf="@+id/guidelinePopupHeaderBottom" />
 
 
         <android.support.constraint.Guideline
-            android:id="@+id/guidelineButtonsMiddle"
+            android:id="@+id/guidelineInvitationCodeTop"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.58" />
+
+            <me.grantland.widget.AutofitTextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:text="This is the invitation code that you share \nin order for people to join this group:"
+            android:textColor="@color/white_color"
+            app:layout_constraintBottom_toTopOf="@+id/guidelineInvitationCodeTop"
+            app:layout_constraintTop_toBottomOf="@+id/editTextGroupName" />
+
+
+        <me.grantland.widget.AutofitTextView
+            android:id="@+id/txtViewInvitationCode"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:text="-LhsusguydayyuaGa"
+            android:textColor="@color/yellow_color"
+            app:layout_constraintBottom_toTopOf="@+id/guidelineButtonsTop"
+            app:layout_constraintTop_toBottomOf="@+id/guidelineInvitationCodeTop" />
+
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelineButtonLeft"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.5" />
+            app:layout_constraintGuide_percent="0.2" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelineButtonRight"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.8" />
 
         <ImageView
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="5dp"
-            android:src="@drawable/blue_button_small"
+            android:src="@drawable/blue_button"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="@+id/guidelineButtonsMiddle"
+            app:layout_constraintLeft_toLeftOf="@+id/guidelineButtonLeft"
+            app:layout_constraintRight_toRightOf="@+id/guidelineButtonRight"
             app:layout_constraintTop_toTopOf="@id/guidelineButtonsTop" />
 
 
         <me.grantland.widget.AutofitTextView
-            android:id="@+id/txtViewInvite"
+            android:id="@+id/txtViewCreateAGroup"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="5dp"
             android:gravity="center"
-            android:text="@string/invite"
+            android:text="@string/create"
             android:textColor="@color/white_color"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="@+id/guidelineButtonsMiddle"
-            app:layout_constraintTop_toTopOf="@id/guidelineButtonsTop" />
-
-
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="20dp"
-            android:src="@drawable/blue_button_small"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="@id/guidelineButtonsMiddle"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="@id/guidelineButtonsTop" />
-
-
-        <me.grantland.widget.AutofitTextView
-            android:id="@+id/txtViewCancel"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="20dp"
-            android:gravity="center"
-            android:text="@string/cancel"
-            android:textColor="@color/white_color"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="@id/guidelineButtonsMiddle"
-            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="@+id/guidelineButtonLeft"
+            app:layout_constraintRight_toRightOf="@+id/guidelineButtonRight"
             app:layout_constraintTop_toTopOf="@id/guidelineButtonsTop" />
 
 

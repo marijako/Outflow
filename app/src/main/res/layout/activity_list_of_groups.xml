@@ -40,7 +40,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:gravity="center"
-            android:text="@string/settings"
+            android:text="@string/your_groups"
             android:textColor="@color/white_color"
             android:textSize="@dimen/activity_text_name"
             app:layout_constraintBottom_toBottomOf="@+id/guidelineHeaderTop"

@@ -3,13 +3,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/blue_dark_color">
+    >
 
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintDimensionRatio="h, 650:100">
+        app:layout_constraintDimensionRatio="h, 650:150">
+
+
+        <ImageView
+            android:id="@+id/imgViewBackground"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/blue_dark_color" />
+
 
         <android.support.constraint.Guideline
             android:id="@+id/guidelineNumberTop"
@@ -55,28 +63,82 @@
 
 
         <android.support.constraint.Guideline
-            android:id="@+id/guidelineEmailRight"
+            android:id="@+id/guidelineGroupNameRight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.8" />
+            app:layout_constraintGuide_percent="0.72" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelineGroupNameBottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.5" />
 
 
         <me.grantland.widget.AutofitTextView
-            android:id="@+id/txtViewConnectedEmail"
+            android:id="@+id/txtViewGroupName"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:gravity="center_vertical"
-            android:paddingLeft="5dp"
-            android:text="marijakostic55@gmail.com"
+            android:gravity="bottom"
+            android:text="Flamingosi"
             android:textColor="@color/yellow_color"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="@+id/guidelineNumberBottom"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/guidelineGroupNameBottom"
             app:layout_constraintLeft_toLeftOf="@id/guidelineNumberRight"
-            app:layout_constraintRight_toRightOf="@id/guidelineEmailRight"
-            app:layout_constraintTop_toTopOf="@+id/guidelineNumberTop"
+            app:layout_constraintRight_toRightOf="@id/guidelineGroupNameRight"
+            app:layout_constraintTop_toTopOf="@+id/guidelineNumberTop" />
 
-            />
+
+        <me.grantland.widget.AutofitTextView
+            android:id="@+id/txtViewGroupKey"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="top"
+            android:text="-Ld9yjlYTMxtcngAPFZL"
+            android:textColor="@color/white_color"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="@id/guidelineNumberRight"
+            app:layout_constraintRight_toRightOf="@id/guidelineGroupNameRight"
+            app:layout_constraintTop_toTopOf="@+id/guidelineGroupNameBottom" />
+
+
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelineGroupInvitePeopleLeft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.86" />
+
+
+        <ImageView
+            android:id="@+id/imgViewInviteUsers"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:padding="12dp"
+            android:src="@drawable/invite_users"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="@id/guidelineGroupNameRight"
+            app:layout_constraintRight_toRightOf="@id/guidelineGroupInvitePeopleLeft"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+
+
+        <ImageView
+            android:id="@+id/imgViewLeaveTheGroup"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:padding="12dp"
+            android:src="@drawable/leave_the_group"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="@id/guidelineGroupInvitePeopleLeft"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
 
 
     </android.support.constraint.ConstraintLayout>

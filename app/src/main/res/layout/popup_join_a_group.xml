@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".popups.InvitePopup">
+    tools:context=".popups.CreateAGroupPopup">
 
 
     <android.support.constraint.Guideline
@@ -75,7 +75,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:gravity="center"
-            android:text="@string/merge_your_finances"
+            android:text="Join a group"
             android:textColor="@color/blue_light_color"
             android:textSize="17sp"
             app:layout_constraintBottom_toBottomOf="@id/guidelinePopupHeaderTop"
@@ -98,12 +98,12 @@
 
 
         <EditText
-            android:id="@+id/editTextEmail"
+            android:id="@+id/editTxtCode"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:background="@null"
             android:gravity="center"
-            android:hint="@string/enter_email_address"
+            android:hint="Enter your code here"
             android:inputType="textEmailAddress"
             android:maxLines="1"
             android:textColor="#ffff00"
@@ -118,9 +118,9 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:gravity="center"
-            android:text="@string/merge_fincances_text"
+            android:text="Here you can enter a code for \n joining a group:"
             android:textColor="@color/white_color"
-            app:layout_constraintBottom_toTopOf="@+id/editTextEmail"
+            app:layout_constraintBottom_toTopOf="@+id/editTxtCode"
             app:layout_constraintTop_toTopOf="@+id/guidelinePopupHeaderBottom" />
 
 
@@ -149,11 +149,11 @@
 
 
         <me.grantland.widget.AutofitTextView
-            android:id="@+id/txtViewSendRequest"
+            android:id="@+id/txtView"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:gravity="center"
-            android:text="@string/send_request"
+            android:text="Join"
             android:textColor="@color/white_color"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="@+id/guidelineButtonLeft"

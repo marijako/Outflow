@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".popups.DatePickerPopup">
+
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelinePopupTop"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.25" />
+
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelinePopupBottom"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.55" />
+
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelinePopupLeft"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.1" />
+
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelinePopupRight"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.9" />
+
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/blue_dark_color"
+        app:layout_constraintBottom_toBottomOf="@id/guidelinePopupBottom"
+        app:layout_constraintLeft_toLeftOf="@id/guidelinePopupLeft"
+        app:layout_constraintRight_toRightOf="@+id/guidelinePopupRight"
+        app:layout_constraintTop_toTopOf="@+id/guidelinePopupTop">
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelineTextBottom"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.65" />
+
+        <me.grantland.widget.AutofitTextView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:text="Are you sure that \nyou want to leave this group?"
+            android:textColor="@color/white_color"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="@+id/guidelineTextBottom"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+
+            />
+
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelineButtonTop"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.55" />
+
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelineButtonLeft"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.15" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelineButtonMiddle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:paddingStart="10dp"
+            android:paddingEnd="8dp"
+            android:src="@drawable/blue_button_small"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="@+id/guidelineButtonMiddle"
+            app:layout_constraintTop_toTopOf="@id/guidelineButtonTop" />
+
+
+        <me.grantland.widget.AutofitTextView
+            android:id="@+id/txtViewLeaveTheGroup"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:text="@string/leave_the_group"
+            android:textColor="@color/white_color"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="@+id/guidelineButtonMiddle"
+            app:layout_constraintTop_toTopOf="@id/guidelineButtonTop" />
+
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:src="@drawable/blue_button_small"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="@+id/guidelineButtonMiddle"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/guidelineButtonTop" />
+
+
+        <me.grantland.widget.AutofitTextView
+            android:id="@+id/txtViewCancel"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:text="@string/cancel"
+            android:textColor="@color/white_color"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="@+id/guidelineButtonMiddle"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/guidelineButtonTop" />
+
+
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.constraint.ConstraintLayout>
