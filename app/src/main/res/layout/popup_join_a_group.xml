@@ -149,7 +149,7 @@
 
 
         <me.grantland.widget.AutofitTextView
-            android:id="@+id/txtView"
+            android:id="@+id/txtViewJoin"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:gravity="center"

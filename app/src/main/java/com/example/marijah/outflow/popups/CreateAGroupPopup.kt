@@ -3,6 +3,7 @@ package com.example.marijah.outflow.popups
 import android.app.Activity
 import android.os.Bundle
 import com.example.marijah.outflow.R
+import com.example.marijah.outflow.helpers.HelperManager.replaceTheLastOccurrenceOfTheSubstringInAString
 import com.example.marijah.outflow.helpers.showToast
 import com.example.marijah.outflow.models.AppManager
 import com.example.marijah.outflow.models.Group
@@ -40,7 +41,7 @@ class CreateAGroupPopup(private var activity: Activity, dialogLayoutResourceID: 
             if (!editTextGroupName.text.isEmpty()) {
 
                 // ubacujemo grupu u listu grupa
-                val groupItem = Group(txtViewInvitationCode.text.toString(), editTextGroupName.text.toString(), arrayListOf("${AppManager.getInstance(context).currentlyLoggedInUserEmail}"))
+                val groupItem = Group(txtViewInvitationCode.text.toString(), editTextGroupName.text.toString(), arrayListOf(replaceTheLastOccurrenceOfTheSubstringInAString("@",".", AppManager.getInstance(context).currentlyLoggedInUserEmail)))
                 myReferenceToGroups.child(txtViewInvitationCode.text.toString()).setValue(groupItem)
 
                 // trenutnom korisniku ubacujemo tu grupu u njegovu listu

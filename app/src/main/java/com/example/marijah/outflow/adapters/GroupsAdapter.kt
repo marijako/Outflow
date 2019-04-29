@@ -12,11 +12,15 @@ import com.example.marijah.outflow.R
 import com.example.marijah.outflow.helpers.showToast
 import com.example.marijah.outflow.models.AppManager
 import com.example.marijah.outflow.models.Group
+import com.example.marijah.outflow.popups.GroupMembersPopup
 import com.example.marijah.outflow.popups.InvitationPopup
 import com.example.marijah.outflow.popups.LeaveTheGroupPopup
 import java.util.*
 
 class GroupsAdapter(private val context: Context, private val arrayListOfGroups: ArrayList<Group>, private val listener : GroupsAdapter.GroupAdapterListener) : RecyclerView.Adapter<GroupsAdapter.ViewHolder>() {
+
+
+    lateinit var previouslySelectedHolder : ViewHolder
 
     interface GroupAdapterListener
     {
@@ -79,6 +83,34 @@ class GroupsAdapter(private val context: Context, private val arrayListOfGroups:
         if(AppManager.getInstance(context).currentlyLookedTableName == itemGroup.key)
         {
             holder.imgViewBackground.setBackgroundColor(ContextCompat.getColor(context, R.color.blue_pastel_color))
+            previouslySelectedHolder = holder
+            holder.imgViewLeaveTheGroup.visibility = View.INVISIBLE
+
+        }
+
+
+        holder.imgViewBackground.setOnClickListener {
+
+            AppManager.getInstance(context).currentlyLookedTableName = itemGroup.key
+            previouslySelectedHolder.imgViewBackground.setBackgroundColor(ContextCompat.getColor(context, R.color.blue_dark_color))
+            previouslySelectedHolder.imgViewLeaveTheGroup.visibility = View.VISIBLE
+
+            holder.imgViewLeaveTheGroup.visibility = View.INVISIBLE
+            holder.imgViewBackground.setBackgroundColor(ContextCompat.getColor(context, R.color.blue_pastel_color))
+
+            previouslySelectedHolder = holder
+            showToast(context, "You have check out to ${itemGroup.groupName}")
+
+        }
+
+        holder.imgViewBackground.setOnLongClickListener {
+
+            val groupMembersPopup = GroupMembersPopup(context, itemGroup.groupMembers)
+            groupMembersPopup.show()
+
+
+             true
+
         }
 
 
@@ -105,6 +137,5 @@ class GroupsAdapter(private val context: Context, private val arrayListOfGroups:
                 listener.onUserChoseToLeaveTheGroup(groupKey)
         }
     }
-
 
 }

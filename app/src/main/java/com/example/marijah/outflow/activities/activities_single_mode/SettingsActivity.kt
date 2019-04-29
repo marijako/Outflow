@@ -13,6 +13,7 @@ import com.example.marijah.outflow.models.AppManager
 import com.example.marijah.outflow.models.Invitation
 import com.example.marijah.outflow.popups.InvitationPopup
 import com.example.marijah.outflow.popups.CreateAGroupPopup
+import com.example.marijah.outflow.popups.JoinAGroupPopup
 import com.firebase.ui.auth.AuthUI
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_settings.*
@@ -68,6 +69,15 @@ class SettingsActivity : Activity() {
             createAGroupPopup.show()
 
         }
+
+
+        txtViewJoinAGroup.setOnClickListener {
+
+            val joinAGroupPopup = JoinAGroupPopup(this, R.layout.popup_join_a_group)
+            joinAGroupPopup.show()
+
+        }
+
 
         txtViewSignOut.setOnClickListener {
 
