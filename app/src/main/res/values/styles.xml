@@ -2,7 +2,9 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="android:Theme.Holo.Light.NoActionBar.Fullscreen">
-        <item name="android:fontFamily">@font/oswald_light</item>
+       <!-- <item name="android:fontFamily">@font/oswald_light</item>-->
+        <item name="android:spinnerDropDownItemStyle">@style/mySpinnerStyle</item>
+        <item name="android:typeface">monospace</item>
         <item name="android:datePickerStyle">@style/MyDatePickerSpinnerStyle</item>
         <!-- Customize your theme here. -->
     </style>
@@ -39,6 +41,12 @@
     <style name="MyDatePickerSpinnerStyle" parent="@android:style/Widget.DatePicker">
         <item name="android:calendarViewShown">false</item>
         <item name="colorControlNormal">#d50000</item>
+    </style>
+
+
+    <style name="mySpinnerStyle" parent="android:Widget.ListView.DropDown">
+        <item name="android:divider">@color/blue_light_color</item>
+        <item name="android:dividerHeight">1dp</item>
     </style>
 
 </resources>

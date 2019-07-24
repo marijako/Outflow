@@ -7,10 +7,15 @@ import android.graphics.Typeface
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.Toast
 import com.example.marijah.outflow.R
 import com.example.marijah.outflow.helpers.HelperManager
+import com.example.marijah.outflow.helpers.showToast
+import com.example.marijah.outflow.models.AppManager
+import com.example.marijah.outflow.models.ExpenseItem
 import com.github.mikephil.charting.components.Description
 import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.components.XAxis.XAxisPosition
@@ -18,14 +23,20 @@ import com.github.mikephil.charting.data.*
 import com.github.mikephil.charting.highlight.Highlight
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener
 import com.github.mikephil.charting.utils.ColorTemplate
+import com.google.firebase.database.ChildEventListener
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_chart.*
 
 
-class StatsActivity : Activity() {
+class StatsActivity : Activity(), AdapterView.OnItemSelectedListener {
 
     // pie chart
     private val yData = floatArrayOf(25.3f, 10.6f, 66.76f, 44.32f, 46.01f, 16.89f, 23.9f)
     private val xData = arrayOf("Mitch", "Jessica", "Mohammad", "Kelsey", "Sam", "Robert", "Ashley")
+
+    private val arrayOfExpenses: ArrayList<ExpenseItem> = ArrayList()
 
     private lateinit var typefaceOswald: Typeface
 
@@ -33,16 +44,39 @@ class StatsActivity : Activity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chart)
 
+        // prvo stavke iz baze troskova smestamo u jednu array listu troskova
+        getArrayListOfExpenses()
+
+        val objects = arrayOf("This day", "This week", "This month", "This year")
+
+        // Declaring an Adapter and initializing it to the data pump
+        val adapter = ArrayAdapter(applicationContext, R.layout.spinner_item, objects)
+
+        // Setting Adapter to the Spinner
+        spinner.adapter = adapter
+
+        // Setting OnItemClickListener to the Spinner
+        spinner.onItemSelectedListener = this
+
         typefaceOswald = Typeface.createFromAsset(assets, "oswald_regular.ttf")
         setLayoutsAndListeners()
     }
 
+
+    // Defining the Callback methods here
+    override fun onItemSelected(parent: AdapterView<*>, view: View, pos: Int, id: Long) {
+        showToast(applicationContext, spinner.getItemAtPosition(pos).toString())
+
+
+    }
+
+    // Defining the Callback methods here
+    override fun onNothingSelected(arg0: AdapterView<*>) {}
+
+
     private fun setLayoutsAndListeners() {
         HelperManager.setTypefaceRegular(assets, txtViewName)
-
-
         setupLineChart()
-
 
         imgViewLineChart.setOnClickListener {
             setThePickedOneYellowAndTheOthersBlue(imgViewLineChart)
@@ -82,7 +116,6 @@ class StatsActivity : Activity() {
         imgViewPieChart.setColorFilter(colorBlue, PorterDuff.Mode.SRC_ATOP)
         imgViewBarChart.setColorFilter(colorBlue, PorterDuff.Mode.SRC_ATOP)
         pickedImageView.setColorFilter(ContextCompat.getColor(this, R.color.yellow_color), PorterDuff.Mode.SRC_ATOP)
-
     }
 
 
@@ -123,23 +156,24 @@ class StatsActivity : Activity() {
         description.textColor = ContextCompat.getColor(this, R.color.white_color)
         description.typeface = typefaceOswald
         pieChart.description = description
-        pieChart.isRotationEnabled = true;
-        //pieChart.setUsePercentValues(true);
+
+        pieChart.isRotationEnabled = true
+        pieChart.setUsePercentValues(true)
         pieChart.setHoleColor(ContextCompat.getColor(this, R.color.blue_dark_color))
         pieChart.setCenterTextColor(ContextCompat.getColor(this, R.color.white_color))
         pieChart.holeRadius = 60f
         pieChart.setTransparentCircleAlpha(0)
-        pieChart.centerText = "Bravo Marijo"
+        //pieChart.centerText = "Bravo Marijo"
         pieChart.setCenterTextTypeface(typefaceOswald)
-        pieChart.setCenterTextSize(10f);
+        pieChart.setCenterTextSize(10f)
         //pieChart.setDrawEntryLabels(true);
-        pieChart.setEntryLabelTextSize(20f);
+        pieChart.setEntryLabelTextSize(20f)
         pieChart.setDrawEntryLabels(true)
         pieChart.setEntryLabelColor(ContextCompat.getColor(this, R.color.white_color))
         pieChart.setEntryLabelTypeface(typefaceOswald)
         //More options just check out the documentation!
 
-        addDataSet()
+        addPieDataSet()
 
         pieChart.setOnChartValueSelectedListener(object : OnChartValueSelectedListener {
             override fun onValueSelected(e: Entry, h: Highlight) {
@@ -168,7 +202,7 @@ class StatsActivity : Activity() {
     }
 
 
-    private fun addDataSet() {
+    private fun addPieDataSet() {
 
         val yEntrys: ArrayList<PieEntry> = ArrayList()
         val xEntrys: ArrayList<String> = ArrayList()
@@ -191,15 +225,6 @@ class StatsActivity : Activity() {
         pieDataSet.valueTextSize = 12f
         pieDataSet.valueTypeface = typefaceOswald
 
-        //add colors to dataset
-        /*val colors: ArrayList<Int> = ArrayList()
-        colors.add(ContextCompat.getColor(this, R.color.chart_color_1))
-        colors.add(ContextCompat.getColor(this, R.color.chart_color_2))
-        colors.add(ContextCompat.getColor(this, R.color.chart_color_3))
-        colors.add(ContextCompat.getColor(this, R.color.chart_color_4))
-        colors.add(ContextCompat.getColor(this, R.color.chart_color_5))
-        colors.add(ContextCompat.getColor(this, R.color.chart_color_6))
-        colors.add(ContextCompat.getColor(this, R.color.chart_color_8))*/
 
         val ok = ColorTemplate.JOYFUL_COLORS
         pieDataSet.colors = ok.toMutableList()
@@ -245,38 +270,6 @@ class StatsActivity : Activity() {
 
 
     private fun setupBarChart() {
-
-        /* val barEntryLabels: ArrayList<IBarDataSet> = ArrayList()
-         val barEntry : ArrayList<BarEntry> = ArrayList()
-
-
-         barEntry.add(BarEntry(2f, 0f))
-         barEntry.add(BarEntry(4f, 1f))
-         barEntry.add(BarEntry(6f, 2f))
-         barEntry.add(BarEntry(8f, 3f))
-         barEntry.add(BarEntry(7f, 4f))
-         barEntry.add(BarEntry(3f, 5f))
-
-
-         barEntryLabels.add(IBarDataSet(BarEntry(2f, 0f)))
-         barEntryLabels.add("February")
-         barEntryLabels.add("March")
-         barEntryLabels.add("April")
-         barEntryLabels.add("May")
-         barEntryLabels.add("June")
-
-         val barDataSet: BarDataSet = BarDataSet(barEntry, "Projects")
-         barDataSet.colors = ColorTemplate.COLORFUL_COLORS
-
-         Bardataset.setColors(ColorTemplate.COLORFUL_COLORS);
-
-         val barData: BarData = BarData(barEntryLabels, barDataSet)
-
-
-         barChart.data = barData
-
-         barChart.animateY(3000)*/
-
 
         val desc = barChart.description
         val legend = barChart.legend
@@ -336,16 +329,43 @@ class StatsActivity : Activity() {
         entries.add(BarEntry(4f, 70f))
         entries.add(BarEntry(5f, 60f))
 
-
         val set = BarDataSet(entries, "")
         set.color = Color.YELLOW
         val ok = ColorTemplate.VORDIPLOM_COLORS
         set.colors = ok.toMutableList()
         set.valueTextColor = ContextCompat.getColor(this, R.color.blue_light_color)
-
         return set
     }
 
+
+    /**
+     * Funkcija za preuzimanje troskova i smestanje u arrej listu troskova
+     */
+    private fun getArrayListOfExpenses() {
+
+        val database = FirebaseDatabase.getInstance()
+        val myReferenceToExpenses = database.reference.child(AppManager.getInstance(this).currentlyLookedTableName)
+
+        val childEventListenerForExpenses = object : ChildEventListener {
+            override fun onChildAdded(dataSnapshot: DataSnapshot, s: String?) {
+
+                val expenseItem = dataSnapshot.getValue(ExpenseItem::class.java)
+                // dodajemo u listu troskova
+                if (expenseItem != null)
+                    arrayOfExpenses.add(expenseItem)
+            }
+
+            override fun onChildChanged(dataSnapshot: DataSnapshot, s: String?) {}
+
+            override fun onChildRemoved(dataSnapshot: DataSnapshot) {}
+
+            override fun onChildMoved(dataSnapshot: DataSnapshot, s: String?) {}
+
+            override fun onCancelled(databaseError: DatabaseError) {}
+        }
+
+        myReferenceToExpenses.addChildEventListener(childEventListenerForExpenses)
+    }
+
+
 }
-
-

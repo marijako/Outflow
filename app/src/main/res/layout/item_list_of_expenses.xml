@@ -2,6 +2,7 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/blue_dark_color"
     xmlns:app="http://schemas.android.com/apk/res-auto"
 
    >
@@ -79,7 +80,6 @@
             android:text="Food And Drinks"
             android:textColor="@color/yellow_color"
             android:gravity="center_vertical"
-            android:paddingLeft="5dp"
             android:textSize="16sp"
             app:layout_constraintLeft_toLeftOf="@id/guidelineCostTextRight"
             app:layout_constraintTop_toTopOf="@+id/guidelineCostTextTop"
@@ -140,6 +140,33 @@
             app:layout_constraintGuide_percent="0.95"
             />
 
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelineCommentLeft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.3"
+            />
+
+
+
+        <me.grantland.widget.AutofitTextView
+            android:id="@+id/txtViewStoreList"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text="HEDONIST"
+            android:textColor="@color/white_color"
+            android:gravity="center_vertical"
+            android:paddingLeft="3dp"
+            android:maxLines="3"
+            android:textSize="12sp"
+            app:layout_constraintLeft_toLeftOf="@id/guidelineCostTextLeft"
+            app:layout_constraintTop_toTopOf="@+id/guidelineCostTextBottom"
+            app:layout_constraintBottom_toBottomOf="@+id/guidelineCommentBottom"
+            app:layout_constraintRight_toRightOf="@+id/guidelineCommentLeft"
+
+            />
+
         <me.grantland.widget.AutofitTextView
             android:id="@+id/txtViewCommentList"
             android:layout_width="0dp"
@@ -150,7 +177,7 @@
             android:paddingLeft="3dp"
             android:maxLines="2"
             android:textSize="12sp"
-            app:layout_constraintLeft_toLeftOf="@id/guidelineCostTextLeft"
+            app:layout_constraintLeft_toLeftOf="@id/guidelineCommentLeft"
             app:layout_constraintTop_toTopOf="@+id/guidelineCostTextBottom"
             app:layout_constraintBottom_toBottomOf="@+id/guidelineCommentBottom"
             app:layout_constraintRight_toRightOf="parent"

@@ -22,6 +22,7 @@ class ListOfExpensesAdapter(private val context: Context, private val arrayListO
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         var txtViewCostList: TextView = itemView.findViewById(R.id.txtViewCostList)
+        var txtViewStoreList : TextView = itemView.findViewById(R.id.txtViewStoreList)
         var txtViewCategoryList: TextView = itemView.findViewById(R.id.txtViewCategoryList)
         var txtViewCommentList: TextView = itemView.findViewById(R.id.txtViewCommentList)
         var txtViewDateList: TextView = itemView.findViewById(R.id.txtViewDateList)
@@ -48,6 +49,7 @@ class ListOfExpensesAdapter(private val context: Context, private val arrayListO
 
         val expenseItem = arrayListOfExpenses[position]
         holder.txtViewCostList.text = expenseItem.price.toString()
+        holder.txtViewStoreList.text = expenseItem.place.toUpperCase()
         holder.txtViewCategoryList.text = expenseItem.category
         holder.txtViewCommentList.text = expenseItem.comment
         holder.txtViewDateList.text = expenseItem.date

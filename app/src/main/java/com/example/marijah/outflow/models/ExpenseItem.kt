@@ -8,8 +8,9 @@ class ExpenseItem()
     var category : String = ""
     var date : String = ""
     var comment : String = ""
+    var whoDidThePurchase : String = ""
 
-    constructor(key: String, price:Int,category : String, place : String, date: String, comment: String):this()
+    constructor(key: String, price:Int,category : String, place : String, date: String, comment: String, whoDidThePurchase : String):this()
     {
         this.key = key
         this.price = price
@@ -17,5 +18,6 @@ class ExpenseItem()
         this.place = place
         this.date = date
         this.comment = comment
+        this.whoDidThePurchase = whoDidThePurchase
     }
 }

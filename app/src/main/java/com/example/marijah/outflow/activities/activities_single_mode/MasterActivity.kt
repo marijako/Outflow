@@ -22,7 +22,7 @@ open class MasterActivity : Activity() {
 
     }
 
-    fun listenToTheInvitations() {
+   /* fun listenToTheInvitations() {
 
         if (AppManager.getInstance(this).currentlyLoggedInUserEmail != "") {
 
@@ -44,7 +44,7 @@ open class MasterActivity : Activity() {
                     //val invitingEmail = dataSnapshot.getValue(String::class.java)
 
                     if (invitationItem != null)
-                        callTheInvitationPopup(invitationItem.email, invitationItem.key)
+                      //  callTheInvitationPopup(invitationItem.email, invitationItem.key)
                     //showToast(applicationContext, "You are invited $invitingEmail")
                 }
 
@@ -65,12 +65,12 @@ open class MasterActivity : Activity() {
             myReferenceToInvitations.addChildEventListener(childEventListenerForExpenses)
         }
     }
-
-
+*/
+/*
     private fun callTheInvitationPopup(email: String, key: String) {
         val invitationPopup = InvitationPopup(this, email, key)
         invitationPopup.show()
 
-    }
+    }*/
 
 }

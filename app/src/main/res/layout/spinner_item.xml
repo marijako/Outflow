@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<!-- <ImageView
+     android:id="@+id/imageView"
+     android:layout_width="50dp"
+     android:layout_height="50dp"
+     android:padding="5dp"
+     android:src="@drawable/ic_launcher" />&lt;!&ndash;Make sure image is present in Drawable folder&ndash;&gt;
+-->
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/textView"
+    android:background="@color/blue_dark_color"
+    android:layout_width="fill_parent"
+    android:layout_height="40dp"
+    android:gravity="center_vertical"
+    android:layout_gravity="center"
+    android:text="Spinner Value"
+    android:textColor="@color/white_color"
+    android:typeface="monospace" />

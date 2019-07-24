@@ -1,5 +1,6 @@
 package com.example.marijah.outflow.helpers
 
+import android.content.Context
 import android.content.res.AssetManager
 import android.graphics.Typeface
 import android.widget.TextView
@@ -76,4 +77,25 @@ object HelperManager {
 
         return sortedStrings
     }
+
+    /**
+     * Funkcija za postavljanje fonta u celoj aplikaciji.
+     * Primenjujemo ovaj pristup jer fontFamily pristup je za novije apije.
+     */
+    fun setDefaultFont(context: Context, staticTypefaceFieldName: String, fontAssetName: String) {
+        val regular = Typeface.createFromAsset(context.assets, fontAssetName)
+        replaceFont(staticTypefaceFieldName, regular)
+    }
+
+    private fun replaceFont(staticTypefaceFieldName: String, newTypeface: Typeface) {
+        try {
+            val staticFiled = Typeface::class.java.getDeclaredField(staticTypefaceFieldName)
+            staticFiled.isAccessible = true
+            staticFiled.set(null, newTypeface)
+        } catch (ex: Exception) {
+            ex.printStackTrace()
+        }
+    }
+
+
 }

@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".popups.InvitationPopup">
+
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelinePopupTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.25" />
+
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelinePopupBottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.65" />
+
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelinePopupLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.1" />
+
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelinePopupRight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.9" />
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/imgViewPopupBackground"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/blue_dark_color"
+        app:layout_constraintBottom_toBottomOf="@id/guidelinePopupBottom"
+        app:layout_constraintLeft_toLeftOf="@+id/guidelinePopupLeft"
+        app:layout_constraintRight_toRightOf="@+id/guidelinePopupRight"
+        app:layout_constraintTop_toTopOf="@+id/guidelinePopupTop">
+
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelinePopupHeaderTop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.205" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelinePopupHeaderBottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.215" />
+
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/blue_light_color"
+            app:layout_constraintBottom_toBottomOf="@+id/guidelinePopupHeaderBottom"
+            app:layout_constraintTop_toTopOf="@+id/guidelinePopupHeaderTop" />
+
+        <me.grantland.widget.AutofitTextView
+            android:id="@+id/txtViewHeaderName"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:text="Invitation to join the group"
+            android:textColor="@color/blue_light_color"
+            android:textSize="17sp"
+            app:layout_constraintBottom_toBottomOf="@id/guidelinePopupHeaderTop"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelineButtonsTop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.68" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelineButtonsBottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.9" />
+
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelineUserNameBottom"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.42" />
+
+        <me.grantland.widget.AutofitTextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:text="You have been invited to join the group!"
+            android:textColorHint="#a3a312"
+            android:background="@null"
+            android:textColor="@color/white_color"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/guidelineUserNameBottom"
+            app:layout_constraintTop_toTopOf="@+id/guidelinePopupHeaderBottom" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelineGroupNameBottom"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.55" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelineGroupNameLeft"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.4" />
+
+
+
+        <me.grantland.widget.AutofitTextView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center|right"
+            android:text="Group name:"
+            android:background="@null"
+            android:textColor="@color/blue_light_color"
+            android:textSize="16sp"
+            android:paddingEnd="5sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="@+id/guidelineGroupNameLeft"
+            app:layout_constraintBottom_toBottomOf="@+id/guidelineGroupNameBottom"
+            app:layout_constraintTop_toTopOf="@+id/guidelineUserNameBottom" />
+
+
+
+        <me.grantland.widget.AutofitTextView
+            android:id="@+id/txtViewGroupName"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center_vertical"
+            android:text="Groupie"
+            android:paddingStart="5dp"
+            android:textColor="@color/yellow_color"
+            android:textSize="16sp"
+            app:layout_constraintLeft_toLeftOf="@+id/guidelineGroupNameLeft"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/guidelineGroupNameBottom"
+            app:layout_constraintTop_toTopOf="@+id/guidelineUserNameBottom" />
+
+
+        <me.grantland.widget.AutofitTextView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center|right"
+            android:text="Group code:"
+            android:background="@null"
+            android:textColor="@color/blue_light_color"
+            android:textSize="16sp"
+            android:paddingEnd="5sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="@+id/guidelineGroupNameLeft"
+            app:layout_constraintBottom_toBottomOf="@+id/guidelineButtonsTop"
+            app:layout_constraintTop_toBottomOf="@+id/txtViewGroupName" />
+
+
+
+
+        <me.grantland.widget.AutofitTextView
+            android:id="@+id/txtViewGroupCode"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center_vertical"
+            android:text="-Lgagagauyo"
+            android:paddingStart="5dp"
+            android:textColor="@color/yellow_color"
+            android:textSize="12sp"
+            app:layout_constraintLeft_toLeftOf="@+id/guidelineGroupNameLeft"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/guidelineButtonsTop"
+            app:layout_constraintTop_toBottomOf="@+id/txtViewGroupName" />
+
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelineButtonsMiddle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="5dp"
+            android:src="@drawable/blue_button_small"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="@+id/guidelineButtonsMiddle"
+            app:layout_constraintTop_toTopOf="@id/guidelineButtonsTop" />
+
+
+        <me.grantland.widget.AutofitTextView
+            android:id="@+id/txtViewConfirm"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="5dp"
+            android:gravity="center"
+            android:text="@string/accept"
+            android:textColor="@color/white_color"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="@+id/guidelineButtonsMiddle"
+            app:layout_constraintTop_toTopOf="@id/guidelineButtonsTop" />
+
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="20dp"
+            android:src="@drawable/blue_button_small"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="@id/guidelineButtonsMiddle"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/guidelineButtonsTop" />
+
+
+        <me.grantland.widget.AutofitTextView
+            android:id="@+id/txtViewDeny"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="20dp"
+            android:gravity="center"
+            android:text="@string/deny"
+            android:textColor="@color/white_color"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="@id/guidelineButtonsMiddle"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/guidelineButtonsTop" />
+
+
+    </android.support.constraint.ConstraintLayout>
+
+
+</android.support.constraint.ConstraintLayout>

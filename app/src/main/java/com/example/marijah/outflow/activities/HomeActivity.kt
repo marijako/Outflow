@@ -9,6 +9,7 @@ import com.example.marijah.outflow.activities.activities_single_mode.ChangePassw
 import com.example.marijah.outflow.activities.activities_single_mode.MasterActivity
 import com.example.marijah.outflow.activities.activities_single_mode.NewEntryActivity
 import com.example.marijah.outflow.helpers.HelperManager
+import com.example.marijah.outflow.helpers.HelperManager.setDefaultFont
 import com.example.marijah.outflow.popups.InvitationPopup
 import kotlinx.android.synthetic.main.activity_home.*
 
@@ -17,9 +18,17 @@ class HomeActivity : MasterActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        setDefaultFont(this, "MONOSPACE", "oswald_light.ttf")
+
+
         Log.i("Marija", "OnCreate() HomeActivity!")
 
         setContentView(R.layout.activity_home)
+
+
+        //setDefaultFont(this, "DEFAULT", "oswald_light.ttf")
+        /*setDefaultFont(this, "SERIF", "oswald_light.ttf")*/
+        /*setDefaultFont(this, "SANS_SERIF", "oswald_light.ttf")*/
 
         setLayoutAndListeners()
 
@@ -30,28 +39,19 @@ class HomeActivity : MasterActivity() {
     private fun setLayoutAndListeners() {
 
         imgViewTrackYourExpensesButton.setOnClickListener {
+
+        }
+
+
+        imgViewTrackGroupExpensesButton.setOnClickListener {
             intent = Intent(this, NewEntryActivity::class.java)
             startActivity(intent)
         }
 
 
-
-        imgViewTrackGroupExpensesButton.setOnClickListener {
-
-            val invitationPopup = InvitationPopup(this, "ZEZANCIJA", "zez")
-            invitationPopup.show()
-
-        }
-
-        imgViewInvitedButton.setOnClickListener {
-            intent = Intent(this, ChangePasswordActivity::class.java)
-            startActivity(intent)
-        }
-
         // postavljamo font
         HelperManager.setTypefaceRegular(assets, txtViewTrackYourExpensesButton)
         HelperManager.setTypefaceRegular(assets, txtViewTrackGroupExpensesButton)
-        HelperManager.setTypefaceRegular(assets, txtViewInvitedButton)
 
 
     }

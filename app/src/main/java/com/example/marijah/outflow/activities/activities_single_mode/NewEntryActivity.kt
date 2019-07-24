@@ -161,7 +161,8 @@ class NewEntryActivity : MasterActivity(), DatePickerDialog.OnDateSetListener {
                         categoryPickedObject.categoryPicked,
                         editTextStore.text.toString(),
                         txtViewDate.text.toString(),
-                        editTextComment.text.toString())
+                        editTextComment.text.toString(),
+                        AppManager.getInstance(this).currentlyLoggedInUserEmail)
 
                 // dodajemo taj objekat u bazu
                 myReferenceToExpenses.child(expenseItemID).setValue(expense)
@@ -233,7 +234,7 @@ class NewEntryActivity : MasterActivity(), DatePickerDialog.OnDateSetListener {
         // postavljamo ime trenutno osluskivane tabele
         AppManager.getInstance(this).currentlyLoggedInUserEmail = editedEmail
 
-        listenToTheInvitations()
+        //listenToTheInvitations()
         //startService()
 
     }

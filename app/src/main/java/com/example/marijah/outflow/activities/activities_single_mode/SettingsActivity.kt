@@ -10,9 +10,11 @@ import com.example.marijah.outflow.activities.HomeActivity
 import com.example.marijah.outflow.helpers.HelperManager
 import com.example.marijah.outflow.helpers.showToast
 import com.example.marijah.outflow.models.AppManager
+import com.example.marijah.outflow.models.Group
 import com.example.marijah.outflow.models.Invitation
 import com.example.marijah.outflow.popups.InvitationPopup
 import com.example.marijah.outflow.popups.CreateAGroupPopup
+import com.example.marijah.outflow.popups.InvitationToJoinPopup
 import com.example.marijah.outflow.popups.JoinAGroupPopup
 import com.firebase.ui.auth.AuthUI
 import com.google.firebase.database.*
@@ -111,15 +113,15 @@ class SettingsActivity : Activity() {
             val database: FirebaseDatabase = FirebaseDatabase.getInstance()
             val myReferenceToInvitations: DatabaseReference = database.reference.child("invitations_for_${AppManager.getInstance(this).currentlyLoggedInUserEmail}")
 
-            val childEventListenerForExpenses = object : ChildEventListener {
+            val childEventListenerForInvitations = object : ChildEventListener {
                 override fun onChildAdded(dataSnapshot: DataSnapshot, s: String?) {
 
                     doUserHaveAnyNewInvites = true
 
-                    val invitationItem = dataSnapshot.getValue(Invitation::class.java)
+                    val groupItem = dataSnapshot.getValue(Group::class.java)
 
-                    //if (invitationItem != null)
-                      //  callTheInvitationPopup(invitationItem.email, invitationItem.key)
+                    if (groupItem != null)
+                       callTheInvitationPopup(groupItem)
 
 
                 }
@@ -138,14 +140,14 @@ class SettingsActivity : Activity() {
                 }
             }
 
-            myReferenceToInvitations.addChildEventListener(childEventListenerForExpenses)
+            myReferenceToInvitations.addChildEventListener(childEventListenerForInvitations)
 
 
             val handler = Handler()
             handler.postDelayed(Runnable {
                 if (!doUserHaveAnyNewInvites) {
                     showToast(this, getString(R.string.no_new_requests))
-                    myReferenceToInvitations.removeEventListener(childEventListenerForExpenses)
+                    myReferenceToInvitations.removeEventListener(childEventListenerForInvitations)
 
                 }
             }, 1500)   //5 seconds
@@ -157,9 +159,9 @@ class SettingsActivity : Activity() {
     }
 
 
-    private fun callTheInvitationPopup(email: String, key: String) {
-        val invitationPopup = InvitationPopup(this, email, key)
-        invitationPopup.show()
+    private fun callTheInvitationPopup(groupItem : Group) {
+        val invitationToJoinPopup = InvitationToJoinPopup(this, groupItem)
+        invitationToJoinPopup.show()
 
     }
 

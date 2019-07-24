@@ -20,7 +20,7 @@ import java.util.*
 class GroupsAdapter(private val context: Context, private val arrayListOfGroups: ArrayList<Group>, private val listener : GroupsAdapter.GroupAdapterListener) : RecyclerView.Adapter<GroupsAdapter.ViewHolder>() {
 
 
-    lateinit var previouslySelectedHolder : ViewHolder
+    private var previouslySelectedHolder : ViewHolder? = null
 
     interface GroupAdapterListener
     {
@@ -66,13 +66,18 @@ class GroupsAdapter(private val context: Context, private val arrayListOfGroups:
         holder.txtViewGroupName.text = itemGroup.groupName
         holder.txtViewGroupKey.text = itemGroup.key
 
+        holder.imgViewBackground.setBackgroundColor(ContextCompat.getColor(context, R.color.blue_dark_color))
+        holder.imgViewLeaveTheGroup.visibility = View.VISIBLE
+
+
+
         holder.txtViewNumber.setOnClickListener {
 
             showToast(context, "His group contains ${itemGroup.groupMembers.size} members.")
 
         }
 
-        holder.imgViewInviteUsers.setOnClickListener { callTheInvitationPopup(itemGroup.groupName, itemGroup.key) }
+        holder.imgViewInviteUsers.setOnClickListener { callTheInvitationPopup(itemGroup.groupName, itemGroup.key, itemGroup) }
 
 
         holder.imgViewLeaveTheGroup.setOnClickListener {
@@ -92,8 +97,8 @@ class GroupsAdapter(private val context: Context, private val arrayListOfGroups:
         holder.imgViewBackground.setOnClickListener {
 
             AppManager.getInstance(context).currentlyLookedTableName = itemGroup.key
-            previouslySelectedHolder.imgViewBackground.setBackgroundColor(ContextCompat.getColor(context, R.color.blue_dark_color))
-            previouslySelectedHolder.imgViewLeaveTheGroup.visibility = View.VISIBLE
+            previouslySelectedHolder?.imgViewBackground?.setBackgroundColor(ContextCompat.getColor(context, R.color.blue_dark_color))
+            previouslySelectedHolder?.imgViewLeaveTheGroup?.visibility = View.VISIBLE
 
             holder.imgViewLeaveTheGroup.visibility = View.INVISIBLE
             holder.imgViewBackground.setBackgroundColor(ContextCompat.getColor(context, R.color.blue_pastel_color))
@@ -122,8 +127,8 @@ class GroupsAdapter(private val context: Context, private val arrayListOfGroups:
     }
 
 
-    private fun callTheInvitationPopup(groupName: String, groupKey: String) {
-        val invitationPopup = InvitationPopup(context, groupName, groupKey)
+    private fun callTheInvitationPopup(groupName: String, groupKey: String, groupItem: Group) {
+        val invitationPopup = InvitationPopup(context, groupName, groupKey, groupItem)
         invitationPopup.show()
     }
 
