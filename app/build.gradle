@@ -49,7 +49,11 @@ dependencies {
      */
     implementation 'com.firebaseui:firebase-ui-auth:4.3.1'
 
-    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0-alpha'
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+
+    // kalendar
+    implementation 'com.github.applikeysolutions:cosmocalendar:1.0.4'
+
 }
 repositories {
     maven { url 'https://jitpack.io' }
