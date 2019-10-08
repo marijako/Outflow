@@ -12,6 +12,10 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
+            android:name=".popups.CalendarPopup"
+            android:label="@string/title_activity_calendar_popup"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
             android:name=".activities.HomeActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait">
@@ -40,9 +44,9 @@
         <activity android:name=".activities.activities_single_mode.ListOfExpensesActivity" />
         <activity android:name=".activities.activities_single_mode.StatsActivity" />
 
-        <service android:name=".activities.services.InvitationListenerService" />
-
         <activity android:name=".activities.activities_single_mode.ListOfGroupsActivity" />
+
+        <service android:name=".activities.services.InvitationListenerService" />
     </application>
 
 </manifest>

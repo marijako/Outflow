@@ -12,7 +12,7 @@ import com.example.marijah.outflow.R
 open class DimmedPopupDialog(activity: Activity, private val dialogLayoutResourceID: Int) : Dialog(activity, R.style.full_screen_dialog) {
 
     private val dimmedBackgroundColor: Int = Color.BLACK
-    private val dimmedBackgroundAlpha: Float = 0.5f
+    private val dimmedBackgroundAlpha: Float = 0.7f
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

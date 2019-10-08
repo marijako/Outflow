@@ -51,6 +51,7 @@ dependencies {
 
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 
+
     // kalendar
     implementation 'com.github.applikeysolutions:cosmocalendar:1.0.4'
 

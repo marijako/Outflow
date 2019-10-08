@@ -196,13 +196,15 @@ class NewEntryActivity : MasterActivity(), DatePickerDialog.OnDateSetListener {
                     } else {
                         dayOfMonth.toString()
                     }
-                    val monthOfTheYear: String = if (month < 10) {
+
+                    val monthOfTheYear: String = if (month < 9) {
                         "0${month + 1}"
                     } else {
-                        { month + 1 }.toString()
+                        "${month + 1}"
                     }
                     val newDate = "$date.$monthOfTheYear.$year."
                     txtViewDate.text = newDate
+
                 }
             }, newDate.get(Calendar.YEAR), newDate.get(Calendar.MONTH), newDate.get(Calendar.DAY_OF_MONTH))
 

@@ -2,7 +2,7 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="android:Theme.Holo.Light.NoActionBar.Fullscreen">
-       <!-- <item name="android:fontFamily">@font/oswald_light</item>-->
+        <!-- <item name="android:fontFamily">@font/oswald_light</item>-->
         <item name="android:spinnerDropDownItemStyle">@style/mySpinnerStyle</item>
         <item name="android:typeface">monospace</item>
         <item name="android:datePickerStyle">@style/MyDatePickerSpinnerStyle</item>
@@ -27,6 +27,7 @@
     <!--custom dialog theme-->
     <style name="full_screen_dialog" parent="android:Theme.Translucent.NoTitleBar.Fullscreen">
         <item name="android:windowFullscreen">true</item>
+
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowAnimationStyle">@style/customDialogAnimation</item>
     </style>
@@ -35,7 +36,6 @@
         <item name="android:windowEnterAnimation">@anim/zoom_in</item>
         <item name="android:windowExitAnimation">@anim/zoom_out</item>
     </style>
-
 
 
     <style name="MyDatePickerSpinnerStyle" parent="@android:style/Widget.DatePicker">
@@ -48,5 +48,14 @@
         <item name="android:divider">@color/blue_light_color</item>
         <item name="android:dividerHeight">1dp</item>
     </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 </resources>

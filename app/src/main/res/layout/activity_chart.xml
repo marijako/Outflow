@@ -95,14 +95,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.15" />
+            app:layout_constraintGuide_percent="0.13" />
 
         <android.support.constraint.Guideline
             android:id="@+id/guidelineLineTextBottom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.25" />
+            app:layout_constraintGuide_percent="0.19" />
 
         <android.support.constraint.Guideline
             android:id="@+id/guidelineLineTextLeft"
@@ -124,10 +124,27 @@
             android:layout_height="0dp"
             android:textColor="@color/white_color"
             android:text="Data shown for:"
+            android:gravity="center|left"
+            android:textSize="14sp"
             app:layout_constraintLeft_toLeftOf="@+id/guidelineLineTextLeft"
             app:layout_constraintRight_toRightOf="@+id/guidelineLineTextRight"
             app:layout_constraintTop_toTopOf="@id/guidelineLineTextTop"
             app:layout_constraintBottom_toBottomOf="@id/guidelineLineTextBottom"
+            />
+
+        <me.grantland.widget.AutofitTextView
+            android:id="@+id/txtViewCustomDate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="07.10.2019."
+            android:textSize="12sp"
+            android:visibility="invisible"
+            android:gravity="left"
+            android:paddingBottom="10dp"
+            android:textColor="@color/blue_light_color"
+            app:layout_constraintLeft_toLeftOf="@+id/guidelineLineTextLeft"
+            app:layout_constraintRight_toRightOf="@+id/guidelineLineTextRight"
+            app:layout_constraintTop_toTopOf="@id/guidelineLineTextBottom"
             />
 
 
@@ -149,7 +166,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.3" />
+            app:layout_constraintGuide_percent="0.25" />
 
         <android.support.constraint.Guideline
             android:id="@+id/guidelineLineChartBottom"
