@@ -1,16 +1,14 @@
 package com.example.marijah.outflow.activities
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import com.example.marijah.outflow.R
-import com.example.marijah.outflow.activities.activities_single_mode.ChangePasswordActivity
-import com.example.marijah.outflow.activities.activities_single_mode.MasterActivity
-import com.example.marijah.outflow.activities.activities_single_mode.NewEntryActivity
+import com.example.marijah.outflow.activities.activities_group_mode.MasterActivity
+import com.example.marijah.outflow.activities.activities_group_mode.NewEntryActivity
+import com.example.marijah.outflow.activities.activities_single_mode.NewEntrySingleActivity
 import com.example.marijah.outflow.helpers.HelperManager
 import com.example.marijah.outflow.helpers.HelperManager.setDefaultFont
-import com.example.marijah.outflow.popups.InvitationPopup
 import kotlinx.android.synthetic.main.activity_home.*
 
 class HomeActivity : MasterActivity() {
@@ -39,7 +37,8 @@ class HomeActivity : MasterActivity() {
     private fun setLayoutAndListeners() {
 
         imgViewTrackYourExpensesButton.setOnClickListener {
-
+            intent = Intent(this, NewEntrySingleActivity::class.java)
+            startActivity(intent)
         }
 
 

@@ -1,4 +1,4 @@
-package com.example.marijah.outflow.activities.activities_single_mode
+package com.example.marijah.outflow.activities.activities_group_mode
 
 import android.annotation.SuppressLint
 import android.app.Activity
@@ -18,7 +18,10 @@ import com.example.marijah.outflow.helpers.HelperManager
 import com.example.marijah.outflow.models.AppManager
 import com.example.marijah.outflow.models.ExpenseItem
 import com.example.marijah.outflow.popups.CalendarPopup
-import com.github.mikephil.charting.components.*
+import com.github.mikephil.charting.components.Description
+import com.github.mikephil.charting.components.Legend
+import com.github.mikephil.charting.components.XAxis
+import com.github.mikephil.charting.components.YAxis
 import com.github.mikephil.charting.data.*
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet
@@ -42,6 +45,10 @@ class StatsActivity : Activity(), AdapterView.OnItemSelectedListener {
     private val arrayOfExpenses: ArrayList<ExpenseItem> = ArrayList()
 
     private val pieEntries: ArrayList<PieEntry> = ArrayList()
+
+    private val barEntries: ArrayList<BarEntry> = ArrayList()
+    val barEntriesLabelsArrayList: ArrayList<String> = ArrayList()
+
 
     private var currentlyPickedTime = TimeReference.THIS_DAY
 
@@ -131,11 +138,14 @@ class StatsActivity : Activity(), AdapterView.OnItemSelectedListener {
                 txtViewCustomDate.text = getTodaysDate()
                 currentlyPickedTime = TimeReference.THIS_DAY
                 setupPieChart()
+                setupBarChart()
             }
             1 -> {
                 txtViewCustomDate.visibility = View.INVISIBLE
                 currentlyPickedTime = TimeReference.THIS_MONTH
                 setupPieChart()
+                setupBarChart()
+
 
             }
             2 -> {
@@ -151,6 +161,8 @@ class StatsActivity : Activity(), AdapterView.OnItemSelectedListener {
                         currentlyPickedTime = TimeReference.SOME_DAY
 
                         setupPieChart()
+                        setupBarChart()
+
                     }
                 }
 
@@ -172,6 +184,8 @@ class StatsActivity : Activity(), AdapterView.OnItemSelectedListener {
 
 
                         setupPieChart()
+                        setupBarChart()
+
                     }
                 }
             }
@@ -338,6 +352,8 @@ class StatsActivity : Activity(), AdapterView.OnItemSelectedListener {
 
 
     private fun addPickedData(item: ExpenseItem) {
+        txtViewNoEntries.visibility = View.INVISIBLE
+
         var itemExists = false
         for (i in 0 until pieEntries.size) {
             if (pieEntries[i].label == item.category) {
@@ -353,107 +369,100 @@ class StatsActivity : Activity(), AdapterView.OnItemSelectedListener {
         } else
             itemExists = false
 
-        if(pieEntries.size == 0)
-        {
-
+        if (pieEntries.size == 0) {
+            txtViewNoEntries.visibility = View.VISIBLE
         }
 
     }
 
-    /*private fun filterPieData() {
 
-        var itemExists = false
-
-
-        pieEntries.clear()
-
-        for (item in arrayOfExpenses) {
-
-            //if(item.date == currentlyPickedTime)
+    private fun addBarData() {
 
 
-            for (i in 0 until pieEntries.size) {
-                if (pieEntries[i].label == item.category) {
-                    val totalValue = pieEntries[i].value + item.price.toFloat()
-                    pieEntries[i] = PieEntry(totalValue, item.category)
-                    itemExists = true
-                    break
-                }
-            }
+        barEntries.clear()
+        barEntriesLabelsArrayList.clear()
 
-            if (!itemExists) {
-                pieEntries.add(PieEntry(item.price.toFloat(), item.category))
-            } else
-                itemExists = false
+        addPieData()
+
+        for (i in 0 until pieEntries.size) {
+            barEntries.add(BarEntry(i.toFloat(), pieEntries[i].value))
+            barEntriesLabelsArrayList.add(i, pieEntries[i].label)
         }
 
-    }*/
+    }
 
 
-
-/*    private fun setupBarChart(){
-
-
-        val arrayListOfBarEntries : ArrayList<BarEntry> = ArrayList()
-
-        arrayListOfBarEntries.add(BarEntry(945f, 0f))
-        arrayListOfBarEntries.add(BarEntry(1040f, 1f))
-        arrayListOfBarEntries.add(BarEntry(1133f, 2f))
-        arrayListOfBarEntries.add(BarEntry(1240f, 3f))
-        arrayListOfBarEntries.add(BarEntry(1369f, 4f))
-        arrayListOfBarEntries.add(BarEntry(1487f, 5f))
-        arrayListOfBarEntries.add(BarEntry(1501f, 6f))
-        arrayListOfBarEntries.add(BarEntry(1645f, 7f))
-        arrayListOfBarEntries.add(BarEntry(1578f, 8f))
-        arrayListOfBarEntries.add(BarEntry(1695f, 9f))
-
-        val arrayListOfBarLabels : ArrayList<String> = ArrayList()
-
-        arrayListOfBarLabels.add("2008")
-        arrayListOfBarLabels.add("2009")
-        arrayListOfBarLabels.add("2010")
-        arrayListOfBarLabels.add("2011")
-        arrayListOfBarLabels.add("2012")
-        arrayListOfBarLabels.add("2013")
-        arrayListOfBarLabels.add("2014")
-        arrayListOfBarLabels.add("2015")
-        arrayListOfBarLabels.add("2016")
-        arrayListOfBarLabels.add("2017")
-
-        val barDataSet= BarDataSet(arrayListOfBarEntries, "No Of Employee")
-        barChart.animateY(5000)
-        val data = BarData(barDataSet)
-        //data = object : IBarDataSet(){}
-        barDataSet.setBarBorderWidth(10f);
-        barDataSet.colors = arrayListOfColors.toMutableList()
-        barChart.data = data
-       // barChart.setFitBars(true);
-       *//* val day = arrayOf("hah,agaha,haha", "jaja", "hahas")
-        val xAxis = barChart.xAxis
-        xAxis.valueFormatter = LabelFormatter(day) as ValueFormatter
-        xAxis.setGranularity(1f)*//*
-
-
-        //val xAxis = barChart.getXAxis();
-        //xAxis.valueFormatter = IndexAxisValueFormatter(arrayOf("hah,agaha,haha", "jaja", "hahas"));
-
-        val xAxis = barChart.xAxis
-        xAxis.position = XAxis.XAxisPosition.BOTTOM;
-        val months = arrayOf("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jasn", "Fesb", "Masr", "Apsr")
-        val formatter = IndexAxisValueFormatter(months);
-        xAxis.setGranularity(70f);
-        xAxis.setValueFormatter(formatter);
-        xAxis.textSize = 10f
-        xAxis.textColor = Color.WHITE
-
-        barChart.invalidate()
-    }*/
-
+    val BARENTRY = ArrayList<BarEntry>();
+    val BarEntryLabels = ArrayList<String>();
 
     private fun setupBarChart() {
 
+
+/*
+
+        AddValuesToBARENTRY();
+
+        AddValuesToBarEntryLabels();
+
+        val Bardataset = BarDataSet(BARENTRY, "Projects");
+
+        val BARDATA =  BarData(Bardataset);
+
+        //BarEntryLabels
+
+
+       // barDataSet = BarDataSet(yValues, "SCORE")
+       // barDataSet.color = Color.rgb(255, 204, 0)
+       // barDataSet.color = arrayListOfColors.toMutableList()[0]
+
+ *//*       val xAxis = barChart.xAxis
+        xAxis.granularity = 1f
+        xAxis.isGranularityEnabled = true
+        xAxis.setCenterAxisLabels(true)
+        xAxis.setDrawGridLines(false)
+        xAxis.position = XAxis.XAxisPosition.TOP*//*
+        val xAxis = barChart.xAxis
+        xAxis.valueFormatter = IndexAxisValueFormatter(BarEntryLabels)
+      *//*  xAxis.textColor = Color.WHITE
+        xAxis.gridColor = Color.WHITE*//*
+
+
+
+
+       // Bardataset.setColors(ColorTemplate.COLORFUL_COLORS);
+
+        barChart.setData(BARDATA);
+
+        barChart.animateY(3000);
+
+    }
+
+    public fun AddValuesToBARENTRY(){
+
+        BARENTRY.add(BarEntry(2f, 0f));
+        BARENTRY.add(BarEntry(4f, 1f));
+        BARENTRY.add(BarEntry(6f, 2f));
+        BARENTRY.add(BarEntry(8f, 3f));
+        BARENTRY.add(BarEntry(7f, 4f));
+        BARENTRY.add(BarEntry(3f, 5f));
+
+    }
+
+    public fun AddValuesToBarEntryLabels(){
+
+        BarEntryLabels.add("January");
+        BarEntryLabels.add("February");
+        BarEntryLabels.add("March");
+        BarEntryLabels.add("April");
+        BarEntryLabels.add("May");
+        BarEntryLabels.add("June");
+
+    }*/
+
+
         val arrayListOfBarEntriesEntries: ArrayList<BarEntry> = ArrayList()
-        arrayListOfBarEntriesEntries.add(BarEntry(1f, 50f))
+        arrayListOfBarEntriesEntries.add(BarEntry(0f, 150f))
+        arrayListOfBarEntriesEntries.add(BarEntry(1f, 120f))
         arrayListOfBarEntriesEntries.add(BarEntry(2f, 330f))
         arrayListOfBarEntriesEntries.add(BarEntry(3f, 320f))
         arrayListOfBarEntriesEntries.add(BarEntry(4f, 230f))
@@ -462,13 +471,15 @@ class StatsActivity : Activity(), AdapterView.OnItemSelectedListener {
 
 
         val arrayListOfBarLabels: ArrayList<String> = ArrayList()
-        arrayListOfBarLabels.add("day1")
-        arrayListOfBarLabels.add("day2")
-        arrayListOfBarLabels.add("day3")
-        arrayListOfBarLabels.add("day4")
-        arrayListOfBarLabels.add("day5")
-        arrayListOfBarLabels.add("day6")
+        arrayListOfBarLabels.add("prvi_\nhehe")
+        arrayListOfBarLabels.add("drugi")
+        arrayListOfBarLabels.add("kekek")
+        arrayListOfBarLabels.add("mesec")
+        arrayListOfBarLabels.add("vidin")
+        arrayListOfBarLabels.add("graov")
 
+
+        //addBarData()
 
         barChart.setDrawBarShadow(false)
         barChart.setDrawValueAboveBar(true)
@@ -478,6 +489,7 @@ class StatsActivity : Activity(), AdapterView.OnItemSelectedListener {
         barChart.setGridBackgroundColor(Color.WHITE)
         barChart.setDrawGridBackground(false)
         barChart.axisRight.isEnabled = false
+        //barChart.setFitBars(true)
         //barChart.axisLeft.isEnabled = false
 
 
@@ -490,11 +502,14 @@ class StatsActivity : Activity(), AdapterView.OnItemSelectedListener {
 
 
         val xAxis = barChart.xAxis
-        xAxis.granularity = 1f
+       /* xAxis.granularity = 0.5f
         xAxis.isGranularityEnabled = true
         xAxis.setCenterAxisLabels(true)
+        xAxis.setDrawGridLines(false)
+        xAxis.position = XAxis.XAxisPosition.TOP*/
         xAxis.setDrawGridLines(true)
-        xAxis.position = XAxis.XAxisPosition.TOP
+        xAxis.granularity = 0.5f
+        xAxis.isGranularityEnabled = true
         xAxis.valueFormatter = IndexAxisValueFormatter(arrayListOfBarLabels)
         xAxis.textColor = Color.WHITE
         xAxis.gridColor = Color.WHITE
@@ -531,8 +546,6 @@ class StatsActivity : Activity(), AdapterView.OnItemSelectedListener {
         //barDataSet.color = Color.WHITE
 
 
-        barChart.setFitBars(true)
-
         val legendBarChart = barChart.legend
         legendBarChart.formSize = 12f // set the size of the legend forms/shapes
         legendBarChart.form = Legend.LegendForm.CIRCLE // set what type of form/shape should be used
@@ -545,95 +558,13 @@ class StatsActivity : Activity(), AdapterView.OnItemSelectedListener {
 
         barChart.invalidate()
         barChart.animateY(2000)
-    }
 
-
-   /* private fun setupBarChart() {
-
-        val desc = barChart.description
-        desc.text = "" // this is the weirdest way to clear something!!
-
-        val legend = barChart.legend
-        legend.form = Legend.LegendForm.CIRCLE
-
-        //legend.isEnabled = false
-
-
-        val leftAxis = barChart.axisLeft
-        leftAxis.textSize = 10f
-        leftAxis.textColor = Color.WHITE
-
-
-        val rightAxis = barChart.axisRight
-        rightAxis.setDrawAxisLine(false)
-        rightAxis.setDrawGridLines(false)
-        rightAxis.setDrawLabels(false)
-
-
-        //val xAxis = barChart.xAxis
-        //xAxis.position = XAxisPosition.BOTTOM
-        //xAxis.textSize = 10f
-        //xAxis.textColor = Color.WHITE
-        //xAxis.setDrawAxisLine(true)
-        //xAxis.setDrawGridLines(false)
-//
-//
-
-        //leftAxis.setDrawAxisLine(true)
-        //leftAxis.setDrawGridLines(false)
-//
-        //rightAxis.setDrawAxisLine(false)
-        //rightAxis.setDrawGridLines(false)
-        //rightAxis.setDrawLabels(false)
-
-        val data = BarData(setBarData())
-        data.barWidth = 0.8f // set custom bar width
-        barChart.data = data
-
-        barChart.setFitBars(true) // make the x-axis fit exactly all bars
-        // refresh
-        barChart.setBorderColor(R.color.yellow_color)
-        barChart.setScaleEnabled(true)
-        //barChart.isDoubleTapToZoomEnabled = true
-         barChart.setBackgroundColor(Color.rgb(255, 255, 255))
-        barChart.animateXY(2000, 2000)
-        barChart.setDrawBorders(false)
-        barChart.description = desc
-        barChart.setDrawValueAboveBar(true)
-
-        barChart.invalidate()
 
     }
-
-
-    private fun setBarData(): BarDataSet {
-
-        val entries: ArrayList<BarEntry> = ArrayList()
-
-        entries.add(BarEntry(0f, 20f))
-        entries.add(BarEntry(1f, 80f))
-        entries.add(BarEntry(2f, 60f))
-        entries.add(BarEntry(3f, 50f))
-        entries.add(BarEntry(4f, 70f))
-        entries.add(BarEntry(5f, 60f))
-        entries.add(BarEntry(2.5f, 20f))
-        //entries.add(BarEntry(1.5f, 80f))
-        //entries.add(BarEntry(0.3f, 60f))
-        entries.add(BarEntry(8.3f, 50f))
-        entries.add(BarEntry(2.4f, 70f))
-        entries.add(BarEntry(7.1f, 60f))
-
-
-        val set = BarDataSet(entries, "")
-        set.color = Color.YELLOW
-        set.colors = arrayListOfColors.toMutableList()
-        set.valueTextColor = ContextCompat.getColor(this, R.color.blue_light_color)
-        return set
-    }*/
 
 
     /**
-     * Funkcija za preuzimanje troskova i smestanje u arrej listu troskova
+     * Funkcija za preuzimanje troskova iz firebase realtime database baze i smestanje u array listu troskova.
      */
     private fun getArrayListOfExpenses() {
 
@@ -662,6 +593,9 @@ class StatsActivity : Activity(), AdapterView.OnItemSelectedListener {
     }
 
 
+    /**
+     * Funkcija za dobijanje danasnjeg dana.
+     */
     @SuppressLint("SimpleDateFormat")
     private fun getTodaysDate(): String {
 
@@ -671,11 +605,17 @@ class StatsActivity : Activity(), AdapterView.OnItemSelectedListener {
     }
 
 
+    /**
+     * Funkcija za dobijanje danasnjeg dana i godine.
+     */
     private fun getThisMonthAndThisYear(dateString: String): String {
         return dateString.substring(3, dateString.length)
     }
 
 
+    /**
+     * Funkcija za proveravanje da li je jedan datum izmedju dva datuma.
+     */
     @SuppressLint("SimpleDateFormat")
     private fun checkIfTheDateIsInTheBetweenOfTwoDates(dateForChecking: String, startDate: String, endDate: String): Boolean {
 
@@ -686,53 +626,5 @@ class StatsActivity : Activity(), AdapterView.OnItemSelectedListener {
         val endDateToCheck = formatter.parse(endDate) as Date
 
         return dateToCheck in startDateToCheck..endDateToCheck
-
-
-/*
-        val dateForCheckingDAY = dateForChecking.substring(0,2).toInt()
-        val dateForCheckingMONTH = dateForChecking.substring(3,5).toInt()
-        val dateForCheckingYEAR = dateForChecking.substring(6,10).toInt()
-
-        val startDateDAY = startDate.substring(0,2).toInt()
-        val startDateMONTH = startDate.substring(3,5).toInt()
-        val startDateYEAR = startDate.substring(6,10).toInt()
-
-        val endDateDAY = endDate.substring(0,2).toInt()
-        val endDateMONTH = endDate.substring(3,5).toInt()
-        val endDateYEAR = endDate.substring(6,10).toInt()
-
-
-        if(dateForCheckingYEAR in startDateYEAR..endDateYEAR)
-        {
-            if(dateForCheckingMONTH in startDateMONTH..endDateMONTH) {
-                if (dateForCheckingDAY in startDateDAY..endDateDAY) {
-                    return true
-                } else if (dateForCheckingDAY < startDateDAY)
-                {
-                    if(dateForCheckingMONTH == startDateMONTH)
-                        return false
-                    else if(dateForCheckingMONTH == endDateMONTH)
-                        if(dateForCheckingDAY <= endDateDAY)
-                            return true
-                    else if (dateForCheckingMONTH < endDateMONTH)
-                        {return true}
-                }
-                else if(dateForCheckingDAY > endDateDAY)
-                {
-                    if(dateForCheckingMONTH == endDateMONTH)
-                        return false
-                    else if (dateForCheckingMONTH < endDateMONTH)
-                }
-
-            }
-            else
-                return false
-        }
-        else
-            return false
-
-        Log.i("Marija", "$dateForCheckingDAY : $dateForCheckingMONTH : $dateForCheckingYEAR"  )
-
-        return true*/
     }
 }

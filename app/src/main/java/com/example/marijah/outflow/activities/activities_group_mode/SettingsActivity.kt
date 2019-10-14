@@ -1,4 +1,4 @@
-package com.example.marijah.outflow.activities.activities_single_mode
+package com.example.marijah.outflow.activities.activities_group_mode
 
 import android.app.Activity
 import android.content.Intent
@@ -11,8 +11,6 @@ import com.example.marijah.outflow.helpers.HelperManager
 import com.example.marijah.outflow.helpers.showToast
 import com.example.marijah.outflow.models.AppManager
 import com.example.marijah.outflow.models.Group
-import com.example.marijah.outflow.models.Invitation
-import com.example.marijah.outflow.popups.InvitationPopup
 import com.example.marijah.outflow.popups.CreateAGroupPopup
 import com.example.marijah.outflow.popups.InvitationToJoinPopup
 import com.example.marijah.outflow.popups.JoinAGroupPopup

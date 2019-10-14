@@ -1,11 +1,8 @@
-package com.example.marijah.outflow.activities.activities_single_mode
+package com.example.marijah.outflow.activities.activities_group_mode
 
 import android.app.Activity
 import android.os.Bundle
 import android.util.Log
-import com.example.marijah.outflow.models.AppManager
-import com.example.marijah.outflow.models.Invitation
-import com.example.marijah.outflow.popups.InvitationPopup
 import com.google.firebase.database.*
 
 /**

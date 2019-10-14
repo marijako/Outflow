@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.activities_single_mode.StatsActivity">
+    tools:context=".activities.activities_group_mode.StatsActivity">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
@@ -219,6 +219,21 @@
             app:layout_constraintLeft_toLeftOf="@+id/guidelineLineChartLeft"
             app:layout_constraintRight_toRightOf="@+id/guidelineLineChartRight"
             app:layout_constraintTop_toTopOf="@+id/guidelineLineChartTop" />
+
+
+        <TextView
+            android:id="@+id/txtViewNoEntries"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="invisible"
+            android:text="@string/no_entries_for_this_day"
+            android:gravity="center"
+            android:textColor="@color/yellow_color"
+            app:layout_constraintBottom_toBottomOf="@+id/guidelineLineChartBottom"
+            app:layout_constraintLeft_toLeftOf="@+id/guidelineLineChartLeft"
+            app:layout_constraintRight_toRightOf="@+id/guidelineLineChartRight"
+            app:layout_constraintTop_toTopOf="@+id/guidelineLineChartTop" />
+
 
 
         <android.support.constraint.Guideline

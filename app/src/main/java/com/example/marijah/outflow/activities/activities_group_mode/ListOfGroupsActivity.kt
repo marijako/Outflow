@@ -1,4 +1,4 @@
-package com.example.marijah.outflow.activities.activities_single_mode
+package com.example.marijah.outflow.activities.activities_group_mode
 
 import android.app.Activity
 import android.os.Bundle

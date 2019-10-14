@@ -43,6 +43,7 @@
     <string name="leave_the_group">Leave the group</string>
     <string name="accept">Accept</string>
     <string name="title_activity_calendar_popup">CalendarPopup</string>
+    <string name="no_entries_for_this_day">No entries for this day.</string>
     <string-array name="student_class">
         <item>First</item>
         <item>Second</item>

@@ -11,10 +11,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".activities.activities_single_mode.NewEntrySingleActivity"></activity>
         <activity
             android:name=".popups.CalendarPopup"
             android:label="@string/title_activity_calendar_popup"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activities.HomeActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
@@ -26,25 +27,24 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.activities_single_mode.SettingsActivity"
+            android:name=".activities.activities_group_mode.SettingsActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.activities_single_mode.LoginSingleActivity"
+            android:name=".activities.activities_group_mode.LoginSingleActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.activities_single_mode.ChangePasswordActivity"
+            android:name=".activities.activities_group_mode.ChangePasswordActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.activities_single_mode.NewEntryActivity"
+            android:name=".activities.activities_group_mode.NewEntryActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait" />
-        <activity android:name=".activities.activities_single_mode.ListOfExpensesActivity" />
-        <activity android:name=".activities.activities_single_mode.StatsActivity" />
-
-        <activity android:name=".activities.activities_single_mode.ListOfGroupsActivity" />
+        <activity android:name=".activities.activities_group_mode.ListOfExpensesActivity" />
+        <activity android:name=".activities.activities_group_mode.StatsActivity" />
+        <activity android:name=".activities.activities_group_mode.ListOfGroupsActivity" />
 
         <service android:name=".activities.services.InvitationListenerService" />
     </application>
