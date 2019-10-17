@@ -20,7 +20,6 @@ import com.example.marijah.outflow.models.ExpenseItem
 import com.example.marijah.outflow.popups.CalendarPopup
 import com.github.mikephil.charting.components.Description
 import com.github.mikephil.charting.components.Legend
-import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.components.YAxis
 import com.github.mikephil.charting.data.*
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
@@ -45,9 +44,6 @@ class StatsActivity : Activity(), AdapterView.OnItemSelectedListener {
     private val arrayOfExpenses: ArrayList<ExpenseItem> = ArrayList()
 
     private val pieEntries: ArrayList<PieEntry> = ArrayList()
-
-    private val barEntries: ArrayList<BarEntry> = ArrayList()
-    val barEntriesLabelsArrayList: ArrayList<String> = ArrayList()
 
 
     private var currentlyPickedTime = TimeReference.THIS_DAY
@@ -376,190 +372,93 @@ class StatsActivity : Activity(), AdapterView.OnItemSelectedListener {
     }
 
 
-    private fun addBarData() {
+    private fun setupBarChart() {
 
-
-        barEntries.clear()
-        barEntriesLabelsArrayList.clear()
+        val arrayListOfBarEntriesEntries: ArrayList<BarEntry> = ArrayList()
+        val arrayListOfBarLabels: ArrayList<String> = ArrayList()
 
         addPieData()
 
         for (i in 0 until pieEntries.size) {
-            barEntries.add(BarEntry(i.toFloat(), pieEntries[i].value))
-            barEntriesLabelsArrayList.add(i, pieEntries[i].label)
+            arrayListOfBarLabels.add(i, pieEntries[i].label)
+            arrayListOfBarEntriesEntries.add(BarEntry(i.toFloat(), pieEntries[i].value))
         }
 
-    }
+        // ako nema podataka
+        if (arrayListOfBarEntriesEntries.isEmpty()) {
+            barChart.visibility = View.INVISIBLE
+            txtViewNoEntries.visibility = View.VISIBLE
+            //return
+        } else {
+            barChart.visibility = View.VISIBLE
+            txtViewNoEntries.visibility = View.INVISIBLE
+        }
 
-
-    val BARENTRY = ArrayList<BarEntry>();
-    val BarEntryLabels = ArrayList<String>();
-
-    private fun setupBarChart() {
-
-
-/*
-
-        AddValuesToBARENTRY();
-
-        AddValuesToBarEntryLabels();
-
-        val Bardataset = BarDataSet(BARENTRY, "Projects");
-
-        val BARDATA =  BarData(Bardataset);
-
-        //BarEntryLabels
-
-
-       // barDataSet = BarDataSet(yValues, "SCORE")
-       // barDataSet.color = Color.rgb(255, 204, 0)
-       // barDataSet.color = arrayListOfColors.toMutableList()[0]
-
- *//*       val xAxis = barChart.xAxis
-        xAxis.granularity = 1f
-        xAxis.isGranularityEnabled = true
-        xAxis.setCenterAxisLabels(true)
-        xAxis.setDrawGridLines(false)
-        xAxis.position = XAxis.XAxisPosition.TOP*//*
-        val xAxis = barChart.xAxis
-        xAxis.valueFormatter = IndexAxisValueFormatter(BarEntryLabels)
-      *//*  xAxis.textColor = Color.WHITE
-        xAxis.gridColor = Color.WHITE*//*
-
-
-
-
-       // Bardataset.setColors(ColorTemplate.COLORFUL_COLORS);
-
-        barChart.setData(BARDATA);
-
-        barChart.animateY(3000);
-
-    }
-
-    public fun AddValuesToBARENTRY(){
-
-        BARENTRY.add(BarEntry(2f, 0f));
-        BARENTRY.add(BarEntry(4f, 1f));
-        BARENTRY.add(BarEntry(6f, 2f));
-        BARENTRY.add(BarEntry(8f, 3f));
-        BARENTRY.add(BarEntry(7f, 4f));
-        BARENTRY.add(BarEntry(3f, 5f));
-
-    }
-
-    public fun AddValuesToBarEntryLabels(){
-
-        BarEntryLabels.add("January");
-        BarEntryLabels.add("February");
-        BarEntryLabels.add("March");
-        BarEntryLabels.add("April");
-        BarEntryLabels.add("May");
-        BarEntryLabels.add("June");
-
-    }*/
-
-
-        val arrayListOfBarEntriesEntries: ArrayList<BarEntry> = ArrayList()
-        arrayListOfBarEntriesEntries.add(BarEntry(0f, 150f))
-        arrayListOfBarEntriesEntries.add(BarEntry(1f, 120f))
-        arrayListOfBarEntriesEntries.add(BarEntry(2f, 330f))
-        arrayListOfBarEntriesEntries.add(BarEntry(3f, 320f))
-        arrayListOfBarEntriesEntries.add(BarEntry(4f, 230f))
-        arrayListOfBarEntriesEntries.add(BarEntry(5f, 430f))
-        arrayListOfBarEntriesEntries.add(BarEntry(6f, 390f))
-
-
-        val arrayListOfBarLabels: ArrayList<String> = ArrayList()
-        arrayListOfBarLabels.add("prvi_\nhehe")
-        arrayListOfBarLabels.add("drugi")
-        arrayListOfBarLabels.add("kekek")
-        arrayListOfBarLabels.add("mesec")
-        arrayListOfBarLabels.add("vidin")
-        arrayListOfBarLabels.add("graov")
-
-
-        //addBarData()
 
         barChart.setDrawBarShadow(false)
         barChart.setDrawValueAboveBar(true)
+        barChart.setNoDataTextTypeface(typefaceOswald)
         barChart.description.isEnabled = false
         barChart.setPinchZoom(false)
+        barChart.setFitBars(true)
         barChart.setBorderColor(Color.WHITE)
-        barChart.setGridBackgroundColor(Color.WHITE)
         barChart.setDrawGridBackground(false)
         barChart.axisRight.isEnabled = false
-        //barChart.setFitBars(true)
-        //barChart.axisLeft.isEnabled = false
 
 
         val yAxis = barChart.axisLeft
         yAxis.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART)
         yAxis.granularity = 1f
+        yAxis.setStartAtZero(true)
         yAxis.isGranularityEnabled = true
         yAxis.textColor = Color.WHITE
-        yAxis.gridColor = Color.WHITE
-
+        yAxis.gridColor = Color.parseColor("#858585")
+        yAxis.typeface = typefaceOswald
 
         val xAxis = barChart.xAxis
-       /* xAxis.granularity = 0.5f
-        xAxis.isGranularityEnabled = true
-        xAxis.setCenterAxisLabels(true)
+        xAxis.isEnabled = false
         xAxis.setDrawGridLines(false)
-        xAxis.position = XAxis.XAxisPosition.TOP*/
-        xAxis.setDrawGridLines(true)
-        xAxis.granularity = 0.5f
-        xAxis.isGranularityEnabled = true
         xAxis.valueFormatter = IndexAxisValueFormatter(arrayListOfBarLabels)
         xAxis.textColor = Color.WHITE
         xAxis.gridColor = Color.WHITE
-
+        /* xAxis.granularity = 0.5f
+         xAxis.isGranularityEnabled = true
+         xAxis.setCenterAxisLabels(true)
+         xAxis.setDrawGridLines(false)
+         xAxis.position = XAxis.XAxisPosition.TOP
+         xAxis.granularity = 0.5f
+         xAxis.isGranularityEnabled = true
+         */
 
         val yValues = ArrayList<BarEntry>()
-
-        // for (i in 0 until entries.size) {
         yValues.addAll(arrayListOfBarEntriesEntries)
-        // }
 
 
-        val barDataSet: BarDataSet
-
-        if (barChart.data != null && barChart.data.dataSetCount > 0) {
-            barDataSet = barChart.data.getDataSetByIndex(0) as BarDataSet
-            barDataSet.values = yValues
-            barChart.data.notifyDataChanged()
-            barChart.notifyDataSetChanged()
-        } else {
-            // create 2 datasets with different types
-            barDataSet = BarDataSet(yValues, "SCORE")
-            barDataSet.color = Color.rgb(255, 204, 0)
-            barDataSet.color = arrayListOfColors.toMutableList()[0]
-
-            val dataSets = ArrayList<IBarDataSet>()
+        val dataSets: ArrayList<IBarDataSet> = ArrayList<IBarDataSet>()
+        for ((i, barEntry) in yValues.withIndex()) {
+            val arrayListOfBarEntry = arrayListOf(barEntry)
+            val barDataSet = BarDataSet(arrayListOfBarEntry, arrayListOfBarLabels[i])
+            barDataSet.color = arrayListOfColors.toMutableList()[i]
+            barDataSet.valueTextColor = Color.CYAN
+            barDataSet.valueTypeface = typefaceOswald
+            barDataSet.valueTextSize = 10f
             dataSets.add(barDataSet)
-
-            val data = BarData(dataSets)
-            barChart.data = data
         }
-
-        barDataSet.valueTextColor = Color.WHITE
-        //barDataSet.color = Color.WHITE
+        val data = BarData(dataSets)
+        barChart.data = data
 
 
         val legendBarChart = barChart.legend
-        legendBarChart.formSize = 12f // set the size of the legend forms/shapes
+        //legendBarChart.formSize = 12f // set the size of the legend forms/shapes
         legendBarChart.form = Legend.LegendForm.CIRCLE // set what type of form/shape should be used
         legendBarChart.orientation = Legend.LegendOrientation.HORIZONTAL
         legendBarChart.textSize = 10f
+        legendBarChart.typeface = typefaceOswald
         legendBarChart.textColor = Color.WHITE
-        legendBarChart.xEntrySpace = 5f // set the space between the legend entries on the x-axis
-        legendBarChart.yEntrySpace = 5f // set the space between the legend entries on the y-axis
-
+        legendBarChart.isWordWrapEnabled = true
 
         barChart.invalidate()
         barChart.animateY(2000)
-
-
     }
 
 
