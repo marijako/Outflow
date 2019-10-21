@@ -64,11 +64,11 @@
 
 
         <ImageView
-            android:id="@+id/imgViewList"
+            android:id="@+id/imgViewBack"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:padding="20dp"
-            android:src="@drawable/list"
+            android:src="@drawable/back_arrow"
             app:layout_constraintBottom_toBottomOf="@+id/guidelineHeaderBottom"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="@+id/guidelinePieRight"
@@ -203,7 +203,7 @@
             android:id="@+id/pieChart"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:visibility="invisible"
+            android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="@+id/guidelineLineChartBottom"
             app:layout_constraintLeft_toLeftOf="@+id/guidelineLineChartLeft"
             app:layout_constraintRight_toRightOf="@+id/guidelineLineChartRight"
@@ -265,16 +265,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.325" />
+            app:layout_constraintGuide_percent="0.00" />
 
         <android.support.constraint.Guideline
             android:id="@+id/guidelineFirstThirdVertical2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.335" />
+            app:layout_constraintGuide_percent="0.00" />
 
-        <ImageView
+      <!--  <ImageView
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="#00ffff"
@@ -284,7 +284,7 @@
             app:layout_constraintLeft_toLeftOf="@+id/guidelineFirstThirdVertical"
             app:layout_constraintRight_toRightOf="@id/guidelineFirstThirdVertical2"
             app:layout_constraintTop_toTopOf="@id/guidelineFooterBottom" />
-
+-->
 
         <ImageView
             android:id="@+id/imgViewLineChart"
@@ -303,14 +303,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.655" />
+            app:layout_constraintGuide_percent="0.495" />
 
         <android.support.constraint.Guideline
             android:id="@+id/guidelineSecondThirdVertical2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.665" />
+            app:layout_constraintGuide_percent="0.505" />
 
         <ImageView
             android:layout_width="0dp"

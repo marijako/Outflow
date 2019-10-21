@@ -11,7 +11,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".activities.activities_single_mode.NewEntrySingleActivity"></activity>
+        <activity android:name=".activities.activities_group_mode.AddCategoryActivity"></activity>
+        <activity android:name=".activities.activities_single_mode.NewEntrySingleActivity" />
         <activity
             android:name=".popups.CalendarPopup"
             android:label="@string/title_activity_calendar_popup"

@@ -77,7 +77,6 @@ class StatsActivity : Activity(), AdapterView.OnItemSelectedListener {
         // Setting OnItemClickListener to the Spinner
         spinner.onItemSelectedListener = this
 
-
         typefaceOswald = Typeface.createFromAsset(assets, "oswald_regular.ttf")
         setLayoutsAndListeners()
     }
@@ -113,13 +112,6 @@ class StatsActivity : Activity(), AdapterView.OnItemSelectedListener {
                 Color.parseColor("#7f78d2"),
                 Color.parseColor("#d2d0fe"))
 
-
-        //val arrayListOfColors1 : ArrayList<Int> =  ArrayList()
-
-        //val list = ArrayList<String>(Arrays.asList(ColorTemplate.COLORFUL_COLORS))
-        //arrayListOfColors1.addAll(list)
-
-
     }
 
 
@@ -142,7 +134,6 @@ class StatsActivity : Activity(), AdapterView.OnItemSelectedListener {
                 setupPieChart()
                 setupBarChart()
 
-
             }
             2 -> {
                 val calendarView = CalendarPopup(this, false)
@@ -158,6 +149,12 @@ class StatsActivity : Activity(), AdapterView.OnItemSelectedListener {
 
                         setupPieChart()
                         setupBarChart()
+
+                        if(pieChart.visibility == View.VISIBLE)
+                            barChart.visibility = View.INVISIBLE
+
+                        if(barChart.visibility == View.VISIBLE)
+                            pieChart.visibility = View.INVISIBLE
 
                     }
                 }
@@ -182,10 +179,22 @@ class StatsActivity : Activity(), AdapterView.OnItemSelectedListener {
                         setupPieChart()
                         setupBarChart()
 
+
+                        if(pieChart.visibility == View.VISIBLE)
+                            barChart.visibility = View.INVISIBLE
+
+                        if(barChart.visibility == View.VISIBLE)
+                            pieChart.visibility = View.INVISIBLE
                     }
                 }
             }
+
         }
+        if(pieChart.visibility == View.VISIBLE)
+            barChart.visibility = View.INVISIBLE
+
+        if(barChart.visibility == View.VISIBLE)
+            pieChart.visibility = View.INVISIBLE
 
 
     }
@@ -196,7 +205,26 @@ class StatsActivity : Activity(), AdapterView.OnItemSelectedListener {
 
     private fun setLayoutsAndListeners() {
         HelperManager.setTypefaceRegular(assets, txtViewName)
-        setupLineChart()
+        //setupPieChart()
+
+
+        // inicijalno podesavanje
+        //txtViewCustomDate.visibility = View.VISIBLE
+        //txtViewCustomDate.text = getTodaysDate()
+        //currentlyPickedTime = TimeReference.THIS_DAY
+        //setupPieChart()
+        //setupBarChart()
+        pieChart.visibility = View.VISIBLE
+        barChart.visibility = View.INVISIBLE
+
+        spinner.setSelection(0)
+
+
+        setThePickedOneYellowAndTheOthersBlue(imgViewPieChart)
+        setupPieChart()
+        lineChart.visibility = View.INVISIBLE
+        pieChart.visibility = View.VISIBLE
+        barChart.visibility = View.INVISIBLE
 
         imgViewLineChart.setOnClickListener {
             setThePickedOneYellowAndTheOthersBlue(imgViewLineChart)
@@ -225,7 +253,12 @@ class StatsActivity : Activity(), AdapterView.OnItemSelectedListener {
             barChart.visibility = View.VISIBLE
         }
 
-        setThePickedOneYellowAndTheOthersBlue(imgViewLineChart)
+        setThePickedOneYellowAndTheOthersBlue(imgViewPieChart)
+
+
+        imgViewBack.setOnClickListener {
+            finish()
+        }
 
     }
 
@@ -254,18 +287,27 @@ class StatsActivity : Activity(), AdapterView.OnItemSelectedListener {
 
         val dataSet = LineDataSet(entries, "Label") // add entries to data set
         dataSet.color = Color.RED
-        dataSet.setDrawFilled(true)
-        dataSet.mode = LineDataSet.Mode.CUBIC_BEZIER
+        dataSet.setDrawFilled(false)
+        dataSet.mode = LineDataSet.Mode.HORIZONTAL_BEZIER
         dataSet.fillColor = Color.CYAN
         dataSet.color = Color.CYAN
         dataSet.fillAlpha = 255
-        dataSet.setDrawCircles(false)
+        dataSet.setDrawCircles(true)
 
         dataSet.valueTextColor = Color.YELLOW
 
         val lineData = LineData(dataSet)
         lineChart.data = lineData
+
+        lineChart.axisRight.isEnabled = false
+
+        val xAxis = lineChart.xAxis
+        xAxis.textColor = Color.WHITE
+        xAxis.typeface = typefaceOswald
+
+
         lineChart.invalidate()
+
 
     }
 
