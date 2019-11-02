@@ -9,6 +9,7 @@ import com.example.marijah.outflow.activities.activities_group_mode.NewEntryActi
 import com.example.marijah.outflow.activities.activities_single_mode.NewEntrySingleActivity
 import com.example.marijah.outflow.helpers.HelperManager
 import com.example.marijah.outflow.helpers.HelperManager.setDefaultFont
+import com.example.marijah.outflow.models.AppManager
 import kotlinx.android.synthetic.main.activity_home.*
 
 class HomeActivity : MasterActivity() {
@@ -37,12 +38,14 @@ class HomeActivity : MasterActivity() {
     private fun setLayoutAndListeners() {
 
         imgViewTrackYourExpensesButton.setOnClickListener {
+            AppManager.getInstance(this).hasUserPickedSingleMode = true
             intent = Intent(this, NewEntrySingleActivity::class.java)
             startActivity(intent)
         }
 
 
         imgViewTrackGroupExpensesButton.setOnClickListener {
+            AppManager.getInstance(this).hasUserPickedSingleMode = false
             intent = Intent(this, NewEntryActivity::class.java)
             startActivity(intent)
         }

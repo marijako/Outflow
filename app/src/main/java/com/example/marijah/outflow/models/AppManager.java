@@ -15,6 +15,8 @@ public class AppManager {
     private static AppManager ourInstance;
     private Context mContext;
 
+    public boolean hasUserPickedSingleMode = false;
+
 
     private AppManager(Context context) {
         mContext = context;

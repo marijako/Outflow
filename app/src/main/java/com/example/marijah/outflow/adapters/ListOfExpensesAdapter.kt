@@ -8,14 +8,16 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.example.marijah.outflow.R
+import com.example.marijah.outflow.models.AppManager
 import com.example.marijah.outflow.models.ExpenseItem
+import com.example.marijah.outflow.room_database.Expense
 import java.util.*
 
-class ListOfExpensesAdapter(private val context: Context, private val arrayListOfExpenses: ArrayList<ExpenseItem>, private val listener: ListOfExpensesInterface) : RecyclerView.Adapter<ListOfExpensesAdapter.ViewHolder>() {
+class ListOfExpensesAdapter(private val context: Context, private val arrayListOfExpenses: ArrayList<Any>, private val listener: ListOfExpensesInterface) : RecyclerView.Adapter<ListOfExpensesAdapter.ViewHolder>() {
 
 
     interface ListOfExpensesInterface {
-        fun onUserClickedDeleteItem(expenseItem: ExpenseItem)
+        fun onUserClickedDeleteItem(expenseItem: Any)
     }
 
 
@@ -47,18 +49,33 @@ class ListOfExpensesAdapter(private val context: Context, private val arrayListO
 
     override fun onBindViewHolder(holder: ListOfExpensesAdapter.ViewHolder, position: Int) {
 
-        val expenseItem = arrayListOfExpenses[position]
-        holder.txtViewCostList.text = expenseItem.price.toString()
-        holder.txtViewStoreList.text = expenseItem.place.toUpperCase()
-        holder.txtViewCategoryList.text = expenseItem.category
-        holder.txtViewCommentList.text = expenseItem.comment
-        holder.txtViewDateList.text = expenseItem.date
 
+        if(!AppManager.getInstance(context).hasUserPickedSingleMode) {
+            val expenseItem = arrayListOfExpenses[position] as ExpenseItem
 
-        holder.imgViewDeleteItem.setOnClickListener {
-            listener.onUserClickedDeleteItem(expenseItem)
+            holder.txtViewCostList.text = expenseItem.price.toString()
+            holder.txtViewStoreList.text = expenseItem.place.toUpperCase()
+            holder.txtViewCategoryList.text = expenseItem.category
+            holder.txtViewCommentList.text = expenseItem.comment
+            holder.txtViewDateList.text = expenseItem.date
+
+            holder.imgViewDeleteItem.setOnClickListener {
+                listener.onUserClickedDeleteItem(expenseItem)
+            }
         }
+        else {
+            val expenseItem = arrayListOfExpenses[position] as Expense
 
+            holder.txtViewCostList.text = expenseItem.price.toString()
+            holder.txtViewStoreList.text = expenseItem.place.toUpperCase()
+            holder.txtViewCategoryList.text = expenseItem.category
+            holder.txtViewCommentList.text = expenseItem.comment
+            holder.txtViewDateList.text = expenseItem.date
+
+            holder.imgViewDeleteItem.setOnClickListener {
+                listener.onUserClickedDeleteItem(expenseItem)
+            }
+        }
     }
 
 
