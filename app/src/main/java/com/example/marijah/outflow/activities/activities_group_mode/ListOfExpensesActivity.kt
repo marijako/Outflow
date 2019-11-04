@@ -40,7 +40,7 @@ class ListOfExpensesActivity : Activity() {
 
         if (!AppManager.getInstance(this).hasUserPickedSingleMode) {
             val database = FirebaseDatabase.getInstance()
-            val myReferenceToExpenses = database.reference.child(AppManager.getInstance(this).currentlyLookedTableName)
+            myReferenceToExpenses = database.reference.child(AppManager.getInstance(this).currentlyLookedTableName)
 
             childEventListenerForExpenses = object : ChildEventListener {
                 override fun onChildAdded(dataSnapshot: DataSnapshot, s: String?) {
@@ -88,7 +88,7 @@ class ListOfExpensesActivity : Activity() {
                 }
             }
 
-            myReferenceToExpenses.addChildEventListener(childEventListenerForExpenses)
+            myReferenceToExpenses!!.addChildEventListener(childEventListenerForExpenses)
         } else {
             // iz ROOMA
 
@@ -110,7 +110,8 @@ class ListOfExpensesActivity : Activity() {
                     // ako je korisnik stisnuo brisanjac
                     if (!AppManager.getInstance(applicationContext).hasUserPickedSingleMode) {
                         if (deletePopup.hasUserClickedDelete) {
-                            myReferenceToExpenses?.child((expenseItem as ExpenseItem).key)?.removeValue()
+                            myReferenceToExpenses!!.child((expenseItem as ExpenseItem).key).removeValue()
+                           // arrayOfExpenses.remove(expenseItem as ExpenseItem)
                             mAdapter.notifyDataSetChanged()
                         }
 

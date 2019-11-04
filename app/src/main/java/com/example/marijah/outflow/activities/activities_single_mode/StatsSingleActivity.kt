@@ -1,4 +1,4 @@
-package com.example.marijah.outflow.activities.activities_group_mode
+package com.example.marijah.outflow.activities.activities_single_mode
 
 import android.annotation.SuppressLint
 import android.app.Activity
@@ -18,6 +18,8 @@ import com.example.marijah.outflow.helpers.HelperManager
 import com.example.marijah.outflow.models.AppManager
 import com.example.marijah.outflow.models.ExpenseItem
 import com.example.marijah.outflow.popups.CalendarPopup
+import com.example.marijah.outflow.room_database.Expense
+import com.example.marijah.outflow.room_database.ExpenseDatabase
 import com.github.mikephil.charting.components.Description
 import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.components.YAxis
@@ -36,15 +38,14 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 
-class StatsActivity : Activity(), AdapterView.OnItemSelectedListener {
+class StatsSingleActivity : Activity(), AdapterView.OnItemSelectedListener {
 
 
     private lateinit var typefaceOswald: Typeface
     private lateinit var arrayListOfColors: Array<Int>
-    private val arrayOfExpenses: ArrayList<ExpenseItem> = ArrayList()
+    private val arrayOfExpenses: ArrayList<Expense> = ArrayList()
 
     private val pieEntries: ArrayList<PieEntry> = ArrayList()
-
 
     private var currentlyPickedTime = TimeReference.THIS_DAY
 
@@ -388,7 +389,7 @@ class StatsActivity : Activity(), AdapterView.OnItemSelectedListener {
     }
 
 
-    private fun addPickedData(item: ExpenseItem) {
+    private fun addPickedData(item: Expense) {
         txtViewNoEntries.visibility = View.INVISIBLE
 
         var itemExists = false
@@ -508,28 +509,10 @@ class StatsActivity : Activity(), AdapterView.OnItemSelectedListener {
      */
     private fun getArrayListOfExpenses() {
 
-        val database = FirebaseDatabase.getInstance()
-        val myReferenceToExpenses = database.reference.child(AppManager.getInstance(this).currentlyLookedTableName)
-
-        val childEventListenerForExpenses = object : ChildEventListener {
-            override fun onChildAdded(dataSnapshot: DataSnapshot, s: String?) {
-
-                val expenseItem = dataSnapshot.getValue(ExpenseItem::class.java)
-                // dodajemo u listu troskova
-                if (expenseItem != null)
-                    arrayOfExpenses.add(expenseItem)
-            }
-
-            override fun onChildChanged(dataSnapshot: DataSnapshot, s: String?) {}
-
-            override fun onChildRemoved(dataSnapshot: DataSnapshot) {}
-
-            override fun onChildMoved(dataSnapshot: DataSnapshot, s: String?) {}
-
-            override fun onCancelled(databaseError: DatabaseError) {}
+        val expenseDatabase = ExpenseDatabase.getInstance(this)
+        for (expense in expenseDatabase!!.expenseDao().expenseList) {
+            arrayOfExpenses.add(expense)
         }
-
-        myReferenceToExpenses.addChildEventListener(childEventListenerForExpenses)
     }
 
 

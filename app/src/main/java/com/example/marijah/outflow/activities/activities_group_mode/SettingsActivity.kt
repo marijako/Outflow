@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.support.v4.content.ContextCompat
+import android.view.View
 import com.example.marijah.outflow.R
 import com.example.marijah.outflow.activities.HomeActivity
 import com.example.marijah.outflow.helpers.HelperManager
@@ -34,6 +35,12 @@ class SettingsActivity : Activity() {
     private fun setLayoutAndListeners() {
 
 
+        if (AppManager.getInstance(this).hasUserPickedSingleMode) {
+            holderGroupMode.visibility = View.GONE
+            guidelineChangeModeTop.setGuidelinePercent(0.2f)
+        }
+
+
         txtViewReceiveDailyNotifications.setOnClickListener {
             i++
             if (i % 2 == 0) {
@@ -42,23 +49,10 @@ class SettingsActivity : Activity() {
                 imgViewReceiveNotificationsSwitch.setImageDrawable(ContextCompat.getDrawable(applicationContext, R.drawable.switch_off))
         }
 
-        /*  txtViewPassword.setOnClickListener {
-              val intent = Intent(this, ChangePasswordActivity::class.java)
-              startActivity(intent)
-          }*/
 
         txtViewCheckYourGroups.setOnClickListener {
             val intent = Intent(this, ListOfGroupsActivity::class.java)
             startActivity(intent)
-        }
-
-        imgViewPasswordSwitch.setOnClickListener {
-            i++
-            if (i % 2 == 0) {
-                imgViewPasswordSwitch.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.switch_on))
-
-            } else
-                imgViewPasswordSwitch.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.switch_off))
         }
 
 
@@ -83,9 +77,6 @@ class SettingsActivity : Activity() {
 
             AuthUI.getInstance().signOut(this)
 
-            /* intent = Intent(this, LoginSingleActivity::class.java)
-             startActivity(intent)*/
-
             finish()
 
             intent = Intent(this, HomeActivity::class.java)
@@ -94,8 +85,15 @@ class SettingsActivity : Activity() {
         }
 
         txtViewChangeMode.setOnClickListener {
+
+            if (!AppManager.getInstance(this).hasUserPickedSingleMode) {
+                AuthUI.getInstance().signOut(this)
+            }
             intent = Intent(this, HomeActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(intent)
+
+
         }
 
         HelperManager.setTypefaceRegular(assets, txtViewName)
@@ -119,7 +117,7 @@ class SettingsActivity : Activity() {
                     val groupItem = dataSnapshot.getValue(Group::class.java)
 
                     if (groupItem != null)
-                       callTheInvitationPopup(groupItem)
+                        callTheInvitationPopup(groupItem)
 
 
                 }
@@ -142,7 +140,7 @@ class SettingsActivity : Activity() {
 
 
             val handler = Handler()
-            handler.postDelayed(Runnable {
+            handler.postDelayed({
                 if (!doUserHaveAnyNewInvites) {
                     showToast(this, getString(R.string.no_new_requests))
                     myReferenceToInvitations.removeEventListener(childEventListenerForInvitations)
@@ -157,7 +155,7 @@ class SettingsActivity : Activity() {
     }
 
 
-    private fun callTheInvitationPopup(groupItem : Group) {
+    private fun callTheInvitationPopup(groupItem: Group) {
         val invitationToJoinPopup = InvitationToJoinPopup(this, groupItem)
         invitationToJoinPopup.show()
 

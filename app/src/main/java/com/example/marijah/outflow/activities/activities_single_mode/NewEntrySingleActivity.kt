@@ -5,7 +5,6 @@ import android.app.Activity
 import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.content.Intent
-import android.os.AsyncTask
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
@@ -22,9 +21,7 @@ import com.example.marijah.outflow.helpers.categoryPickedObject
 import com.example.marijah.outflow.helpers.showToast
 import com.example.marijah.outflow.models.AppManager
 import com.example.marijah.outflow.models.Category
-import com.example.marijah.outflow.models.ExpenseItem
 import com.example.marijah.outflow.room_database.Expense
-import com.example.marijah.outflow.room_database.ExpenseDao
 import com.example.marijah.outflow.room_database.ExpenseDatabase
 import kotlinx.android.synthetic.main.activity_new_entry.*
 import java.text.SimpleDateFormat
@@ -41,7 +38,7 @@ class NewEntrySingleActivity : Activity(), DatePickerDialog.OnDateSetListener {
 
     private val datePicker: DatePicker? = null
 
-    private lateinit var expenseDatabase : ExpenseDatabase
+    private lateinit var expenseDatabase: ExpenseDatabase
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -93,13 +90,13 @@ class NewEntrySingleActivity : Activity(), DatePickerDialog.OnDateSetListener {
 
 
                 //AsyncTask {
-                    expenseDatabase.expenseDao().insertExpense(Expense( Integer.parseInt(editTextAmount.text.toString()),
-                            categoryPickedObject.categoryPicked,
-                            editTextStore.text.toString(),
-                            txtViewDate.text.toString(),
-                            editTextComment.text.toString()))
+                expenseDatabase.expenseDao().insertExpense(Expense(Integer.parseInt(editTextAmount.text.toString()),
+                        categoryPickedObject.categoryPicked,
+                        editTextStore.text.toString(),
+                        txtViewDate.text.toString(),
+                        editTextComment.text.toString()))
 
-              //  }
+                //  }
 
                 // dodajemo taj objekat u bazu
                 showToast(this, "Item successfully added.")
@@ -110,7 +107,10 @@ class NewEntrySingleActivity : Activity(), DatePickerDialog.OnDateSetListener {
         }
 
         imgViewPie.setOnClickListener {
-            intent = Intent(this, StatsActivity::class.java)
+            intent = if (!AppManager.getInstance(this).hasUserPickedSingleMode) {
+                Intent(this, StatsActivity::class.java)
+            } else
+                Intent(this, StatsSingleActivity::class.java)
             startActivity(intent)
         }
 
