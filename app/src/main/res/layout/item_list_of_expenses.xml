@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/blue_dark_color"
@@ -13,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintDimensionRatio="h, 650:150"
-         >
+        tools:ignore="MissingConstraints">
 
         <android.support.constraint.Guideline
             android:id="@+id/guidelineCostTextTop"
@@ -36,8 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.3"
-            />
+            app:layout_constraintGuide_percent="0.26" />
 
         <android.support.constraint.Guideline
             android:id="@+id/guidelineCostTextLeft"
@@ -145,8 +145,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.3"
-            />
+            app:layout_constraintGuide_percent="0.26" />
 
 
 
@@ -180,10 +179,26 @@
             app:layout_constraintLeft_toLeftOf="@id/guidelineCommentLeft"
             app:layout_constraintTop_toTopOf="@+id/guidelineCostTextBottom"
             app:layout_constraintBottom_toBottomOf="@+id/guidelineCommentBottom"
-            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintRight_toRightOf="@id/guidelineDateTextRight"
 
             />
 
+        <me.grantland.widget.AutofitTextView
+            android:id="@+id/txtViewUser"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text=""
+            android:textColor="@color/blue_light_color"
+            android:gravity="center"
+            android:paddingLeft="3dp"
+            android:maxLines="1"
+            android:textSize="10sp"
+            app:layout_constraintLeft_toLeftOf="@id/guidelineDateTextRight"
+            app:layout_constraintTop_toTopOf="@+id/guidelineCostTextBottom"
+            app:layout_constraintBottom_toBottomOf="@+id/guidelineCommentBottom"
+            app:layout_constraintRight_toRightOf="parent"
+
+            />
 
 
     </android.support.constraint.ConstraintLayout>

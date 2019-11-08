@@ -29,7 +29,7 @@ class ListOfExpensesAdapter(private val context: Context, private val arrayListO
         var txtViewCommentList: TextView = itemView.findViewById(R.id.txtViewCommentList)
         var txtViewDateList: TextView = itemView.findViewById(R.id.txtViewDateList)
         var imgViewDeleteItem: ImageView = itemView.findViewById(R.id.imgViewDeleteItem)
-
+        var txtViewUser : TextView = itemView.findViewById(R.id.txtViewUser)
         init {
 
         }
@@ -58,6 +58,7 @@ class ListOfExpensesAdapter(private val context: Context, private val arrayListO
             holder.txtViewCategoryList.text = expenseItem.category
             holder.txtViewCommentList.text = expenseItem.comment
             holder.txtViewDateList.text = expenseItem.date
+            holder.txtViewUser.text = (expenseItem.whoDidThePurchase).substring(0, (expenseItem.whoDidThePurchase).indexOf('@'))
 
             holder.imgViewDeleteItem.setOnClickListener {
                 listener.onUserClickedDeleteItem(expenseItem)
@@ -71,6 +72,7 @@ class ListOfExpensesAdapter(private val context: Context, private val arrayListO
             holder.txtViewCategoryList.text = expenseItem.category
             holder.txtViewCommentList.text = expenseItem.comment
             holder.txtViewDateList.text = expenseItem.date
+
 
             holder.imgViewDeleteItem.setOnClickListener {
                 listener.onUserClickedDeleteItem(expenseItem)
