@@ -1,7 +1,7 @@
 package com.example.marijah.outflow.adapters
 
 import android.content.Context
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +13,7 @@ import com.example.marijah.outflow.models.ExpenseItem
 import com.example.marijah.outflow.room_database.Expense
 import java.util.*
 
-class ListOfExpensesAdapter(private val context: Context, private val arrayListOfExpenses: ArrayList<Any>, private val listener: ListOfExpensesInterface) : RecyclerView.Adapter<ListOfExpensesAdapter.ViewHolder>() {
+class ListOfExpensesAdapter(private val context: Context, private val arrayListOfExpenses: ArrayList<Any>, private val listener: ListOfExpensesInterface) : androidx.recyclerview.widget.RecyclerView.Adapter<ListOfExpensesAdapter.ViewHolder>() {
 
 
     interface ListOfExpensesInterface {
@@ -21,7 +21,7 @@ class ListOfExpensesAdapter(private val context: Context, private val arrayListO
     }
 
 
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class ViewHolder(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
 
         var txtViewCostList: TextView = itemView.findViewById(R.id.txtViewCostList)
         var txtViewStoreList : TextView = itemView.findViewById(R.id.txtViewStoreList)

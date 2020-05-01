@@ -1,46 +1,46 @@
-package com.example.marijah.outflow.activities.activities_group_mode
+package com.example.marijah.outflow.fragments
 
 
-import android.app.Activity
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
+import android.view.View
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.marijah.outflow.R
 import com.example.marijah.outflow.adapters.ListOfExpensesAdapter
-import com.example.marijah.outflow.helpers.HelperManager
 import com.example.marijah.outflow.models.AppManager
 import com.example.marijah.outflow.models.ExpenseItem
 import com.example.marijah.outflow.popups.DeletePopup
 import com.example.marijah.outflow.room_database.Expense
 import com.example.marijah.outflow.room_database.ExpenseDatabase
 import com.google.firebase.database.*
-import kotlinx.android.synthetic.main.activity_list_of_expenses.*
+import kotlinx.android.synthetic.main.fragment_list_of_expenses.*
 
 
-class ListOfExpensesActivity : Activity() {
+class ListOfExpensesFragment : Fragment(R.layout.fragment_list_of_expenses) {
 
     private lateinit var childEventListenerForExpenses: ChildEventListener
     private val arrayOfExpenses = arrayListOf<Any>()
     private lateinit var mAdapter: ListOfExpensesAdapter
     private var myReferenceToExpenses: DatabaseReference? = null
     private var expenseDatabase: ExpenseDatabase? = null
+    private var isThisSingleMode = AppManager.getInstance(context).hasUserPickedSingleMode
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_list_of_expenses)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         setLayoutAndListeners()
     }
 
     private fun setLayoutAndListeners() {
 
-        imgViewAddNewBill.setOnClickListener { finish() }
-        HelperManager.setTypefaceRegular(assets, txtViewName)
+        imgViewAddNewBill.setOnClickListener { findNavController().popBackStack() }
 
 
-        if (!AppManager.getInstance(this).hasUserPickedSingleMode) {
+        if (!isThisSingleMode) {
             val database = FirebaseDatabase.getInstance()
-            myReferenceToExpenses = database.reference.child(AppManager.getInstance(this).currentlyLookedTableName)
+            myReferenceToExpenses = database.reference.child(AppManager.getInstance(context).currentlyLookedTableName)
 
             childEventListenerForExpenses = object : ChildEventListener {
                 override fun onChildAdded(dataSnapshot: DataSnapshot, s: String?) {
@@ -92,23 +92,23 @@ class ListOfExpensesActivity : Activity() {
         } else {
             // iz ROOMA
 
-            expenseDatabase = ExpenseDatabase.getInstance(this)
+            expenseDatabase = ExpenseDatabase.getInstance(context)
             for (expense in expenseDatabase!!.expenseDao().expenseList) {
                 arrayOfExpenses.add(expense)
             }
 
         }
 
-        mAdapter = ListOfExpensesAdapter(this, arrayOfExpenses, object : ListOfExpensesAdapter.ListOfExpensesInterface {
+        mAdapter = ListOfExpensesAdapter(requireContext(), arrayOfExpenses, object : ListOfExpensesAdapter.ListOfExpensesInterface {
             override fun onUserClickedDeleteItem(expenseItem: Any) {
                 //sta radimo ako je korisnik kliknuo brisanjac
 
-                val deletePopup = DeletePopup(this@ListOfExpensesActivity, R.layout.popup_delete)
+                val deletePopup = DeletePopup(requireActivity(), R.layout.popup_delete)
                 deletePopup.show()
 
                 deletePopup.setOnDismissListener {
                     // ako je korisnik stisnuo brisanjac
-                    if (!AppManager.getInstance(applicationContext).hasUserPickedSingleMode) {
+                    if (!isThisSingleMode) {
                         if (deletePopup.hasUserClickedDelete) {
                             myReferenceToExpenses!!.child((expenseItem as ExpenseItem).key).removeValue()
                            // arrayOfExpenses.remove(expenseItem as ExpenseItem)
@@ -128,7 +128,7 @@ class ListOfExpensesActivity : Activity() {
         })
         // Connect the mAdapter with the recycler view.
         rvListOfExpenses.adapter = mAdapter
-        val layoutManager = LinearLayoutManager(this)
+        val layoutManager = LinearLayoutManager(context)
         // postavljamo naopaku listu
         layoutManager.reverseLayout = true
         layoutManager.stackFromEnd = true

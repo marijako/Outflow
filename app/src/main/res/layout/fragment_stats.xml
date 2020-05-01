@@ -1,24 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".activities.activities_group_mode.StatsActivity">
+    android:layout_height="match_parent">
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/blue_dark_color">
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineHeaderTop"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.1" />
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineHeaderBottom"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -35,7 +34,7 @@
             app:layout_constraintTop_toTopOf="@id/guidelineHeaderTop" />
 
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineSettingLeft"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -55,7 +54,7 @@
              app:layout_constraintTop_toTopOf="parent" />-->
 
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelinePieRight"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -81,6 +80,7 @@
             android:layout_height="0dp"
             android:gravity="center"
             android:text="Stats"
+            android:fontFamily="@font/oswald_regular"
             android:textColor="@color/white_color"
             android:textSize="@dimen/activity_text_name"
             app:layout_constraintBottom_toBottomOf="@+id/guidelineHeaderTop"
@@ -90,28 +90,28 @@
 
 
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineLineTextTop"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.13" />
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineLineTextBottom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.19" />
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineLineTextLeft"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.05" />
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineLineTextRight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -126,6 +126,7 @@
             android:text="Data shown for:"
             android:gravity="center|left"
             android:textSize="14sp"
+            android:fontFamily="@font/oswald_light"
             app:layout_constraintLeft_toLeftOf="@+id/guidelineLineTextLeft"
             app:layout_constraintRight_toRightOf="@+id/guidelineLineTextRight"
             app:layout_constraintTop_toTopOf="@id/guidelineLineTextTop"
@@ -140,6 +141,7 @@
             android:textSize="12sp"
             android:visibility="invisible"
             android:gravity="left"
+            android:fontFamily="@font/oswald_light"
             android:paddingBottom="10dp"
             android:textColor="@color/blue_light_color"
             app:layout_constraintLeft_toLeftOf="@+id/guidelineLineTextLeft"
@@ -161,28 +163,28 @@
             />
 
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineLineChartTop"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.25" />
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineLineChartBottom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.8" />
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineLineChartLeft"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.05" />
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineLineChartRight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -228,6 +230,7 @@
             android:visibility="invisible"
             android:text="@string/no_entries_for_this_day"
             android:gravity="center"
+            android:fontFamily="@font/oswald_light"
             android:textColor="@color/yellow_color"
             app:layout_constraintBottom_toBottomOf="@+id/guidelineLineChartBottom"
             app:layout_constraintLeft_toLeftOf="@+id/guidelineLineChartLeft"
@@ -236,14 +239,14 @@
 
 
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineFooterTop"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.88" />
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineFooterBottom"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -260,14 +263,14 @@
             app:layout_constraintTop_toTopOf="@id/guidelineFooterTop" />
 
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineFirstThirdVertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.00" />
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineFirstThirdVertical2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -298,14 +301,14 @@
             app:layout_constraintTop_toTopOf="@id/guidelineFooterBottom" />
 
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineSecondThirdVertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.495" />
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineSecondThirdVertical2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -345,6 +348,6 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="@id/guidelineFooterBottom" />
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

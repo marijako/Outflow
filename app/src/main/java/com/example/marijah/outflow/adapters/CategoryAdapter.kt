@@ -2,7 +2,7 @@ package com.example.marijah.outflow.adapters
 
 import android.content.Context
 import android.graphics.Color
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,12 +16,12 @@ import java.util.*
 
 class CategoryAdapter// Pass in the contact array into the constructor
 (// Easy access to the context object in the recyclerview
-        private val context: Context, private var categoriesArray: ArrayList<Category>) : RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
+        private val context: Context, private var categoriesArray: ArrayList<Category>) : androidx.recyclerview.widget.RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
     private var imgViewPreviouslyClicked: ImageView? = null
     private var txtViewPreviouslyClicked: TextView? = null
     private var positionOfPreviouslyClicked = -1
 
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class ViewHolder(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
 
         var txtViewCategory: TextView = itemView.findViewById<View>(R.id.txtViewCategory) as TextView
         var imgViewCategory: ImageView = itemView.findViewById(R.id.imgViewCategory)

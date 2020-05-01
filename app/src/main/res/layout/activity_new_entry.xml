@@ -1,24 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".activities.activities_group_mode.NewEntryActivity">
+    android:layout_height="match_parent">
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/blue_dark_color">
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineHeaderTop"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.1" />
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineHeaderBottom"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -35,7 +34,7 @@
             app:layout_constraintTop_toTopOf="@id/guidelineHeaderTop" />
 
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineSettingLeft"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -55,7 +54,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelinePieRight"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -89,7 +88,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineNotificationsBottom"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -97,7 +96,7 @@
             app:layout_constraintGuide_percent="0.2" />
 
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineSwitchLeft"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -113,7 +112,7 @@
             tools:ignore="MissingConstraints" />
 
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineDateLeft"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -160,7 +159,7 @@
             tools:ignore="RtlSymmetry" />
 
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelinePasswordBottom"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -190,7 +189,7 @@
             app:layout_constraintVertical_bias="0.0" />
 
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineCategoriesTop"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -198,7 +197,7 @@
             app:layout_constraintGuide_percent="0.3" />
 
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineCategoriesBottom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -206,7 +205,7 @@
             app:layout_constraintGuide_percent="0.48" />
 
 
-        <android.support.constraint.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="@id/guidelineCategoriesBottom"
@@ -214,7 +213,7 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="@id/guidelineCategoriesTop">
 
-            <android.support.v7.widget.RecyclerView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rlListCategory"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -223,13 +222,13 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-            </android.support.v7.widget.RecyclerView>
+            </androidx.recyclerview.widget.RecyclerView>
 
 
-        </android.support.constraint.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineWhatStoreBottom"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -257,7 +256,7 @@
             app:layout_constraintTop_toTopOf="@+id/guidelineCategoriesBottom" />
 
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineCommentTop"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -265,7 +264,7 @@
             app:layout_constraintGuide_percent="0.56" />
 
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineCommentBottom"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -293,21 +292,21 @@
             app:layout_constraintTop_toTopOf="@+id/guidelineCommentTop" />
 
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineConfirmButtonBottom"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.78" />
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineConfirmButtonLeft"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.2" />
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineConfirmButtonRight"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -340,7 +339,7 @@
             app:layout_constraintTop_toTopOf="@+id/guidelineCommentBottom" />
 
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelinePieTop"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -360,7 +359,7 @@
             app:layout_constraintTop_toTopOf="@+id/guidelinePieTop" />
 
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,7 +7,7 @@
     tools:context=".popups.DatePickerPopup">
 
 
-    <android.support.constraint.Guideline
+    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineDatePickerPopupTop"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -15,7 +15,7 @@
         app:layout_constraintGuide_percent="0.1" />
 
 
-    <android.support.constraint.Guideline
+    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineDatePickerPopupBottom"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -23,7 +23,7 @@
         app:layout_constraintGuide_percent="0.9" />
 
 
-    <android.support.constraint.Guideline
+    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineDatePickerPopupLeft"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -31,14 +31,14 @@
         app:layout_constraintGuide_percent="0.05" />
 
 
-    <android.support.constraint.Guideline
+    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineDatePickerPopupRight"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.95" />
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@color/blue_dark_color"
@@ -47,14 +47,14 @@
         app:layout_constraintRight_toRightOf="@+id/guidelineDatePickerPopupRight"
         app:layout_constraintTop_toTopOf="@+id/guidelineDatePickerPopupTop">
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineDatePickerBottom"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.86" />
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineDatePickerTop"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -62,14 +62,14 @@
             app:layout_constraintGuide_percent="0.0" />
 
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineDatePickerLeft"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.0" />
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineDatePickerRight"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -99,7 +99,7 @@
 
              />
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineButtonTop"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -108,14 +108,14 @@
 
 
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineButtonLeft1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.53" />
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineButtonRight1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -139,6 +139,7 @@
             android:layout_height="0dp"
             android:gravity="center"
             android:text="@string/set_date"
+            android:fontFamily="@font/oswald_regular"
             android:textColor="@color/white_color"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="@+id/guidelineButtonLeft1"
@@ -146,14 +147,14 @@
             app:layout_constraintTop_toTopOf="@id/guidelineButtonTop" />
 
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineButtonLeft2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.05" />
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineButtonRight2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -178,12 +179,13 @@
             android:layout_height="0dp"
             android:gravity="center"
             android:text="@string/cancel"
+            android:fontFamily="@font/oswald_regular"
             android:textColor="@color/white_color"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="@+id/guidelineButtonLeft2"
             app:layout_constraintRight_toRightOf="@+id/guidelineButtonRight2"
             app:layout_constraintTop_toTopOf="@id/guidelineButtonTop" />
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

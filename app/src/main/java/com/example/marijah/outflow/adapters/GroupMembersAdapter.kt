@@ -1,7 +1,7 @@
 package com.example.marijah.outflow.adapters
 
 import android.content.Context
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,10 +9,10 @@ import android.widget.TextView
 import com.example.marijah.outflow.R
 import java.util.*
 
-class GroupMembersAdapter(private val context: Context, private val arrayListOfGroupMembers: ArrayList<String>) : RecyclerView.Adapter<GroupMembersAdapter.ViewHolder>() {
+class GroupMembersAdapter(private val context: Context, private val arrayListOfGroupMembers: ArrayList<String>) : androidx.recyclerview.widget.RecyclerView.Adapter<GroupMembersAdapter.ViewHolder>() {
 
 
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class ViewHolder(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
 
         var txtViewGroupMember: TextView = itemView.findViewById(R.id.txtViewGroupMember)
         var txtViewNumber: TextView = itemView.findViewById(R.id.txtViewNumber)

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment"
+    tools:ignore="UnusedNavigation">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.marijah.outflow.fragments.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_newEntrySingleFragment"
+            app:destination="@id/newEntrySingleFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/newEntrySingleFragment"
+        tools:layout="@layout/fragment_new_entry_single"
+        android:name="com.example.marijah.outflow.fragments.NewEntryFragment"
+        android:label="NewEntrySingleFragment" >
+        <action
+            android:id="@+id/action_newEntrySingleFragment_to_settingsActivity"
+            app:destination="@id/settingsActivity" />
+        <action
+            android:id="@+id/action_newEntrySingleFragment_to_listOfExpensesFragment"
+            app:destination="@id/listOfExpensesFragment" />
+        <action
+            android:id="@+id/action_newEntrySingleFragment_to_statsSingleFragment"
+            app:destination="@id/statsSingleFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingsActivity"
+        android:name="com.example.marijah.outflow.fragments.SettingsFragment"
+        android:label="activity_settings"
+        tools:layout="@layout/fragment_settings" >
+        <action
+            android:id="@+id/action_settingsActivity_to_listOfGroupsFragment"
+            app:destination="@id/listOfGroupsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/listOfExpensesFragment"
+        android:name="com.example.marijah.outflow.fragments.ListOfExpensesFragment"
+        android:label="fragment_list_of_expenses"
+        tools:layout="@layout/fragment_list_of_expenses" />
+    <fragment
+        android:id="@+id/listOfGroupsFragment"
+        tools:layout="@layout/fragment_list_of_groups"
+        android:name="com.example.marijah.outflow.fragments.ListOfGroupsFragment"
+        android:label="ListOfGroupsFragment" />
+    <fragment
+        android:id="@+id/statsSingleFragment"
+        android:name="com.example.marijah.outflow.fragments.StatsFragment"
+        android:label="fragment_stats_single"
+        tools:layout="@layout/fragment_stats" />
+
+
+</navigation>

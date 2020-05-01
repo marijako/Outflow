@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.activities_group_mode.SettingsActivity">
+    tools:context=".fragments.SettingsFragment">
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/blue_dark_color">
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineHeaderTop"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.1" />
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineHeaderBottom"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -41,6 +41,7 @@
             android:layout_height="0dp"
             android:gravity="center"
             android:text="@string/settings"
+            android:fontFamily="@font/oswald_regular"
             android:textColor="@color/white_color"
             android:textSize="@dimen/activity_text_name"
             app:layout_constraintBottom_toBottomOf="@+id/guidelineHeaderTop"
@@ -49,7 +50,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineNotificationsBottom"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -66,6 +67,7 @@
             android:text="Receive Daily Notifications"
             android:textColor="@color/white_color"
             android:textSize="@dimen/activity_settings_items"
+            android:fontFamily="@font/oswald_light"
             app:layout_constraintBottom_toBottomOf="@+id/guidelineNotificationsBottom"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -80,7 +82,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/guidelineNotificationsBottom" />
 
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineSwitchLeft"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -100,7 +102,7 @@
             app:layout_constraintTop_toTopOf="@id/guidelineHeaderBottom" />
 
 
-        <android.support.constraint.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/holderGroupMode"
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -110,7 +112,7 @@
             >
 
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelinePasswordBottom"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -127,6 +129,7 @@
             android:text="Check Out Your Groups"
             android:textColor="@color/white_color"
             android:textSize="@dimen/activity_settings_items"
+            android:fontFamily="@font/oswald_light"
             app:layout_constraintBottom_toBottomOf="@+id/guidelinePasswordBottom"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -134,7 +137,7 @@
 
 
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineInviteAFriendBottom"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -151,13 +154,14 @@
             android:text="Create A Group"
             android:textColor="@color/white_color"
             android:textSize="@dimen/activity_settings_items"
+            android:fontFamily="@font/oswald_light"
             app:layout_constraintBottom_toBottomOf="@+id/guidelineInviteAFriendBottom"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guidelinePasswordBottom" />
 
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineJoinAGroup"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -174,13 +178,14 @@
             android:text="Join A Group"
             android:textColor="@color/white_color"
             android:textSize="@dimen/activity_settings_items"
+            android:fontFamily="@font/oswald_light"
             app:layout_constraintBottom_toBottomOf="@+id/guidelineJoinAGroup"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guidelineInviteAFriendBottom" />
 
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineCheckForInvites"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -201,7 +206,7 @@
 
 
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineSignOutBottom"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -218,15 +223,16 @@
             android:text="Sign Out"
             android:textColor="@color/yellow_color"
             android:textSize="@dimen/activity_settings_items"
+            android:fontFamily="@font/oswald_regular"
             app:layout_constraintBottom_toBottomOf="@+id/guidelineSignOutBottom"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guidelineCheckForInvites" />
 
-        </android.support.constraint.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineBottom"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -234,7 +240,7 @@
             app:layout_constraintGuide_percent="0.65" />
 
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineChangeModeTop"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -253,6 +259,7 @@
             android:gravity="center_vertical"
             android:paddingLeft="15dp"
             android:text="Change Mode"
+            android:fontFamily="@font/oswald_regular"
             android:textColor="@color/blue_light_color"
             android:textSize="@dimen/activity_settings_items"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -262,7 +269,7 @@
 
 
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

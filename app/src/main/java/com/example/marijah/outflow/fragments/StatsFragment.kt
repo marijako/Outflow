@@ -1,23 +1,24 @@
-package com.example.marijah.outflow.activities.activities_group_mode
+package com.example.marijah.outflow.fragments
 
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.graphics.Color
 import android.graphics.PorterDuff
 import android.graphics.Typeface
 import android.os.Bundle
-import android.support.v4.content.ContextCompat
 import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.ImageView
-import android.widget.Toast
+import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.marijah.outflow.R
-import com.example.marijah.outflow.helpers.HelperManager
 import com.example.marijah.outflow.models.AppManager
 import com.example.marijah.outflow.models.ExpenseItem
 import com.example.marijah.outflow.popups.CalendarPopup
+import com.example.marijah.outflow.room_database.Expense
+import com.example.marijah.outflow.room_database.ExpenseDatabase
 import com.github.mikephil.charting.components.Description
 import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.components.YAxis
@@ -29,22 +30,21 @@ import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
-import kotlinx.android.synthetic.main.activity_chart.*
+import kotlinx.android.synthetic.main.fragment_stats.*
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
 
-class StatsActivity : Activity(), AdapterView.OnItemSelectedListener {
+class StatsFragment : Fragment(R.layout.fragment_stats), AdapterView.OnItemSelectedListener {
 
 
     private lateinit var typefaceOswald: Typeface
     private lateinit var arrayListOfColors: Array<Int>
-    private val arrayOfExpenses: ArrayList<ExpenseItem> = ArrayList()
+    private val arrayOfExpenses: ArrayList<Any> = ArrayList()
 
     private val pieEntries: ArrayList<PieEntry> = ArrayList()
-
 
     private var currentlyPickedTime = TimeReference.THIS_DAY
 
@@ -54,16 +54,25 @@ class StatsActivity : Activity(), AdapterView.OnItemSelectedListener {
     private var startDate = ""
     private var endDate = ""
 
+    private var isThisSingleMode = AppManager.getInstance(context).hasUserPickedSingleMode
+
     private enum class TimeReference {
         THIS_DAY, SOME_DAY, THIS_MONTH, SOME_RANGE
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_chart)
 
         // prvo stavke iz baze troskova smestamo u jednu array listu troskova
-        getArrayListOfExpenses()
+        if (isThisSingleMode)
+            getArrayListOfExpenses()
+        else
+            getArrayListOfExpensesFromFirebaseRealtimeDatabase()
+    }
+
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         // uzimamo niz boja koje cemo da koristimo pri prikazu grafikona
         getArrayListOfColors()
@@ -71,15 +80,16 @@ class StatsActivity : Activity(), AdapterView.OnItemSelectedListener {
         val arrayOfTimeLapses = arrayOf("This day", "This month", "Pick day", "Pick range")
 
         // Declaring an Adapter and initializing it to the data pump
-        val adapter = ArrayAdapter(applicationContext, R.layout.spinner_item, arrayOfTimeLapses)
+        val adapter = ArrayAdapter(context, R.layout.spinner_item, arrayOfTimeLapses)
         // Setting Adapter to the Spinner
         spinner.adapter = adapter
         // Setting OnItemClickListener to the Spinner
         spinner.onItemSelectedListener = this
 
-        typefaceOswald = Typeface.createFromAsset(assets, "oswald_regular.ttf")
+        typefaceOswald = Typeface.createFromAsset(requireContext().assets, "oswald_regular.ttf")
         setLayoutsAndListeners()
     }
+
 
     private fun getArrayListOfColors() {
         arrayListOfColors = arrayOf(
@@ -136,7 +146,7 @@ class StatsActivity : Activity(), AdapterView.OnItemSelectedListener {
 
             }
             2 -> {
-                val calendarView = CalendarPopup(this, false)
+                val calendarView = CalendarPopup(requireActivity(), false)
                 calendarView.show()
 
                 calendarView.setOnDismissListener {
@@ -150,10 +160,10 @@ class StatsActivity : Activity(), AdapterView.OnItemSelectedListener {
                         setupPieChart()
                         setupBarChart()
 
-                        if(pieChart.visibility == View.VISIBLE)
+                        if (pieChart.visibility == View.VISIBLE)
                             barChart.visibility = View.INVISIBLE
 
-                        if(barChart.visibility == View.VISIBLE)
+                        if (barChart.visibility == View.VISIBLE)
                             pieChart.visibility = View.INVISIBLE
 
                     }
@@ -161,7 +171,7 @@ class StatsActivity : Activity(), AdapterView.OnItemSelectedListener {
 
             }
             3 -> {
-                val calendarView = CalendarPopup(this, true)
+                val calendarView = CalendarPopup(requireActivity(), true)
                 calendarView.show()
 
                 calendarView.setOnDismissListener {
@@ -180,20 +190,20 @@ class StatsActivity : Activity(), AdapterView.OnItemSelectedListener {
                         setupBarChart()
 
 
-                        if(pieChart.visibility == View.VISIBLE)
+                        if (pieChart.visibility == View.VISIBLE)
                             barChart.visibility = View.INVISIBLE
 
-                        if(barChart.visibility == View.VISIBLE)
+                        if (barChart.visibility == View.VISIBLE)
                             pieChart.visibility = View.INVISIBLE
                     }
                 }
             }
 
         }
-        if(pieChart.visibility == View.VISIBLE)
+        if (pieChart.visibility == View.VISIBLE)
             barChart.visibility = View.INVISIBLE
 
-        if(barChart.visibility == View.VISIBLE)
+        if (barChart.visibility == View.VISIBLE)
             pieChart.visibility = View.INVISIBLE
 
 
@@ -204,21 +214,11 @@ class StatsActivity : Activity(), AdapterView.OnItemSelectedListener {
 
 
     private fun setLayoutsAndListeners() {
-        HelperManager.setTypefaceRegular(assets, txtViewName)
-        //setupPieChart()
 
-
-        // inicijalno podesavanje
-        //txtViewCustomDate.visibility = View.VISIBLE
-        //txtViewCustomDate.text = getTodaysDate()
-        //currentlyPickedTime = TimeReference.THIS_DAY
-        //setupPieChart()
-        //setupBarChart()
         pieChart.visibility = View.VISIBLE
         barChart.visibility = View.INVISIBLE
 
         spinner.setSelection(0)
-
 
         setThePickedOneYellowAndTheOthersBlue(imgViewPieChart)
         setupPieChart()
@@ -256,7 +256,7 @@ class StatsActivity : Activity(), AdapterView.OnItemSelectedListener {
 
 
         imgViewBack.setOnClickListener {
-            finish()
+            findNavController().popBackStack()
         }
 
     }
@@ -265,11 +265,11 @@ class StatsActivity : Activity(), AdapterView.OnItemSelectedListener {
      * Funkcija koja menja boju kliknutom imageView-u kako bi odala utisak selekcije
      */
     private fun setThePickedOneYellowAndTheOthersBlue(pickedImageView: ImageView) {
-        val colorBlue = ContextCompat.getColor(this, R.color.blue_light_color)
+        val colorBlue = ContextCompat.getColor(requireContext(), R.color.blue_light_color)
         imgViewLineChart.setColorFilter(colorBlue, PorterDuff.Mode.SRC_ATOP)
         imgViewPieChart.setColorFilter(colorBlue, PorterDuff.Mode.SRC_ATOP)
         imgViewBarChart.setColorFilter(colorBlue, PorterDuff.Mode.SRC_ATOP)
-        pickedImageView.setColorFilter(ContextCompat.getColor(this, R.color.yellow_color), PorterDuff.Mode.SRC_ATOP)
+        pickedImageView.setColorFilter(ContextCompat.getColor(requireContext(), R.color.yellow_color), PorterDuff.Mode.SRC_ATOP)
     }
 
 
@@ -336,14 +336,14 @@ class StatsActivity : Activity(), AdapterView.OnItemSelectedListener {
         legend.setDrawInside(false)
 
 
-        pieChart.setHoleColor(ContextCompat.getColor(this, R.color.blue_dark_color))
+        pieChart.setHoleColor(ContextCompat.getColor(requireContext(), R.color.blue_dark_color))
         pieChart.holeRadius = 50f
 
         pieChart.setDrawEntryLabels(false)
-        pieChart.setEntryLabelColor(ContextCompat.getColor(this, R.color.blue_dark_color))
+        pieChart.setEntryLabelColor(ContextCompat.getColor(requireContext(), R.color.blue_dark_color))
         pieChart.setCenterTextTypeface(typefaceOswald)
         pieChart.setCenterTextSize(13f)
-        pieChart.setCenterTextColor(ContextCompat.getColor(this, R.color.blue_dark_color))
+        pieChart.setCenterTextColor(ContextCompat.getColor(requireContext(), R.color.blue_dark_color))
         pieChart.setTransparentCircleAlpha(0)
         //pieChart.setUsePercentValues(true)
         pieChart.valuesToHighlight()
@@ -352,7 +352,7 @@ class StatsActivity : Activity(), AdapterView.OnItemSelectedListener {
 
         val description = Description()
         description.text = "Expences for this day"
-        description.textColor = ContextCompat.getColor(this, R.color.white_color)
+        description.textColor = ContextCompat.getColor(requireContext(), R.color.white_color)
         description.typeface = typefaceOswald
         pieChart.description = description
 
@@ -371,13 +371,13 @@ class StatsActivity : Activity(), AdapterView.OnItemSelectedListener {
 
         for (item in arrayOfExpenses) {
 
-            if (currentlyPickedTime == TimeReference.THIS_DAY && item.date == getTodaysDate()) {
+            if (currentlyPickedTime == TimeReference.THIS_DAY && if (isThisSingleMode) (item as Expense).date == getTodaysDate() else (item as ExpenseItem).date == getTodaysDate()) {
                 addPickedData(item)
-            } else if (currentlyPickedTime == TimeReference.THIS_MONTH && (getThisMonthAndThisYear(item.date)) == (getThisMonthAndThisYear(getTodaysDate()))) {
+            } else if (currentlyPickedTime == TimeReference.THIS_MONTH && (getThisMonthAndThisYear(if (isThisSingleMode) (item as Expense).date else (item as ExpenseItem).date)) == (getThisMonthAndThisYear(getTodaysDate()))) {
                 addPickedData(item)
-            } else if (currentlyPickedTime == TimeReference.SOME_DAY && item.date == startDate)
+            } else if (currentlyPickedTime == TimeReference.SOME_DAY && if (isThisSingleMode) (item as Expense).date == startDate else (item as ExpenseItem).date == startDate)
                 addPickedData(item)
-            else if (currentlyPickedTime == TimeReference.SOME_RANGE && checkIfTheDateIsInTheBetweenOfTwoDates(item.date, startDate, endDate)) {
+            else if (currentlyPickedTime == TimeReference.SOME_RANGE && checkIfTheDateIsInTheBetweenOfTwoDates(if (isThisSingleMode) (item as Expense).date else (item as ExpenseItem).date, startDate, endDate)) {
                 // AKO JE DATUM JEDNAK ILI VECI OD START DATE I
                 // JEDNAK ILI MANJI OD END DATE
                 // ONDA GA UPISUJEMO
@@ -388,21 +388,22 @@ class StatsActivity : Activity(), AdapterView.OnItemSelectedListener {
     }
 
 
-    private fun addPickedData(item: ExpenseItem) {
+    private fun addPickedData(item: Any) {
         txtViewNoEntries.visibility = View.INVISIBLE
+
 
         var itemExists = false
         for (i in 0 until pieEntries.size) {
-            if (pieEntries[i].label == item.category) {
-                val totalValue = pieEntries[i].value + item.price.toFloat()
-                pieEntries[i] = PieEntry(totalValue, item.category)
+            if (pieEntries[i].label == if (isThisSingleMode) (item as Expense).category else (item as ExpenseItem).category) {
+                val totalValue = pieEntries[i].value + if (isThisSingleMode) (item as Expense).price.toFloat() else (item as ExpenseItem).price.toFloat()
+                pieEntries[i] = PieEntry(totalValue, if (isThisSingleMode) (item as Expense).category else (item as ExpenseItem).category)
                 itemExists = true
                 break
             }
         }
 
         if (!itemExists) {
-            pieEntries.add(PieEntry(item.price.toFloat(), item.category))
+            pieEntries.add(PieEntry(if (isThisSingleMode) (item as Expense).price.toFloat() else (item as ExpenseItem).price.toFloat(), if (isThisSingleMode) (item as Expense).category else (item as ExpenseItem).category))
         } else
             itemExists = false
 
@@ -508,8 +509,20 @@ class StatsActivity : Activity(), AdapterView.OnItemSelectedListener {
      */
     private fun getArrayListOfExpenses() {
 
+        val expenseDatabase = ExpenseDatabase.getInstance(requireContext())
+        for (expense in expenseDatabase!!.expenseDao().expenseList) {
+            arrayOfExpenses.add(expense)
+        }
+    }
+
+
+    /**
+     * Funkcija za preuzimanje troskova iz firebase realtime database baze i smestanje u array listu troskova.
+     */
+    private fun getArrayListOfExpensesFromFirebaseRealtimeDatabase() {
+
         val database = FirebaseDatabase.getInstance()
-        val myReferenceToExpenses = database.reference.child(AppManager.getInstance(this).currentlyLookedTableName)
+        val myReferenceToExpenses = database.reference.child(AppManager.getInstance(requireContext()).currentlyLookedTableName)
 
         val childEventListenerForExpenses = object : ChildEventListener {
             override fun onChildAdded(dataSnapshot: DataSnapshot, s: String?) {

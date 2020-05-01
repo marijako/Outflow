@@ -1,4 +1,4 @@
-package com.example.marijah.outflow.activities.services
+package com.example.marijah.outflow.customComponents.services
 
 import android.app.Service
 import android.content.Intent
