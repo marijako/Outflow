@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.AlertDialog
 import android.app.DatePickerDialog
+import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
@@ -45,6 +46,7 @@ class NewEntrySingleActivity : Activity(), DatePickerDialog.OnDateSetListener {
 
         Log.i("Marija", "OnCreate() NewEntryActivity!")
 
+        //ViewModelProviders.of(applicationContext).get(NewEntryViewModel::class)
 
         setContentView(R.layout.activity_new_entry_single)
 

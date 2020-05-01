@@ -29,6 +29,5 @@ class Expense {
         this.place = place
         this.date = date
         this.comment = comment
-
     }
 }

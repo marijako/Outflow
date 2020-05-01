@@ -1,5 +1,17 @@
 package com.example.marijah.outflow.models
 
+
+/*data class ExpenseItem(
+    val key: String,
+    val price: Int,
+    val place: String,
+    val category: String,
+    val date: String,
+    val comment: String,
+    val whoDidThePurchase: String = "me"
+    )*/
+
+
 class ExpenseItem()
 {
     var key : String = ""

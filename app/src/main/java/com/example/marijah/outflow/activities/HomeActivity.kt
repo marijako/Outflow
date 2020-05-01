@@ -10,6 +10,9 @@ import com.example.marijah.outflow.activities.activities_single_mode.NewEntrySin
 import com.example.marijah.outflow.helpers.HelperManager
 import com.example.marijah.outflow.helpers.HelperManager.setDefaultFont
 import com.example.marijah.outflow.models.AppManager
+import com.example.marijah.outflow.models.ExpenseItem
+import com.example.marijah.outflow.models.ExpenseItemJava
+import com.example.marijah.outflow.room_database.Expense
 import kotlinx.android.synthetic.main.activity_home.*
 
 class HomeActivity : MasterActivity() {
@@ -19,15 +22,9 @@ class HomeActivity : MasterActivity() {
 
         setDefaultFont(this, "MONOSPACE", "oswald_light.ttf")
 
-
         Log.i("Marija", "OnCreate() HomeActivity!")
 
         setContentView(R.layout.activity_home)
-
-
-        //setDefaultFont(this, "DEFAULT", "oswald_light.ttf")
-        /*setDefaultFont(this, "SERIF", "oswald_light.ttf")*/
-        /*setDefaultFont(this, "SANS_SERIF", "oswald_light.ttf")*/
 
         setLayoutAndListeners()
 

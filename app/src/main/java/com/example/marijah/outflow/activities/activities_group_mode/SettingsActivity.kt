@@ -101,7 +101,7 @@ class SettingsActivity : Activity() {
         HelperManager.setTypefaceRegular(assets, txtViewChangeMode)
 
 
-        txtViewCheckYourInvites.setOnClickListener {
+     /*   txtViewCheckYourInvites.setOnClickListener {
             // proveravamo da li su pristigli novi zahtevi za mrdzovanje
 
             var doUserHaveAnyNewInvites = false
@@ -149,7 +149,7 @@ class SettingsActivity : Activity() {
             }, 1500)   //5 seconds
 
 
-        }
+        }*/
 
 
     }
