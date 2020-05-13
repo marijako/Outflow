@@ -3,13 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/homeFragment"
-    tools:ignore="UnusedNavigation">
+    app:startDestination="@id/homeFragment">
 
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.marijah.outflow.fragments.HomeFragment"
-        android:label="fragment_home"
+        android:label="fauragment_home"
         tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/action_homeFragment_to_newEntrySingleFragment"
@@ -55,6 +54,11 @@
         android:name="com.example.marijah.outflow.fragments.StatsFragment"
         android:label="fragment_stats_single"
         tools:layout="@layout/fragment_stats" />
+    <activity
+        android:id="@+id/testActivity"
+        android:name="com.example.marijah.outflow.activity.TestActivity"
+        android:label="activity_test"
+        tools:layout="@layout/activity_test" />
 
 
 </navigation>

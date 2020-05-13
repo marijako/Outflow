@@ -11,6 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".activity.TestActivity"></activity>
         <activity
             android:name=".popups.CalendarPopup"
             android:label="@string/title_activity_calendar_popup"
@@ -25,9 +26,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
-        <service android:name="com.example.marijah.outflow.customComponents.services.InvitationListenerService" />
+        <receiver android:name=".helpers.NotificationPublisher" />
+        <service android:name=".customComponents.services.InvitationListenerService" />
     </application>
 
 </manifest>

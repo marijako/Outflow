@@ -34,8 +34,8 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="210" />
-                            <option name="y" value="-418" />
+                            <option name="x" value="168" />
+                            <option name="y" value="-368" />
                           </Point>
                         </option>
                       </LayoutPositions>
@@ -46,8 +46,8 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="407" />
-                            <option name="y" value="267" />
+                            <option name="x" value="375" />
+                            <option name="y" value="241" />
                           </Point>
                         </option>
                       </LayoutPositions>
@@ -89,8 +89,8 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="214" />
-                            <option name="y" value="269" />
+                            <option name="x" value="174" />
+                            <option name="y" value="241" />
                           </Point>
                         </option>
                         <option name="myPositions">
@@ -112,6 +112,27 @@
                           <Point>
                             <option name="x" value="325" />
                             <option name="y" value="-84" />
+                          </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_statsSingleFragment_to_testActivity">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="testActivity">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="-205" />
+                            <option name="y" value="265" />
                           </Point>
                         </option>
                       </LayoutPositions>

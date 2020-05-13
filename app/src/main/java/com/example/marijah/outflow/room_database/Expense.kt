@@ -10,24 +10,16 @@ import androidx.room.PrimaryKey
  */
 
 @Entity(tableName = "expenses")
-class Expense {
+data class Expense (
     @PrimaryKey(autoGenerate = true)
-    var key: Int = 0
+    var key: Int = 0,
 
     @ColumnInfo(name = "cost")
-    var price: Int = 0
+    var price: Int = 0,
 
-    var place: String = ""
-    var category: String = ""
-    var date: String = ""
+    var category: String = "",
+    var place: String = "",
+    var date: String = "",
     var comment: String = ""
 
-
-    constructor( price: Int, category: String, place: String, date: String, comment: String) {
-        this.price = price
-        this.category = category
-        this.place = place
-        this.date = date
-        this.comment = comment
-    }
-}
+)

@@ -80,6 +80,20 @@ public class AppManager {
     }
 
 
+    /**
+     *
+     */
+    public void setNotificationStatus(Boolean theTruth) {
+        PreferencesManager.getInstance(mContext).setBooleanValue("NOTIFICATIONS", theTruth);
+    }
+
+    /**
+     * Funkcija za dobijanje trenutno logovanog korisnika
+     */
+    public boolean getNotificationStatus() {
+        return PreferencesManager.getInstance(mContext).getBooleanValue("NOTIFICATIONS", true);
+    }
+
     // S H A R E D   P R E F E R E N C E S   E N D
 
 
